@@ -13,7 +13,7 @@ class Solution:
             else:
                 if len(stack) == 0:
                     return False
-                    
+
                 lastChar = stack.pop()
                 if closingsMap[char] != lastChar:
                     return False
@@ -27,7 +27,7 @@ testCases = [
     [")", False],
     ["()[]{}", True],
     ["([]{})", True],
-    ["(]", False],
+    ["(]", False]
 ]
 implementation = Solution()
 for s, expected in testCases:
