@@ -2,6 +2,8 @@ from typing import List
 
 
 class Solution:
+    # Use binary search of possible sums to see which value is right
+    # O(n*log(sum)) time O(1) space
     def splitArray(self, nums: List[int], m: int) -> int:
 
         def min_subarrays_required(max_sum_allowed: int) -> int:
