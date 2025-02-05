@@ -18,7 +18,7 @@ class Solution:
             tempNum = tempNum + (num % 10)
             num = num // 10
         
-        return self.addDigits(tempNum)
+        return self.addDigitsRecurse(tempNum)
 
 testCases = [
     [38, 2],
