@@ -7,7 +7,7 @@ class Solution:
         return self.minOperationsPQ(nums, k)
     
     # Create min PQ of nums, check if top is above k, if not pop top 2 and push new num
-    # Time O(n^2 log(n)) nlogn to create pq, then potentially n/2 operations to get above k
+    # Time O(nlog(n))
     # Space O(n)
     def minOperationsPQ(self, nums: List[int], k: int) -> int:
         heapq.heapify(nums)
