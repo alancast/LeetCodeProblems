@@ -4,6 +4,10 @@ from collections import defaultdict
 class Solution:
     MOD = 10**9 + 7
 
+    # Kinda some magic math here
+    # Silly leet code problem I don't think it's worth the time to understand
+    # Time O(3^2m * n)
+    # Space O(3^2m)
     def colorTheGrid(self, m: int, n: int) -> int:
         # Hash mapping stores all valid coloration schemes for a single row that meet the requirements
         # The key represents mask, and the value represents the ternary string of mask (stored as a list)
@@ -11,9 +15,9 @@ class Solution:
 
         # Enumerate masks that meet the requirements within the range [0, 3^m)
         for mask in range(3**m):
-            color = list()
+            color = []
             mm = mask
-            for i in range(m):
+            for _ in range(m):
                 color.append(mm % 3)
                 mm //= 3
             if any(color[i] == color[i + 1] for i in range(m - 1)):
