@@ -28,4 +28,27 @@ def gen_perms(nums: List[int]) -> None:
             for i in range(len(remaining)):
                 queue.append((curr_perm + [remaining[i]], remaining[:i] + remaining[i+1:]))
 
+# Generating permutation using Heap Algorithm
+# Time Complexity: O(n! * n) where n is the length of nums.
+#   - There are n! permutations, and each permutation is constructed in O(n) time.
+# Space Complexity: O(n) for recursive call stack size
+def heap_permutation(nums: List[int], size: int) -> None:
+
+    # if size becomes 1 then prints the obtained permutation
+    if size == 1:
+        print(nums)
+        return
+
+    for i in range(size):
+        heap_permutation(nums, size-1)
+
+        # if size is odd, swap 0th (first) and (size-1)th (last) element
+        # else swap ith and (size-1)th (last) element
+        if size & 1:
+            nums[0], nums[size-1] = nums[size-1], nums[0]
+        else:
+            nums[i], nums[size-1] = nums[size-1], nums[i]
+
 gen_perms([1,2,3])
+print('\nGenerating all perms using more space efficient heap algorithm')
+heap_permutation([1, 2, 3], 3)
