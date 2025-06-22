@@ -1,8 +1,6 @@
 # LeetCodeProblems
 
-Repo for leet code solutions.
+Repo used to just be for leet code problems, but turned into generic interview prep solutions.
 
-These are mostly from the daily and weekly challenges.
-
-I probably should have started this repo back in October
-when I started doing them somewhat daily, but 🤷‍♂️.
+Leet code ones are mostly from the daily and weekly challenges.
+Non Leet code ones are either things I wanted to learn or suggestions from companies.
