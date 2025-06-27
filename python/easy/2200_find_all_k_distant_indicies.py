@@ -2,6 +2,8 @@ from typing import List
 
 
 class Solution:
+    # Time O(n) as we just go through nums once
+    # Space O(1) all that's used is answer space
     def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
         n = len(nums)
         answer = []
