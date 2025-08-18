@@ -39,7 +39,7 @@ class Solution:
             left += 1
 
         return count
-    
+
 test_cases = [
     [4, [1,3,1,2,2]],
     [10, [5,5,5,5]],
