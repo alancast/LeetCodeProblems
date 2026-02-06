@@ -1,13 +1,11 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Go over nums twice, once for sort, once to find max with count of 1
     # Time O(n)
     # Space O(n)
-    def largestUniqueNumber(self, nums: List[int]) -> int:
-        n = len(nums)
+    def largestUniqueNumber(self, nums: list[int]) -> int:
         num_counts = defaultdict(int)
 
         # Do counts (could also just do Counter)
@@ -29,7 +27,7 @@ class Solution:
     # unique from it's neighbors return it
     # Time O(nlogn) for sort
     # Space O(n) for sort
-    def largestUniqueNumber_sort(self, nums: List[int]) -> int:
+    def largestUniqueNumber_sort(self, nums: list[int]) -> int:
         n = len(nums)
         nums.sort(reverse=True)
 

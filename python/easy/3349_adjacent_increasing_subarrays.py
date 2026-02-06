@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over list once and see if two adjacent k size arrays
     # Time O(n)
     # Space O(1)
-    def hasIncreasingSubarrays(self, nums: List[int], k: int) -> bool:
+    def hasIncreasingSubarrays(self, nums: list[int], k: int) -> bool:
         prev_num = float('-inf')
         count = 0
         looking_for_second = False
@@ -23,13 +20,10 @@ class Solution:
                 # We can just cut this in half and have two adjacent
                 if count == 2*k:
                     return True
-                    
+
             # We decreased in number, streak busted so start again
             else:
-                if count >= k:
-                    looking_for_second = True
-                else:
-                    looking_for_second = False
+                looking_for_second = count >= k
 
                 count = 1
 
