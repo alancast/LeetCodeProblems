@@ -1,10 +1,9 @@
 from collections import deque
-from typing import List
 
 
 # Time O(d) as we go over full dishes and do O(1) operations on it
 # Space O(k) as we store last k dishes eaten
-def getMaximumEatenDishCount(N: int, D: List[int], K: int) -> int:
+def getMaximumEatenDishCount(N: int, D: list[int], K: int) -> int:
     last_k_eaten_set = set()
     last_k_eaten_deque = deque()
     answer = 0
@@ -21,7 +20,7 @@ def getMaximumEatenDishCount(N: int, D: List[int], K: int) -> int:
         # See if need to remove from last k eaten
         if len(last_k_eaten_deque) > K:
             last_k_eaten_set.remove(last_k_eaten_deque.popleft())
-     
+
     return answer
 
 test_cases = [

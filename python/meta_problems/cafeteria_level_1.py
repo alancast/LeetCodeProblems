@@ -1,20 +1,18 @@
-from typing import List
-
 # Time O(SlogS) for sorting
 # Space O(S) for sorting algo
-def getMaxAdditionalDinersCount(N: int, K: int, M: int, S: List[int]) -> int:
+def getMaxAdditionalDinersCount(N: int, K: int, M: int, S: list[int]) -> int:
   can_add = 0
   S.sort()
-  
+
   left = 1
   for seat in S:
     # rightmost empty seat
     right = seat - (K + 1)
     can_add += 1 + (right - left) // (K+1)
     left = seat + K + 1
-    
+
   can_add += 1 + (N - left) // (K+1)
-  
+
   return can_add
 
 test_cases = [

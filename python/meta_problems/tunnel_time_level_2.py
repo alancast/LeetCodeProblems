@@ -1,10 +1,7 @@
-from typing import List
-
-
 # Compute time in tunnel for each lap and time outside of tunnel for each lap
 # Time O(nlogn) as we have to sort A and B and then go through them at most twice
 # Space O(1)
-def getSecondsElapsed(C: int, N: int, A: List[int], B: List[int], K: int) -> int:
+def getSecondsElapsed(C: int, N: int, A: list[int], B: list[int], K: int) -> int:
     # Sort A and B for tunnel ordering
     A.sort()
     B.sort()
@@ -39,7 +36,7 @@ def getSecondsElapsed(C: int, N: int, A: List[int], B: List[int], K: int) -> int
 
     # We had to get to the last end but if K is negative we can add some back
     answer += end + K
-    
+
     return answer
 
 test_cases = [

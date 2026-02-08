@@ -1,13 +1,9 @@
-from collections import defaultdict
-from typing import List
-
-
 # Very difficult problem. Past a leet code hard
 # Use Tarjans Strongly Connected Component algorithm to find SCCs
 # Then find size of SCCs and find maximum visitable pages
 # Time O(N+M) as that's what Tarjans takes
 # Space O(N+M)
-def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
+def getMaxVisitableWebpages(N: int, M: int, A: list[int], B: list[int]) -> int:  # noqa: PLR0912, PLR0915
     scc_id = 1
     page_cluster_id = [0] * (N + 1)
     page_id = [0] * (N + 1)
@@ -26,7 +22,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
     # Copy of adjacency lists.
     for i in range(N + 1):
         unvisited_links.append(list(links[i]))
-    
+
     for page in range(1, N + 1):
         # Skip if node already visited
         if page_id[page] != 0:
@@ -46,7 +42,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
                 scc_id += 1
 
                 page_history.append(current_page)
-                
+
                 avalible_links = unvisited_links[current_page]
                 while len(avalible_links) > 0:
                     next_page = avalible_links[-1]
@@ -61,7 +57,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
                         page_cluster_id[current_page] = min(page_cluster_id[current_page], page_id[next_page])
 
                     del avalible_links[-1]
-                    
+
             # Continue executing where we left off
             else:
                 current_page = -current_page
@@ -87,7 +83,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: List[int], B: List[int]) -> int:
 
             # This effectively makes it a DFS as any chance you can when you see
             # A new node you explore it
-            if recurse == True:
+            if recurse:
                 continue
 
             # A Strongly Connected Component Identified

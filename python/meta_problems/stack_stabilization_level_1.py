@@ -1,9 +1,6 @@
-from typing import List
-
-
 # Time O(n) as we go through the disks once
 # Space O(1)
-def getMinimumDeflatedDiscCount(N: int, R: List[int]) -> int:
+def getMinimumDeflatedDiscCount(N: int, R: list[int]) -> int:
     # Last disk simply must be biggest
     biggest_possible = R[-1] - 1
     answer = 0

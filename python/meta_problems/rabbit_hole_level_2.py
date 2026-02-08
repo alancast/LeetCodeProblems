@@ -1,11 +1,8 @@
-from typing import List
-
-
 # Do DFS of nodes and keep a visited nodes list
 # Iterate over all nodes until done
 # Time O(n) as each node is visited once-ish
 # Space O(n) as we keep multiple size n data fields
-def getMaxVisitableWebpages(N: int, L: List[int]) -> int:
+def getMaxVisitableWebpages(N: int, L: list[int]) -> int:
     # N+1 because all of these are 1 indexed (annoying)
     page_id = [0] * (N + 1)
     max_visitable_from_page = [0] * (N + 1)

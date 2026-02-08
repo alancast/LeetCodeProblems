@@ -1,15 +1,12 @@
-from typing import List
-
-
 # Time O(n) as we just go through the full list of scores once
 # Space O(1)
-def getMinProblemCount(N: int, S: List[int]) -> int:
+def getMinProblemCount(N: int, S: list[int]) -> int:
     num_two_points = num_one_points = 0
 
     for score in S:
         num_two_points = max(num_two_points, score//2)
         num_one_points = max(num_one_points, score % 2)
-    
+
     return num_two_points + num_one_points
 
 test_cases = [

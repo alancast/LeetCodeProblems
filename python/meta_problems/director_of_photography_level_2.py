@@ -5,7 +5,7 @@ def getArtisticPhotographCount(N: int, C: str, X: int, Y: int) -> int:
   # Keep track of actor indexes and prefix sums and then iterate over actors
   # And find P-A-B combos as well as B-A-P
   actors = []
-  
+
   # Prefix sums: store number of photographers and backdrops seen so far
   photographers_before_pos = [0]
   backdrops_before_pos = [0]
@@ -31,7 +31,7 @@ def getArtisticPhotographCount(N: int, C: str, X: int, Y: int) -> int:
     left_end = max(0, a - X + 1)
     right_start = min(N, a + X)
     right_end = min(N, a + Y + 1)
-    
+
     # Count valid P-A-B arrangements
     answer += (photographers_before_pos[left_end] - photographers_before_pos[left_start]) * (backdrops_before_pos[right_end] - backdrops_before_pos[right_start])
     # Count valid B-A-P arrangements

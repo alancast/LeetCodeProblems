@@ -1,11 +1,8 @@
-from typing import List
-
-
 # Thorough explanation here
 # https://github.com/justin-qu/Meta_Coding_Challenges/blob/main/Level%203/Stack_Stabilization_2.py
 # Time O(n^2)
 # Space O(N)
-def getMinimumSecondsRequired(N: int, R: List[int], A: int, B: int) -> int:
+def getMinimumSecondsRequired(N: int, R: list[int], A: int, B: int) -> int:
     # Transform radii to simplify stability check (redefine problem)
     adjusted = [r - i for i, r in enumerate(R)]
 
@@ -23,22 +20,16 @@ def getMinimumSecondsRequired(N: int, R: List[int], A: int, B: int) -> int:
         # Figure out it's cost for every single key radii
         for i, key_radius in enumerate(key_radii):
             delta = key_radius - r
-            cost = 0
-            
-            # If we are inflating use A
-            if delta > 0:
-                cost = delta * A
-            # Deflating use B
-            else:
-                cost = -delta * B
-            
+            # If we are inflating use A, else deflating use B
+            cost = delta * A if delta > 0 else -delta * B
+
             # Update costs required to make change
             if i == 0:
                 cost_for_radius[0] += cost
             else:
                 cost_for_radius[i] = min(cost_for_radius[i-1], cost_for_radius[i] + cost)
 
-    # All disks have been processed, so last value is final cost 
+    # All disks have been processed, so last value is final cost
     return cost_for_radius[-1]
 
 test_cases = [

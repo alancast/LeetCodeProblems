@@ -1,6 +1,6 @@
 def getUniformIntegerCountInInterval(A: int, B: int) -> int:
     answer = 0
-    
+
     # Loop over all string/number lengths
     for size in range(len(str(A)), len(str(B)) + 1):
         # Loop over all digits and see if the number is in the range
@@ -8,9 +8,9 @@ def getUniformIntegerCountInInterval(A: int, B: int) -> int:
             num = int(str(i) * size)
             if A <= num <= B:
                 answer += 1
-            elif B < num:
+            elif num > B:
                 break
-    
+
     return answer
 
 test_cases = [

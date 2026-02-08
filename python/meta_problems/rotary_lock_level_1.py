@@ -1,9 +1,6 @@
-from typing import List
-
-
 # Time O(M) as we do O(1) math operation for each entry
 # Space O(1)
-def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
+def getMinCodeEntryTime(N: int, M: int, C: list[int]) -> int:
     answer = 0
     previous = 1
 
@@ -12,7 +9,7 @@ def getMinCodeEntryTime(N: int, M: int, C: List[int]) -> int:
         direct = abs(digit - previous)
         answer += min(direct, N - direct)
         previous = digit
-        
+
     return answer
 
 test_cases = [

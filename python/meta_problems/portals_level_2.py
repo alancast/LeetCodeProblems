@@ -1,9 +1,9 @@
 from collections import defaultdict, deque
-from typing import List
+
 
 # Time O(R*C) as we go over the full grid a couple times
 # Space O(R*C) as we store a set of all R C combos
-def getSecondsRequired(R: int, C: int, G: List[List[str]]) -> int:
+def getSecondsRequired(R: int, C: int, G: list[list[str]]) -> int:  # noqa: PLR0912
     # Create portal map as well as find starting location
     start_row = start_col = 0
     portal_map = defaultdict(list)
@@ -80,7 +80,7 @@ def getSecondsRequired(R: int, C: int, G: List[List[str]]) -> int:
         ):
             queue.append((cur_row + 1, cur_col, cur_time + 1))
             queued.add((cur_row + 1, cur_col))
-            
+
     return -1
 
 test_cases = [

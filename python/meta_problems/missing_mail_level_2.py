@@ -1,13 +1,10 @@
-from typing import List
-
-
 # DP to compute expected values and work backwards from end to see what you should do
 # Time O(n^2)
 # Space O(n^2)
-def getMaxExpectedProfit(N: int, V: List[int], C: int, S: float) -> float:
+def getMaxExpectedProfit(N: int, V: list[int], C: int, S: float) -> float:
     prob_packages_remain = 1 - S
-    max_profit = [[0] * (N + 1) for _ in range(N + 1)]
-    expected_mail_value = [[0] * (N + 1) for _ in range(N + 1)]
+    max_profit = [[0.0] * (N + 1) for _ in range(N + 1)]
+    expected_mail_value = [[0.0] * (N + 1) for _ in range(N + 1)]
 
     # Precompute the expected_mail_value lookup table.
     for j in range(N):
