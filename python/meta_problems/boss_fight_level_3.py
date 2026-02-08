@@ -1,12 +1,10 @@
-from typing import List
-
 # Compute damage each warrior applies
 # Pick a warrior then pick the best one to pair them with
 # If that is better than previous result, use the paired warrior as next one
 # And see if they can form a better pair, keep going until there isn't a better pair found
 # Time O(n^2) though worst case this is n^2, in practice it will only take a few iterations
 # Space O(n) for storing damage amount
-def getMaxDamageDealt(N: int, H: List[int], D: List[int], B: int) -> float:
+def getMaxDamageDealt(N: int, H: list[int], D: list[int], B: int) -> float:
     # Precompute H{i}*D{i} for each warrior {i}
     warrior_damage_seconds = [0] * N
     for i in range(N):
@@ -53,7 +51,7 @@ def getMaxDamageDealt(N: int, H: List[int], D: List[int], B: int) -> float:
 # Go over all possible pairs and compute how much damage, keep max
 # Time O(n^2)
 # Space O(1)
-def getMaxDamageDealt_brute_force(N: int, H: List[int], D: List[int], B: int) -> float:
+def getMaxDamageDealt_brute_force(N: int, H: list[int], D: list[int], B: int) -> float:
     max_damage = 0.0
 
     # Cycle through first warrior
