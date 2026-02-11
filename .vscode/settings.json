@@ -2,6 +2,7 @@
     "cSpell.words": [
         "inorder",
         "numpy",
+        "popleft",
         "pydocstyle",
         "Pylint",
         "pytest"
