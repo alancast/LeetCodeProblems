@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(num_rows^2)
     # Space O(1) no space other than answer
-    def generate(self, numRows: int) -> List[List[int]]:
+    def generate(self, numRows: int) -> list[list[int]]:
         answer = []
 
         for i in range(numRows):

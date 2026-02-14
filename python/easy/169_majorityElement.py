@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
+    def majorityElement(self, nums: list[int]) -> int:
         maxNum = 0
         maxCount = 0
         numCounts = {}
@@ -20,9 +17,9 @@ class Solution:
         return maxNum
 
     # O(n) time, O(1) space
-    def majorityElementBayerMoore(self, nums: List[int]) -> int:
+    def majorityElementBayerMoore(self, nums: list[int]) -> int:
         count = 0
-        candidate = None
+        candidate = 0
 
         for num in nums:
             if count == 0:
@@ -30,7 +27,7 @@ class Solution:
             count += (1 if num == candidate else -1)
 
         return candidate
-    
+
 testCases = [
     [[3,2,3], 3],
     [[2,2,1,1,1,2,2], 2],
@@ -41,3 +38,5 @@ for nums, expected in testCases:
     answer = implementation.majorityElement(nums)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {nums}")
+
+print("Ran all tests")

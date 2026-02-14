@@ -1,4 +1,4 @@
-class TwoSum(object):
+class TwoSum:
 
     def __init__(self) -> None:
         self.num_counts = {}
@@ -11,7 +11,7 @@ class TwoSum(object):
 
     def find(self, value: int) -> bool:
         # Go through all keys and see if other half is there
-        for num in self.num_counts.keys():
+        for num in self.num_counts:
             needed = value - num
             if num != needed:
                 if needed in self.num_counts:

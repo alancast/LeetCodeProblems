@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
+    def summaryRanges(self, nums: list[int]) -> list[str]:
         if not nums:
             return []
-        
+
         ranges = []
         startNum = nums[0]
         previousNum = nums[0]
@@ -13,18 +10,18 @@ class Solution:
             if num == previousNum + 1:
                 previousNum = num
                 continue
-            # We need to add a new range
-            else:
-                # Range of 1
-                if previousNum == startNum:
-                    ranges.append(str(previousNum))
-                # Range of larger than one
-                else:
-                    ranges.append(f"{startNum}->{previousNum}")
 
-                previousNum = num
-                startNum = num
-        
+            # We need to add a new range
+            # Range of 1
+            if previousNum == startNum:
+                ranges.append(str(previousNum))
+            # Range of larger than one
+            else:
+                ranges.append(f"{startNum}->{previousNum}")
+
+            previousNum = num
+            startNum = num
+
         # Add final range
         # Range of 1
         if previousNum == startNum:
@@ -48,3 +45,5 @@ for nums, expected in testCases:
     answer = implementation.summaryRanges(nums)
     if answer != expected:
         print(f"FAILED TEST: Got {answer} but expected {expected}. INPUT: {nums}")
+
+print("Ran all tests")

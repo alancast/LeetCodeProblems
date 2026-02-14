@@ -14,7 +14,7 @@ class Solution:
 
         # If odd len it has to be 1, if even len it must be 0 at least 2
         return len(char_set) <= 1
-    
+
 test_cases = [
     [False, "code"],
     [True, "aab"],

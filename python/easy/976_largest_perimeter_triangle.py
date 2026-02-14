@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort and then just search until group of 3 where sides less than third
     # Time O(nlogn) for sort
     # Space O(n) for sort
-    def largestPerimeter(self, nums: List[int]) -> int:
+    def largestPerimeter(self, nums: list[int]) -> int:
         n = len(nums)
         nums.sort(reverse=True)
 

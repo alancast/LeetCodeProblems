@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -9,7 +6,7 @@ class ListNode:
 
 
 class Solution:
-    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+    def mergeTwoLists(self, list1: ListNode | None, list2: ListNode | None) -> ListNode | None:
         fakeHead = ListNode()
         head = fakeHead
 
@@ -20,13 +17,13 @@ class Solution:
             else:
                 head.next = list2
                 list2 = list2.next
-            
+
             head = head.next
-        
+
         # One list will end first, so add all remaining values to head
         if list1:
             head.next = list1
         else:
             head.next = list2
-        
+
         return fakeHead.next

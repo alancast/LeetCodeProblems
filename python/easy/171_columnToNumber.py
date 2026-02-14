@@ -19,3 +19,5 @@ for column, expected in testCases:
     answer = implementation.titleToNumber(column)
     if answer != expected:
         print(f"FAILED TEST: Got {answer}, but expected {expected}. INPUT: {column}")
+
+print("Ran all tests")

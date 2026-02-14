@@ -1,20 +1,17 @@
-from typing import List
-
-
 class Solution:
     # Keep incrementing last digit until nothing is carried over
     # Time O(n) worst case we go over whole array
     # Space O(1)
-    def plusOne(self, digits: List[int]) -> List[int]:
+    def plusOne(self, digits: list[int]) -> list[int]:
         n = len(digits)
 
         for i in range(n-1, -1, -1):
             # If we aren't carrying something over just increment and return
-            if digits[i] != 9:
+            if digits[i] != 9:  # noqa: PLR2004
                 digits[i] += 1
                 return digits
-            else:
-                digits[i] = 0
+
+            digits[i] = 0
 
         # If we get here it means that the number was all 9s
         answer = [0] * (n+1)

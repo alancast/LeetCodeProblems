@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Since letters is sorted can do binary search
     # Time O(logn)
     # Space O(1)
-    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+    def nextGreatestLetter(self, letters: list[str], target: str) -> str:
         left = 0
         right = len(letters) - 1
 
@@ -21,13 +18,13 @@ class Solution:
         # Then all letters were smaller than target
         if left == len(letters):
             return letters[0]
-        else:
-            return letters[left]
+
+        return letters[left]
 
     # Just go over the letters once and find smallest greater than target
     # Time O(n)
     # Space O(1)
-    def nextGreatestLetter_brute(self, letters: List[str], target: str) -> str:
+    def nextGreatestLetter_brute(self, letters: list[str], target: str) -> str:
         # Just a placeholder for after z
         answer = "{"
 

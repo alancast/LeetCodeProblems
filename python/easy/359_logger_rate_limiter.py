@@ -11,10 +11,10 @@ class Logger:
         if message not in self.timeMap:
             self.timeMap[message] = timestamp
             return True
-        
+
         # already printed message, check when
-        if timestamp - self.timeMap[message] >= 10:
+        if timestamp - self.timeMap[message] >= 10:  # noqa: PLR2004
             self.timeMap[message] = timestamp
             return True
-        
+
         return False

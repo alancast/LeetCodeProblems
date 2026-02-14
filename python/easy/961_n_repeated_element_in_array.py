@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Less space efficient but more memory efficient
     # Since half of array is one num, then at least one set of 4
@@ -8,7 +5,7 @@ class Solution:
     # So go over array and compare with neighbor, then compare with 2 and 3 hop
     # Time O(n) specifically 3n
     # Space O(1)
-    def repeatedNTimes(self, nums: List[int]) -> int:
+    def repeatedNTimes(self, nums: list[int]) -> int:
         n = len(nums)
 
         # Check neighbors then ones one apart
@@ -20,26 +17,26 @@ class Solution:
 
         # Will never get here
         return -1
-    
+
     # Set of seen numbers, as soon as dupe is seen that's answer
     # Time O(n)
     # Space O(n)
-    def repeatedNTimes_set(self, nums: List[int]) -> int:
+    def repeatedNTimes_set(self, nums: list[int]) -> int:
         seen = set()
 
         for num in nums:
             if num in seen:
                 return num
-            
+
             seen.add(num)
-        
+
         # This will never happen
         return -1
 
     # Keep a count of current number, as soon as it hits 0 switch it
     # Time O(n)
     # Space O(1)
-    def repeatedNTimes_requires_n_plus_one(self, nums: List[int]) -> int:
+    def repeatedNTimes_requires_n_plus_one(self, nums: list[int]) -> int:
         curr_num = nums[0]
         curr_count = 0
 
@@ -48,7 +45,7 @@ class Solution:
                 curr_count += 1
             else:
                 curr_count -= 1
-            
+
             # If the old num is down to 0, switch it to the new num
             if curr_count <= 0:
                 curr_num = num

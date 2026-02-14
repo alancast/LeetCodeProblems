@@ -5,7 +5,7 @@ class Solution:
             ')': '(',
             '}': '{'
         }
-        
+
         stack = []
         for char in s:
             if char not in closingsMap:
@@ -34,3 +34,5 @@ for s, expected in testCases:
     answer = implementation.isValid(s)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {s}")
+
+print("Ran all tests")

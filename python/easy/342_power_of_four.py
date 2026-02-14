@@ -8,17 +8,17 @@ class Solution:
         # Make sure number is > 0
         if n < 1:
             return False
-        
+
         # Make sure it's always divisible by 4 and then divide by 4
         while n > 1:
             if n % 4 != 0:
                 return False
-            
+
             n //= 4
 
         # If we got here that means n is 1 so it is a power of 4
         return True
-    
+
 test_cases = [
     [True, 16],
     [False, 0],

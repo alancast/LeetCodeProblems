@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go over all words and see if column is deleted
     # Time O(n*m)
     # Space O(1)
-    def minDeletionSize(self, strs: List[str]) -> int:
+    def minDeletionSize(self, strs: list[str]) -> int:
         rows = len(strs)
         cols = len(strs[0])
         answer = 0

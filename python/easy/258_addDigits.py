@@ -10,14 +10,14 @@ class Solution:
     # This is the intuitive solution that comes to mind
     # Turns out there is just a pure math solution that is O(1) above
     def addDigitsRecurse(self, num: int) -> int:
-        if num < 10:
+        if num < 10:  # noqa: PLR2004
             return num
-        
+
         tempNum = 0
         while num > 0:
             tempNum = tempNum + (num % 10)
             num = num // 10
-        
+
         return self.addDigitsRecurse(tempNum)
 
 testCases = [
@@ -30,3 +30,5 @@ for num, expected in testCases:
     answer = solution.addDigits(num)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected}, got {answer}. Input {num}")
+
+print("Ran all tests")

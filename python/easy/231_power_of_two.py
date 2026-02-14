@@ -9,7 +9,7 @@ class Solution:
             return False
 
         return n & (-n) == n
-    
+
 test_cases = [
     [True, 1],
     [True, 16],

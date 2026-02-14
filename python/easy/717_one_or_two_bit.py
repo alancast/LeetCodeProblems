@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Go over all chars skipping 1 every time we see a 1
     # Time O(n)
     # Space O(1)
-    def isOneBitCharacter(self, bits: List[int]) -> bool:
+    def isOneBitCharacter(self, bits: list[int]) -> bool:
         n = len(bits)
-        
+
         i = 0
         last_one_digit = False
         while i < n:

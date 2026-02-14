@@ -1,14 +1,11 @@
-from typing import List
-
-
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums: list[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
-        
+
         while left <= right:
             mid = (left + right) // 2
-            
+
             num = nums[mid]
             if num < target:
                 left = mid + 1
@@ -16,7 +13,7 @@ class Solution:
                 right = mid - 1
             else:
                 return mid
-        
+
         return -1
 
 testCases = [
@@ -30,3 +27,5 @@ for nums, target, expected in testCases:
     answer = implementation.search(nums, target)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: nums: {nums} target: {target}")
+
+print("Ran all tests")

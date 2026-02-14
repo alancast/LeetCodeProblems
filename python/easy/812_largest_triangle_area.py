@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go over all point pairs and compute area and save max
     # Time O(n^3)
     # Space O(1)
-    def largestTriangleArea(self, points: List[List[int]]) -> float:
+    def largestTriangleArea(self, points: list[list[int]]) -> float:
         n = len(points)
 
         max_area = 0
