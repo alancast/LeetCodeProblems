@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go point by point and do the math
     # Time O(n)
     # Space O(1)
-    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+    def minTimeToVisitAllPoints(self, points: list[list[int]]) -> int:
         answer = 0
         last_x = points[0][0]
         last_y = points[0][1]

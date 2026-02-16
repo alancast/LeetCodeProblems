@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort then just go over array and compute apart
     # Time O(nlogn) for sort
     # Space O(n) for sort
-    def minimumDifference(self, nums: List[int], k: int) -> int:
+    def minimumDifference(self, nums: list[int], k: int) -> int:
         n = len(nums)
 
         nums.sort()

@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     # Just trial and error until finding a non-zero
     # Time O(n) as we could go over whole thing (kinda)
     # Space O(1)
-    def getNoZeroIntegers(self, n: int) -> List[int]:
+    def getNoZeroIntegers(self, n: int) -> list[int]:
         # Go over nums from 1 to half of range (no reason to go above half)
         for first_num in range(1, n//2 + 1):
             second_num = n - first_num
             # Make sure there are no zeros
             if "0" not in str(first_num) + str(second_num):
                 return [first_num, second_num]
-        
+
         # If there is no possible way return empty list
         return []
 

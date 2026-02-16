@@ -1,11 +1,10 @@
 from collections import Counter
-from typing import List
 
 
 class Solution:
     # Time O(n) as we go through the array once
     # Space O(n) as worst case we keep full copy of arr
-    def findLucky(self, arr: List[int]) -> int:
+    def findLucky(self, arr: list[int]) -> int:
         num_counts = Counter(arr)
         answer = -1
 

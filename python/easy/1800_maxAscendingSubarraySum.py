@@ -1,8 +1,6 @@
-from typing import List
-
 class Solution:
     # Time O(n) Space O(1)
-    def maxAscendingSum(self, nums: List[int]) -> int:
+    def maxAscendingSum(self, nums: list[int]) -> int:
         temp_sum = max_sum = nums[0]
         for i in range(1, len(nums)):
             if nums[i] > nums[i-1]:

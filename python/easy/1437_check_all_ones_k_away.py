@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     # Go over array and just keep track of index of 1s
     # Time O(n)
     # Space O(1)
-    def kLengthApart(self, nums: List[int], k: int) -> bool:
+    def kLengthApart(self, nums: list[int], k: int) -> bool:
         last_one_index = -1
         for i, num in enumerate(nums):
             # If this number is a one check if it's too close
             if num == 1:
                 if last_one_index > -1 and last_one_index + k >= i:
                     return False
-                
+
                 last_one_index = i
 
         # Got through whole array and none are too close

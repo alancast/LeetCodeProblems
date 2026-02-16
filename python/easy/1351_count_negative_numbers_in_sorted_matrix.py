@@ -1,4 +1,3 @@
-from typing import List
 from bisect import bisect_right
 
 
@@ -7,11 +6,11 @@ class Solution:
     # Do in linear time
     # Time O(m+n)
     # Space O(1)
-    def countNegatives(self, grid: List[List[int]]) -> int:
+    def countNegatives(self, grid: list[list[int]]) -> int:
         # Length of each row
         n = len(grid[0])
 
-        answer = 0    
+        answer = 0
         # At first row start at farthest right and see where we find negative
         negative_index = n - 1
 
@@ -29,7 +28,7 @@ class Solution:
     # Binary search to find negative index in each row
     # Time O(mlogn)
     # Space O(1)
-    def countNegatives_binary_search(self, grid: List[List[int]]) -> int:
+    def countNegatives_binary_search(self, grid: list[list[int]]) -> int:
         # Length of each row
         n = len(grid[0])
 

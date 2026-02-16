@@ -3,7 +3,7 @@ class Solution:
         # If they are different lengths it's impossible
         if len(s1) != len(s2):
             return False
-        
+
         # Go through the strings and make sure at most 2 differences
         # Store the differences letter as it needs to be the correct letter as well
         diffChar1 = ''
@@ -23,12 +23,12 @@ class Solution:
             if numDiffs == 1:
                 diffChar1 = char1
                 diffChar2 = char2
-            elif numDiffs == 2:
+            elif numDiffs == 2:  # noqa: PLR2004
                 if char2 != diffChar1 or char1 != diffChar2:
                     return False
-            elif numDiffs == 3:
+            elif numDiffs == 3:  # noqa: PLR2004
                 return False
-        
+
         # We got through all the chars of the string
         # If there was only 1 diff they aren't swappable, if 0 or 2 they are
         return numDiffs != 1

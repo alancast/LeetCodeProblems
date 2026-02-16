@@ -1,5 +1,5 @@
 class Solution:
-    # Create set of broken letters, 
+    # Create set of broken letters,
     # then just go over words and count ones that aren't broken
     # Time O(n)
     # Space O(n)

@@ -1,13 +1,11 @@
 import heapq
-from typing import List
 
 
 class Solution:
     # Binary Search
     # O(m*log(nk)) time and O(k) space
-    def kWeakestRows(self, mat: List[List[int]], k: int) -> List[int]:
+    def kWeakestRows(self, mat: list[list[int]], k: int) -> list[int]:
 
-        m = len(mat)
         n = len(mat[0])
 
         def binary_search(row):
@@ -40,14 +38,12 @@ class Solution:
             indexes.append(-i)
 
         # Reverse, as the indexes are around the wrong way.
-        indexes = indexes[::-1]
-
-        return indexes
+        return indexes[::-1]
 
     # Vertical indexing
-    # O(mn) time and O(k) space 
+    # O(mn) time and O(k) space
     # could be O(1) space if we just check if entry to left was also 0 instead of keeping set
-    def kWeakestRowsVertical(self, mat: List[List[int]], k: int) -> List[int]:
+    def kWeakestRowsVertical(self, mat: list[list[int]], k: int) -> list[int]:
         if not mat or not mat[0]:
             return []
 
@@ -65,7 +61,7 @@ class Solution:
                     weakest.add(j)
                     if len(answer) == k:
                         return answer
-        
+
         # If remaining rows have all 1's add them to k weakest
         for i in range(rows):
             if i in weakest:
@@ -83,29 +79,29 @@ testCases = [
         [1,1,1,1,0],
         [1,0,0,0,0],
         [1,1,0,0,0],
-        [1,1,1,1,1]], 
-        3, 
+        [1,1,1,1,1]],
+        3,
         [2,0,3]],
     [[
         [1,0,0,0],
         [1,1,1,1],
         [1,0,0,0],
-        [1,0,0,0]], 
-        2, 
+        [1,0,0,0]],
+        2,
         [0,2]],
     [[
         [1,0,0,0],
         [1,1,1,1],
         [1,0,0,0],
-        [1,1,1,1]], 
-        3, 
+        [1,1,1,1]],
+        3,
         [0,2,1]],
     [[
         [1,0,0,0],
         [1,1,1,1],
         [1,0,0,0],
-        [1,1,1,1]], 
-        4, 
+        [1,1,1,1]],
+        4,
         [0,2,1,3]]
 ]
 implementation = Solution()
@@ -113,3 +109,5 @@ for mat, k, expected in testCases:
     answer = implementation.kWeakestRows(mat, k)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: mat: {mat} k: {k}")
+
+print("Ran all tests")

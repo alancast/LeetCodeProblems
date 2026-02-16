@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort array, find min difference, and create array as going
     # Time O(nlogn) for sort
     # Space O(n) for sort
-    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+    def minimumAbsDifference(self, arr: list[int]) -> list[list[int]]:
         n = len(arr)
 
         arr.sort()

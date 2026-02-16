@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def fixedPoint(self, arr: List[int]) -> int:
+    def fixedPoint(self, arr: list[int]) -> int:
         left = 0
         right = len(arr) - 1
         answer = -1
@@ -33,3 +30,5 @@ for nums, expected in testCases:
     answer = implementation.fixedPoint(nums)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {nums}")
+
+print("Ran all tests")

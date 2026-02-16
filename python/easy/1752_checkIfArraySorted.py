@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Make sure numbers only lower once, and end of array is less than start if lowered
     # Time O(n), space O(1)
-    def check(self, nums: List[int]) -> bool:
+    def check(self, nums: list[int]) -> bool:
         previousNum = firstNum = nums[0]
         lowered = False
         for i in range(1,len(nums)):
@@ -13,10 +10,11 @@ class Solution:
                 # The array has already lowered once, so this is a second time which means not sorted
                 if lowered:
                     return False
-                else:
-                    lowered = True
+
+                lowered = True
+
             previousNum = currentNum
-        
+
         return not lowered or previousNum <= firstNum
 
 testCases = [

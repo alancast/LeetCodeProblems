@@ -1,25 +1,21 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as just go through numbers once
     # Space O(1)
     # Bounds of problem say all numbers <= 100k so just number check
     # If bounds weren't known could convert to string and do string len
     # Or divide by 10 until equals zero and count num times
-    def findNumbers(self, nums: List[int]) -> int:
+    def findNumbers(self, nums: list[int]) -> int:
         count = 0
 
         for num in nums:
-            if num >= 10 and num < 100:
-                count += 1
-            elif num >= 1000 and num < 10000:
-                count += 1
-            elif num == 100000:
+            if (
+                (num >= 10 and num < 100)  # noqa: PLR2004
+                or (num >= 1000 and num < 10000)  # noqa: PLR2004
+                or num == 100000  # noqa: PLR2004
+            ):
                 count += 1
 
         return count
-    
 
 test_cases = [
     [1, [555, 901, 482, 1771]],

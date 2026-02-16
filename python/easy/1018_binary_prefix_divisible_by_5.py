@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Just go over array and keep track of nums
     # Update entries as we go over
     # Time O(n) just go over nums once
     # Space O(1) just answer space
-    def prefixesDivBy5(self, nums: List[int]) -> List[bool]:
+    def prefixesDivBy5(self, nums: list[int]) -> list[bool]:
         n = len(nums)
 
         # Create all at once for faster memory handling

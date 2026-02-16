@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -11,7 +8,7 @@ class ListNode:
 class Solution:
     # Time O(n)
     # Space O(1)
-    def getDecimalValue(self, head: Optional[ListNode]) -> int:
+    def getDecimalValue(self, head: ListNode | None) -> int:
         answer = 0
 
         while head:

@@ -1,5 +1,4 @@
 from bisect import bisect_left
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Find first index then add length//2 and make sure it's still target
     # Time O(logn)
     # Space O(1)
-    def isMajorityElement(self, nums: List[int], target: int) -> bool:
+    def isMajorityElement(self, nums: list[int], target: int) -> bool:
         n = len(nums)
         half = n//2
 
@@ -25,7 +24,7 @@ class Solution:
     # Compute difference in insertion index and see if majority
     # Time O(logn)
     # Space O(1)
-    def isMajorityElement_binary_search(self, nums: List[int], target: int) -> bool:
+    def isMajorityElement_binary_search(self, nums: list[int], target: int) -> bool:
         n = len(nums)
 
         # Find first index of target
