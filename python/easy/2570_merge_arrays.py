@@ -1,9 +1,7 @@
-from typing import List
-
 class Solution:
     # Time O(n+m) where n and m are lengths of the arrays
     # Space O(n+m)
-    def mergeArrays(self, nums1: List[List[int]], nums2: List[List[int]]) -> List[List[int]]:
+    def mergeArrays(self, nums1: list[list[int]], nums2: list[list[int]]) -> list[list[int]]:
         index1 = index2 = 0
         len1 = len(nums1)
         len2 = len(nums2)
@@ -35,7 +33,7 @@ class Solution:
             index2 += 1
 
         return merged_array
-    
+
 test_cases = [
     [[[1,6],[2,3],[3,2],[4,6]], [[1,2],[2,3],[4,5]], [[1,4],[3,2],[4,1]]],
     [[[1,3],[2,4],[3,6],[4,3],[5,5]], [[2,4],[3,6],[5,5]], [[1,3],[4,3]]]

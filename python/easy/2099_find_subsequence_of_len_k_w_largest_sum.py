@@ -1,6 +1,5 @@
 from collections import Counter
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -8,7 +7,7 @@ class Solution:
     # Can simplify by just sorting array, but that makes slower and less space efficient
     # Time O(nlogn) worst case, but realistically likely closer to O(n)
     # Space O(k)
-    def maxSubsequence(self, nums: List[int], k: int) -> List[int]:
+    def maxSubsequence(self, nums: list[int], k: int) -> list[int]:
         min_heap = [float('-inf')] * k
 
         # find k max nums
@@ -30,7 +29,7 @@ class Solution:
                     del num_counts[num]
 
         return answer
-    
+
 test_cases = [
     [[3,3], [2,1,3,3], 2],
     [[-1,3,4], [-1,-2,3,4], 3],

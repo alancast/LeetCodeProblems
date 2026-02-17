@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go over all things in operations list
     # Time O(n)
     # Space O(1)
-    def finalValueAfterOperations(self, operations: List[str]) -> int:
+    def finalValueAfterOperations(self, operations: list[str]) -> int:
         answer = 0
         for op in operations:
             if op[1] == '-':

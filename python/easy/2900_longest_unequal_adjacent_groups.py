@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Can be greedy, just take the first one and every time one switches
     # Time O(n)
     # Space O(1)
-    def getLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
+    def getLongestSubsequence(self, words: list[str], groups: list[int]) -> list[str]:
         answer = []
 
         answer.append(words[0])
@@ -18,7 +15,7 @@ class Solution:
                 answer.append(words[i])
 
         return answer
-    
+
 test_cases = [
     [["e","b"], ["e","a","b"], [0,0,1]],
     [["a","b","c"], ["a","b","c","d"], [1,0,1,1]]

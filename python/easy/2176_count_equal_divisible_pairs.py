@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -7,10 +6,10 @@ class Solution:
     # Each time we see a num already in there see if index products are divisible by k
     # Time O(n^2) as worst case they are all the same number so we go through whole list each time
     # Space O(n) as we have a map copy basically
-    def countPairs(self, nums: List[int], k: int) -> int:
+    def countPairs(self, nums: list[int], k: int) -> int:
         num_to_index_list_map = defaultdict(list)
         good_pairs = 0
-        
+
         for i, num in enumerate(nums):
             for index in num_to_index_list_map[num]:
                 product = i * index
@@ -20,7 +19,7 @@ class Solution:
             num_to_index_list_map[num].append(i)
 
         return good_pairs
-    
+
 test_cases = [
     [4, [3,1,2,2,2,1,3], 2],
     [0, [1,2,3,4], 1]

@@ -1,13 +1,12 @@
 from math import sqrt
-from typing import List
 
 
 class Solution:
     # Go over all dimensions and find longest diagonal
-    # Store longest diagonal and largest area found with that 
+    # Store longest diagonal and largest area found with that
     # Time O(n) as we go over whole array once
     # Space O(1)
-    def areaOfMaxDiagonal(self, dimensions: List[List[int]]) -> int:
+    def areaOfMaxDiagonal(self, dimensions: list[list[int]]) -> int:
         max_diagonal = largest_area = 0
 
         for width, height in dimensions:

@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we just go through nums once
     # Space O(1) all that's used is answer space
-    def findKDistantIndices(self, nums: List[int], key: int, k: int) -> List[int]:
+    def findKDistantIndices(self, nums: list[int], key: int, k: int) -> list[int]:
         n = len(nums)
         answer = []
         already_used = -1
@@ -16,9 +13,9 @@ class Solution:
                     answer.append(i)
                     already_used = i
 
-            
+
         return answer
-    
+
 test_cases = [
     [[1,2,3,4,5,6], [3,4,9,1,3,9,5], 9, 1],
     [[0,1,2,3,4], [2,2,2,2,2], 2, 2]

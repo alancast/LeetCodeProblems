@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through nums array once
     # Space O(n) as we keep a set which could be the size of the full array
-    def divideArray(self, nums: List[int]) -> bool:
+    def divideArray(self, nums: list[int]) -> bool:
         nums_set = set()
 
         for num in nums:
@@ -14,7 +11,7 @@ class Solution:
                 nums_set.add(num)
 
         return len(nums_set) == 0
-    
+
 test_cases = [
     [True, [3,2,3,2,2,2]],
     [False, [1,2,3,4]]

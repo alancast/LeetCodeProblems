@@ -20,7 +20,7 @@ class Solution:
 
         # Do the math
         return int(max_str) - int(min_str)
-    
+
 test_cases = [
     [99009, 11891],
     [99, 90]

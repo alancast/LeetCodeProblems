@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Create set of nums and then just check set
     # Time O(n) as we go over nums once then O(1) for checking
     # Space O(n) as we convert nums to set
-    def findFinalValue(self, nums: List[int], original: int) -> int:
+    def findFinalValue(self, nums: list[int], original: int) -> int:
         num_set = set(nums)
 
         while original in num_set:

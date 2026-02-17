@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Two pointer approach to make sure left and right aren't same as middle
     # And check if middle is hill or valley
     # Time O(n) as we go over the array once
     # Space O(1)
-    def countHillValley(self, nums: List[int]) -> int:
+    def countHillValley(self, nums: list[int]) -> int:
         n = len(nums)
         answer = 0
         left = 0
@@ -22,12 +19,12 @@ class Solution:
                 # Check for a hill
                 if nums[i] > nums[left] and nums[i] > nums[i + 1]:
                     answer += 1
-                
+
                 # Move left forward to this new num
                 left = i
 
         return answer
-    
+
 test_cases = [
     [3, [2,4,1,1,6,5]],
     [0, [6,6,5,5,4,1]]

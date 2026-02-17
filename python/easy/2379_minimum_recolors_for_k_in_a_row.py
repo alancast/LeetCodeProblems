@@ -26,7 +26,7 @@ class Solution:
             answer = min(answer, w_count)
 
         return answer
-    
+
 test_cases = [
     [3, "WBBWWBBWBW", 7],
     [1, "WBB", 3],

@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through the list once
     # Space O(1)
-    def maximumDifference(self, nums: List[int]) -> int:
+    def maximumDifference(self, nums: list[int]) -> int:
         max_diff = -1
 
         lowest = float('inf')
@@ -15,8 +12,8 @@ class Solution:
 
             max_diff = max(max_diff, num - lowest)
 
-        return max_diff
-    
+        return int(max_diff)
+
 test_cases = [
     [4, [7,1,5,4]],
     [-1, [9,4,3,2]],

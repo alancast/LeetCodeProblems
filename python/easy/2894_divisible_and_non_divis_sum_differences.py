@@ -9,20 +9,20 @@ class Solution:
         # Num1 - num2 = n*(n + 1)//2 - 2*num2
         # Num1 - num2 = n*(n + 1)//2 - (k * (k + 1) * m)
         return (n * (n + 1) // 2) - (k * (k + 1) * m)
-    
+
     # find sum of all multiples of m then subtract from sum formula n*n+1/2
     # Time O(n/m)
     # Space O(1)
     def differenceOfSums_additive(self, n: int, m: int) -> int:
         num2 = add = 0
-        for i in range(n//m):
+        for _ in range(n//m):
             add += m
             num2 += add
 
         num1 = ((n * (n+1))//2) - num2
 
         return num1 - num2
-    
+
 test_cases = [
     [19, 10, 3],
     [15, 5, 6],

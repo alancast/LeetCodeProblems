@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n*m) where n is len words and m is len of each word
     # Space O(1) only thing stored is answer array
-    def findWordsContaining(self, words: List[str], x: str) -> List[int]:
+    def findWordsContaining(self, words: list[str], x: str) -> list[int]:
         answer = []
 
         for i, word in enumerate(words):
@@ -14,7 +11,7 @@ class Solution:
                     break
 
         return answer
-    
+
 test_cases = [
     [[0,1], ["leet","code"], "e"],
     [[0,2], ["abc","bcd","aaaa","cbc"], "a"],

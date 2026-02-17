@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
-    # Time O(n) Space O(1) 
-    def applyOperations(self, nums: List[int]) -> List[int]:
+    # Time O(n) Space O(1)
+    def applyOperations(self, nums: list[int]) -> list[int]:
         num_index = 0
         # Do computations on everything in list
         for i in range(len(nums)-1):
@@ -26,7 +23,7 @@ class Solution:
             nums[i] = 0
 
         return nums
-    
+
 test_cases = [
     [[1694,399,832,1758,412,206,272,0,0,0,0,0,0,0], [847,847,0,0,0,399,416,416,879,879,206,206,206,272]],
     [[1,4,2,0,0,0], [1,2,2,1,1,0]],

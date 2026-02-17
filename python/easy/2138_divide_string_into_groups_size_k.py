@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Same logic as below but more python-y
     # Time O(n) as we go through the full string once and do O(1) operations
     # Space O(1) as all that we create is used for the return
-    def divideString(self, s: str, k: int, fill: str) -> List[str]:
+    def divideString(self, s: str, k: int, fill: str) -> list[str]:
         n = len(s)
         answer = []
 
@@ -22,7 +19,7 @@ class Solution:
 
     # Time O(n) as we go through the full string once and do O(1) operations
     # Space O(1) as all that we create is used for the return
-    def divideString_less_python(self, s: str, k: int, fill: str) -> List[str]:
+    def divideString_less_python(self, s: str, k: int, fill: str) -> list[str]:
         n = len(s)
         index = 0
 
@@ -33,7 +30,7 @@ class Solution:
             for i in range(k):
                 temp_arr[i] = s[index]
                 index += 1
-            
+
             answer.append(''.join(temp_arr))
 
         # Append the last chars
@@ -45,11 +42,11 @@ class Solution:
 
                 temp_arr[i] = s[index]
                 index += 1
-            
+
             answer.append(''.join(temp_arr))
 
         return answer
-    
+
 test_cases = [
     [["abc","def","ghi"], "abcdefghi", 3, "x"],
     [["abc","def","ghi", "jxx"], "abcdefghij", 3, "x"],

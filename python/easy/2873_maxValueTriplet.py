@@ -1,9 +1,7 @@
-from typing import List
-
 class Solution:
     # Time O(n) space O(1)
     # Iterate through keeping track of stats and compute each time
-    def maximumTripletValue(self, nums: List[int]) -> int:
+    def maximumTripletValue(self, nums: list[int]) -> int:
         answer = max_num = max_difference = 0
         for num in nums:
             # Compute product with this number
@@ -14,7 +12,7 @@ class Solution:
             max_num = max(max_num, num)
 
         return answer
-    
+
 solution = Solution()
 test_cases = [
     [273, [15,2,18,20,21]],
