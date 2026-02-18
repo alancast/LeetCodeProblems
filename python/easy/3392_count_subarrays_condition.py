@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go over nums once
     # Space O(1)
-    def countSubarrays(self, nums: List[int]) -> int:
+    def countSubarrays(self, nums: list[int]) -> int:
         count = 0
         n = len(nums)
 
@@ -13,7 +10,7 @@ class Solution:
                 count += 1
 
         return count
-    
+
 test_cases = [
     [1, [1,2,1,4,1]],
     [0, [1,1,1]]

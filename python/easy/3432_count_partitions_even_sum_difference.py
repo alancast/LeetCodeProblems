@@ -1,23 +1,20 @@
-from typing import List
-
-
 class Solution:
     # Can do with math. If sum is odd no partitions work
     # If sum is even all partitions work
     # Time O(n)
     # Space O(1)
-    def countPartitions(self, nums: List[int]) -> int:
+    def countPartitions(self, nums: list[int]) -> int:
         total_sum = sum(nums)
         if total_sum % 2 == 0:
             return len(nums) - 1
-        else:
-            return 0
+
+        return 0
 
     # Go over array once to find sum
     # Go over second time and compute running sum and see if partition works
     # Time O(n)
     # Space O(1)
-    def countPartitions_compute(self, nums: List[int]) -> int:
+    def countPartitions_compute(self, nums: list[int]) -> int:
         n = len(nums)
         right_sum = sum(nums)
 

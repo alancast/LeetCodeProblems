@@ -1,6 +1,5 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -9,7 +8,7 @@ class Solution:
     # Look at top of priority queue each time to compute sum
     # Time O(n * klogk)
     # Space O(k)
-    def findXSum(self, nums: List[int], k: int, x: int) -> List[int]:
+    def findXSum(self, nums: list[int], k: int, x: int) -> list[int]:
         n = len(nums)
         pq = []
         num_counts = defaultdict(int)
@@ -45,7 +44,7 @@ class Solution:
                     x_sum += (temp_num * temp_count)
                     re_enter.add((temp_count, temp_num))
                     used_nums += 1
-                
+
                 # Put the entries back in the queue
                 for item in re_enter:
                     heappush(pq, item)

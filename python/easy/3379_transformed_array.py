@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over array once and find proper value for each entry
     # Time O(n)
     # Space O(1)
-    def constructTransformedArray(self, nums: List[int]) -> List[int]:
+    def constructTransformedArray(self, nums: list[int]) -> list[int]:
         n = len(nums)
 
         answer = []

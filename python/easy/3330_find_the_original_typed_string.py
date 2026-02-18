@@ -14,7 +14,7 @@ class Solution:
             last_char = char
 
         return double_count + 1
-    
+
 test_cases = [
     [5, "abbcccc"],
     [1, "abcd"],

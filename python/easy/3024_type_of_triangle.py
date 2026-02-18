@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     # Time and space effectively O(1) since everything is just 3
-    def triangleType(self, nums: List[int]) -> str:
+    def triangleType(self, nums: list[int]) -> str:
         nums.sort()
 
         a = nums[0]
@@ -12,13 +9,13 @@ class Solution:
 
         if a + b <= c:
             return "none"
-        elif a == c:
+        if a == c:
             return "equilateral"
-        elif a == b or b == c:
+        if b in (a, c):
             return "isosceles"
-        else:
-            return "scalene"
-    
+
+        return "scalene"
+
 test_cases = [
     ["equilateral", [3,3,3]],
     ["isosceles", [3,3,5]],

@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go over full array once
     # Space O(n) as array could be fully unique
-    def maxSum(self, nums: List[int]) -> int:
+    def maxSum(self, nums: list[int]) -> int:
         total = 0
         max_min = float('-inf')
         nums_set = set()
@@ -23,10 +20,10 @@ class Solution:
 
         # Had no positive numbers so return least negative
         if total == 0:
-            return max_min
-        
+            return int(max_min)
+
         return total
-    
+
 test_cases = [
     [15, [1,2,3,4,5]],
     [1, [1,1,0,1,1]],

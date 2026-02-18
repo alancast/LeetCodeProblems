@@ -1,11 +1,10 @@
 from collections import Counter
-from typing import List
 
 
 class Solution:
     # Time O(n) (could be done in one pass without use of counter but eh)
     # Space O(n)
-    def maxFrequencyElements(self, nums: List[int]) -> int:
+    def maxFrequencyElements(self, nums: list[int]) -> int:
         num_counts = Counter(nums)
         answer = max_count = 0
 

@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Use prefix sum basically
     # total to left and right of digit must be within 1
     # So if we see a 0 check if that's the case, if not continue
     # Time O(n)
     # Space O(1)
-    def countValidSelections(self, nums: List[int]) -> int:
+    def countValidSelections(self, nums: list[int]) -> int:
         answer = 0
         right = sum(nums)
         left = 0

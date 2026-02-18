@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # For every num if it isn't already mod 3 you can always add or subtract 1 to make it so
     # So just go over list once and count how many aren't mod 3
     # Time O(n)
     # Space O(1)
-    def minimumOperations(self, nums: List[int]) -> int:
+    def minimumOperations(self, nums: list[int]) -> int:
         answer = 0
         for num in nums:
             if num % 3 != 0:

@@ -1,24 +1,22 @@
-from typing import List
-
 class Solution:
     # Time O(n) have to look at all numbers
     # Space O(1)
-    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+    def longestMonotonicSubarray(self, nums: list[int]) -> int:
         longest_increase = longest_decrease = temp_increase = temp_decrease = 1
         for i in range(1, len(nums)):
             if nums[i] > nums[i-1]:
                 temp_increase += 1
                 longest_increase = max(longest_increase, temp_increase)
                 temp_decrease = 1
-            elif nums[i] < nums[i-1]:           
+            elif nums[i] < nums[i-1]:
                 temp_decrease += 1
                 longest_decrease = max(temp_decrease, longest_decrease)
                 temp_increase = 1
             else:
                 temp_decrease = temp_increase = 1
-      
+
         return max(longest_increase, longest_decrease)
-    
+
 testCases = [
    [[1,2,3], 3],
    [[1,1,1], 1],

@@ -10,19 +10,19 @@ class Solution:
             # Not an alphanumeric char
             if not char.isalnum():
                 return False
-            
+
             # Don't care about digits
             if char.isdigit():
                 continue
 
-            char = char.lower()
+            char = char.lower()  # noqa: PLW2901
             if char in 'aeiou':
                 vowel = True
             else:
                 consonant = True
 
-        return length >= 3 and vowel and consonant
-    
+        return length >= 3 and vowel and consonant  # noqa: PLR2004
+
 test_cases = [
     [True, "234Adas"],
     [False, "b3"],

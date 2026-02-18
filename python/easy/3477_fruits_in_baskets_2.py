@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over every fruit and for each one go over baskets list in order
     # After using a basket set it's capacity to zero
     # Time O(n^2) as for every fruit we go through nested basket index
     # Space O(1)
-    def numOfUnplacedFruits(self, fruits: List[int], baskets: List[int]) -> int:
+    def numOfUnplacedFruits(self, fruits: list[int], baskets: list[int]) -> int:
         n = len(fruits)
 
         answer = 0
@@ -28,12 +25,12 @@ class Solution:
                 answer += 1
 
         return answer
-    
+
     # Go over every fruit and for each one go over baskets list in order
     # Keep track of what baskets are used with a hash map
     # Time O(n^2) as for every fruit we go through nested basket index
     # Space O(n) as we keep a full set of indexes used
-    def numOfUnplacedFruits_hash(self, fruits: List[int], baskets: List[int]) -> int:
+    def numOfUnplacedFruits_hash(self, fruits: list[int], baskets: list[int]) -> int:
         n = len(fruits)
 
         used_indexes = set()
@@ -57,7 +54,7 @@ class Solution:
                 answer += 1
 
         return answer
-    
+
 test_cases = [
     [1, [4,2,5], [3,5,4]],
     [0, [3,6,1], [6,4,7]]

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go over array once and find two lowest numbers other than first
     # Time O(n)
     # Space O(1)
-    def minimumCost(self, nums: List[int]) -> int:
+    def minimumCost(self, nums: list[int]) -> int:
         lowest = second_lowest = float('inf')
 
         n = len(nums)

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Math, find smallest bit of 0 in num and set prior bit to 0
     # Time O(nlogm)
     # Space O(1)
-    def minBitwiseArray(self, nums: List[int]) -> List[int]:
+    def minBitwiseArray(self, nums: list[int]) -> list[int]:
         answer = []
 
         # Go over all nums and do operation

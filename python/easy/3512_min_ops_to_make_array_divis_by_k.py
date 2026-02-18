@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # All you need is the sum of the array and mod k and how much it's off by
     # Time O(n)
     # Space O(1)
-    def minOperations(self, nums: List[int], k: int) -> int:
+    def minOperations(self, nums: list[int], k: int) -> int:
         return sum(nums) % k
 
 test_cases = [

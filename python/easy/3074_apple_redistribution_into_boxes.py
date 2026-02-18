@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Find sum of apples and then reverse sort into boxes
     # Time O(n + mlogm)
     # Space O(m) for sort
-    def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
+    def minimumBoxes(self, apple: list[int], capacity: list[int]) -> int:
         total_apples = sum(apple)
 
         capacity.sort(reverse=True)

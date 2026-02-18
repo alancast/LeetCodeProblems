@@ -17,8 +17,7 @@ class Solution:
             if char_counts[char] % 2 == 0:
                 min_even = min(min_even, char_counts[char])
 
-        return max_odd - min_even
-    
+        return max_odd - int(min_even)
 
     # Time O(n) as we go through each letter once (and then constant space search for array)
     # Space O(1) store at most 26 things (assuming english char set)
@@ -32,14 +31,12 @@ class Solution:
         min_even = float('inf')
         for _, value in char_counts.items():
             if value % 2 == 0:
-                if value < min_even:
-                    min_even = value
+                min_even = min(min_even, value)
             else:
-                if value > max_odd:
-                    max_odd = value
+                max_odd = max(max_odd, value)
 
-        return max_odd - min_even
-    
+        return max_odd - int(min_even)
+
 test_cases = [
     [3, "aaaaabbc"],
     [1, "abcabcab"],

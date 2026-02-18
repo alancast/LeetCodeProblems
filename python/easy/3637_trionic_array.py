@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Just go over array and see if it changes direction
     # Time O(n)
     # Space O(1)
-    def isTrionic(self, nums: List[int]) -> bool:
+    def isTrionic(self, nums: list[int]) -> bool:
         n = len(nums)
 
         increase_one = decrease_one = increase_two = False

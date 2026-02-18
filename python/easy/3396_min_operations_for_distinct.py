@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Work backwards, as soon as we see first duplicate we know we must cut til there
     # Time O(n) goes over full array once potentially
     # Space O(n) potentially stores entire copy in dictionary
-    def minimumOperations_backtrack(self, nums: List[int]) -> int:
+    def minimumOperations_backtrack(self, nums: list[int]) -> int:
         seen = set()
         for i in range(len(nums) - 1, -1, -1):
             num = nums[i]
@@ -13,19 +10,19 @@ class Solution:
             # We have a our final dupe, so do math to see how many operations to remove this
             if num in seen:
                 return (i // 3) + 1
+
             # Haven't seen before so add to set
-            else:
-                seen.add(num)
-        
+            seen.add(num)
+
         # If we get here it means we found no dupes, so no operations needed
         return 0
-    
+
     # Time O(n) goes over array potentially twice
     # Space O(n) potentially stores entire copy in dictionary
-    def minimumOperations_iterate_twice(self, nums: List[int]) -> int:
+    def minimumOperations_iterate_twice(self, nums: list[int]) -> int:
         num_operations = index_to_decrement = 0
-        num_counter = dict()
-        nums_to_remove = dict()
+        num_counter = {}
+        nums_to_remove = {}
 
         # see how many of each num there is
         for num in nums:
@@ -38,7 +35,7 @@ class Solution:
         # Perform operations until all distinct
         while len(nums_to_remove) > 0 and (index_to_decrement + 3) < len(nums):
             # "Remove" 3
-            for i in range(3):
+            for _ in range(3):
                 num = nums[index_to_decrement]
                 # We only care about the ones that are dupes
                 if num in nums_to_remove:
@@ -47,7 +44,7 @@ class Solution:
                         del nums_to_remove[num]
 
                 index_to_decrement += 1
-            
+
             num_operations += 1
 
         # see if in final 3 there is still dupes so another operation needed
@@ -55,7 +52,7 @@ class Solution:
             num_operations += 1
 
         return num_operations
-    
+
 test_cases = [
     [0, [1]],
     [1, [1,1]],

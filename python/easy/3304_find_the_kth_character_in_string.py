@@ -12,7 +12,6 @@ class Solution:
             ans += 1
 
         return chr(ord("a") + ans)
-    
 
     # Brute force
     def kthCharacter_brute_force(self, k: int) -> str:
@@ -26,9 +25,9 @@ class Solution:
                 else:
                     next_word.append(chr(ord(char) + 1))
             word += ''.join(next_word)
-        
+
         return word[k-1]
-    
+
 test_cases = [
     ["b", 5],
     ["c", 10]

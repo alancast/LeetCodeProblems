@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through array once
     # Space O(1)
-    def maxAdjacentDistance(self, nums: List[int]) -> int:
+    def maxAdjacentDistance(self, nums: list[int]) -> int:
         n = len(nums)
         max_diff = abs(nums[-1] - nums[0])
 
@@ -13,7 +10,7 @@ class Solution:
             max_diff = max(max_diff, diff)
 
         return max_diff
-    
+
 test_cases = [
     [3, [1,2,4]],
     [5, [-5,-10,-5]]

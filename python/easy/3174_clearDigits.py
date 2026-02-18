@@ -1,23 +1,23 @@
 class Solution:
     def clearDigits(self, s: str) -> str:
         return self.__clear_digits_in_place(s)
-    
+
     # Time O(n) space O(1)
     def __clear_digits_in_place(self, s: str) -> str:
         answer_length = 0
-        s = list(s)
+        chars = list(s)
 
-        for index in range(len(s)):
-            char = s[index]
+        for index in range(len(chars)):
+            char = chars[index]
             if char.isalpha():
-                s[answer_length] = char
+                chars[answer_length] = char
                 answer_length += 1
             else:
                 answer_length -= 1
 
-        s = s[:answer_length]
-        return "".join(s)   
-    
+        chars = chars[:answer_length]
+        return "".join(chars)
+
     # Time O(n) space O(n)
     def __clear_digits_stack(self, s: str) -> str:
         final_string = []
@@ -28,7 +28,7 @@ class Solution:
                 final_string.pop()
 
         return "".join(final_string)
-    
+
 testCases = [
     ["a1b2c3", ""],
     ["ab12", ""],

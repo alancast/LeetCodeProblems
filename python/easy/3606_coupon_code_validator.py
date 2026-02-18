@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Just process each coupon one at a time then keep valid ones and sort
     # Time O(nlogn)
     # Space O(1) only need answer space
     def validateCoupons(
-        self, code: List[str], businessLine: List[str], isActive: List[bool]
-    ) -> List[str]:
+        self, code: list[str], businessLine: list[str], isActive: list[bool]
+    ) -> list[str]:
         n = len(code)
 
         # Tuples of code, business line
@@ -41,8 +38,7 @@ class Solution:
         valid_coupons.sort(key=lambda t: (t[1], t[0]))
 
         # Only take out the codes and then return answer
-        answer = [c for c, _ in valid_coupons]
-        return answer
+        return [c for c, _ in valid_coupons]
 
 test_cases = [
     [

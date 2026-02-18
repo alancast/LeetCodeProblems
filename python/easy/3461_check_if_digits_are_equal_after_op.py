@@ -7,9 +7,9 @@ class Solution:
         digits = []
         for char in s:
             digits.append(int(char))
-        
+
         # Keep processing until there are only 2 digits left
-        while len(digits) > 2:
+        while len(digits) > 2:  # noqa: PLR2004
             temp_digits = []
             for i in range(len(digits) - 1):
                 next = digits[i] + digits[i+1]
