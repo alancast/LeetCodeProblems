@@ -1,12 +1,11 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 class UnionFind:
     def __init__(self, n):
-        self.par = [i for i in range(n)]
+        self.par = list(range(n))
         self.rank = [1] * n
-    
+
     def find(self, node):
         while self.par[node] != node:
             self.par[node] = self.par[self.par[node]]
@@ -27,12 +26,12 @@ class UnionFind:
             self.rank[p2] += self.rank[p1]
 
         return True
-    
+
 
 class Solution:
     # Time O(n + E * n) n for creating union find E * n for edges union find
     # Space O(N + E)
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+    def countComponents(self, n: int, edges: list[list[int]]) -> int:
         components = n
         uf = UnionFind(n)
 
@@ -46,7 +45,7 @@ class Solution:
 
     # Time O(n + E)
     # Space O(n + E) as we create edges map and visited array
-    def countComponents_bfs(self, n: int, edges: List[List[int]]) -> int:
+    def countComponents_bfs(self, n: int, edges: list[list[int]]) -> int:
         visited_arr = [False] * n
 
         # Create adjacency graph
@@ -54,7 +53,7 @@ class Solution:
         for source, target in edges:
             adjacency_map[source].append(target)
             adjacency_map[target].append(source)
-        
+
         component_count = 0
         # Iterate over visited map and do breadth first search each time we see a not visited one
         for i, visited in enumerate(visited_arr):
@@ -74,7 +73,7 @@ class Solution:
                         q.append(dest)
 
         return component_count
-    
+
 test_cases = [
     [2, 5, [[0,1],[1,2],[3,4]]],
     [1, 5, [[0,1],[1,2],[2,3],[3,4]]],
