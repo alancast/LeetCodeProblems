@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     # Try numbers and backtrack if it doesn't work
     # Time O((9!)^9) so freaking massive
     # Space O(81)
-    def solveSudoku(self, board: List[List[str]]) -> None:
+    def solveSudoku(self, board: list[list[str]]) -> None:
         """
         Do not return anything, modify board in-place instead.
         """
         rows = [set() for _ in range(9)]
         cols = [set() for _ in range(9)]
         boxes = [set() for _ in range(9)]
-        # List of indices (row, column)
+        # list of indices (row, column)
         empties = []
 
         # Initialize sets with existing numbers
