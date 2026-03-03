@@ -22,7 +22,7 @@ def getMaxVisitableWebpages(N: int, L: list[int]) -> int:
             pages_visited += 1
             page_id[page] = starting_page
             max_visitable_from_page[page] = pages_visited
-            page = L[page - 1]
+            page = L[page - 1]  # noqa: PLW2901
 
         # If the page_id is the same as the starting page, the DFS has looped back into itself.
         if page_id[page] == starting_page:
@@ -32,7 +32,7 @@ def getMaxVisitableWebpages(N: int, L: list[int]) -> int:
             while page_id[page] != -starting_page:
                 page_id[page] = -starting_page
                 max_visitable_from_page[page] = pages_in_cycle
-                page = L[page - 1]
+                page = L[page - 1]  # noqa: PLW2901
 
         # If the page_id is different from the starting page, the DFS has
         # reached a page visited in a previous DFS run.
@@ -41,11 +41,11 @@ def getMaxVisitableWebpages(N: int, L: list[int]) -> int:
 
         # Run DFS again and set the max_visitable value of each page to
         # pages_visited while decrementing pages_visited for each page visited.
-        page = starting_page
+        page = starting_page  # noqa: PLW2901
         while page_id[page] == starting_page:
             max_visitable_from_page[page] = pages_visited
             pages_visited -= 1
-            page = L[page - 1]
+            page = L[page - 1]  # noqa: PLW2901
 
     return max(max_visitable_from_page)
 

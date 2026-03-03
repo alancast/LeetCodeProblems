@@ -102,7 +102,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: list[int], B: list[int]) -> int: 
 
                 # Condense SCC into a single "page" with union of all links
                 scc_links = set()
-                for page in scc:
+                for page in scc:  # noqa: PLW2901
                     scc_links.update(links[page])
 
                 # Remove links to pages within the SCC
@@ -113,7 +113,7 @@ def getMaxVisitableWebpages(N: int, M: int, A: list[int], B: list[int]) -> int: 
                 max_visitable_from_this_scc = scc_size + max([0] + [max_visitable_from_page[page] for page in scc_links])
 
                 # Assign the max_visitable value to all pages in the SCC
-                for page in scc:
+                for page in scc:  # noqa: PLW2901
                     max_visitable_from_page[page] = max_visitable_from_this_scc
 
     return max(max_visitable_from_page)

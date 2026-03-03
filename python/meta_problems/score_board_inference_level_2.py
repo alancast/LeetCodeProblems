@@ -11,7 +11,7 @@ def getMinProblemCount(N: int, S: list[int]) -> int:
             if score == 1:
                 one_there = True
             one_remainder_there = 1
-        elif score % 3 == 2:
+        elif score % 3 == 2:  # noqa: PLR2004
             two_remainder_there = 1
 
         if score > max_score:
