@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # See how many we can keep and do inverse of that
     # Time O(n * w^2) where w is len of words and n is num words
     # Space O(w)
-    def minDeletionSize(self, strs: List[str]) -> int:
+    def minDeletionSize(self, strs: list[str]) -> int:
         # Find len of all words
         w = len(strs[0])
         dp = [1] * w

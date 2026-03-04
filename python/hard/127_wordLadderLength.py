@@ -1,12 +1,13 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 class Solution:
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    NO_ANSWER = -1
+
+    def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:
         if endWord not in wordList:
             return 0
-            
+
         self.preProcessWordList(wordList, len(beginWord))
 
         self.visitedStart = {beginWord: 1}
@@ -23,19 +24,19 @@ class Solution:
             else:
                 answer = self.processNode(self.q_end, self.visitedStart, self.visitedEnd)
 
-            if answer:
+            if answer != self.NO_ANSWER:
                 return answer
 
-        # We couldn't find the word        
+        # We couldn't find the word
         return 0
 
-    def processNode(self, q: deque, other_visited: map, visited: map) -> int:
+    def processNode(self, q: deque, other_visited: dict, visited: dict) -> int:
         q_size = len(q)
         for _ in range(q_size):
             word = q.popleft()
             if word in other_visited:
                 return visited[word] + other_visited[word] - 1
-            
+
             words = self.findWordsOffByOneBidrectional(word)
             for new_word in words:
                 if new_word in visited:
@@ -43,9 +44,9 @@ class Solution:
                 visited[new_word] = visited[word] + 1
                 q.append(new_word)
 
-        return None
+        return self.NO_ANSWER
 
-    def ladderLengthOneDirectional(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    def ladderLengthOneDirectional(self, beginWord: str, endWord: str, wordList: list[str]) -> int:
         self.preProcessWordList(wordList, len(beginWord))
         self.visited = set()
         q = deque()
@@ -56,15 +57,15 @@ class Solution:
             word, count = q.popleft()
             if word == endWord:
                 return count
-            
+
             words = self.findWordsOffByOne(word)
             for new_word in words:
                 q.append([new_word, count + 1])
 
-        # We couldn't find the word        
+        # We couldn't find the word
         return 0
-    
-    def preProcessWordList(self, words: List[str], wordSize: int) -> None:
+
+    def preProcessWordList(self, words: list[str], wordSize: int) -> None:
         # Dictionary to hold combination of words that can be formed,
         # from any given word. By changing one letter at a time.
         self.all_combo_dict = defaultdict(list)
@@ -74,7 +75,7 @@ class Solution:
                 # Value is a list of words which have the same intermediate generic word.
                 self.all_combo_dict[word[:i] + "*" + word[i+1:]].append(word)
 
-    def findWordsOffByOneBidrectional(self, start: str) -> List[str]:
+    def findWordsOffByOneBidrectional(self, start: str) -> list[str]:
         one_offs = []
         word_len = len(start)
         for i in range(word_len):
@@ -84,7 +85,7 @@ class Solution:
 
         return one_offs
 
-    def findWordsOffByOne(self, start: str) -> List[str]:
+    def findWordsOffByOne(self, start: str) -> list[str]:
         one_offs = []
         word_len = len(start)
         for i in range(word_len):
@@ -108,3 +109,5 @@ for beginWord, endWord, wordList, expected in testCases:
     if answer != expected:
         print(f"FAILED TEST: Got {answer}, expected {expected}")
         print(f"INPUTS: begin: {beginWord}, end: {endWord}, list = {wordList}")
+
+print("Ran all tests")

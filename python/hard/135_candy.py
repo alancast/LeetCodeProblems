@@ -1,12 +1,11 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Go over once left to right and right to left
     # Time O(n) as we go over ratings multiple times
     # Space O(n) we store just one extra array this time
-    def candy(self, ratings: List[int]) -> int:
+    def candy(self, ratings: list[int]) -> int:
         n = len(ratings)
 
         candies = [1] * len(ratings)
@@ -24,11 +23,11 @@ class Solution:
             answer += candies[i]
 
         return answer
-    
+
     # Have left to right array and right to left array then take max
     # Time O(n) as we go over ratings multiple times
     # Space O(n) to store left to right array and right to left array
-    def candy_two_arrays(self, ratings: List[int]) -> int:
+    def candy_two_arrays(self, ratings: list[int]) -> int:
         n = len(ratings)
 
         # Populate how many required if going left to right
@@ -49,12 +48,12 @@ class Solution:
             answer += max(left_to_right[i], right_to_left[i])
 
         return answer
-    
-    # Min priority queue of ratings. 
+
+    # Min priority queue of ratings.
     # Each time we pop make sure more than neighbors if needed
     # Time O(nlogn) to make priority queue
     # Space O(n) to store candies array
-    def candy_priority_queue(self, ratings: List[int]) -> int:
+    def candy_priority_queue(self, ratings: list[int]) -> int:
         n = len(ratings)
 
         # Array for how many candies each child gets
@@ -84,7 +83,7 @@ class Solution:
             candies[index] += to_add
 
         return total
-    
+
 test_cases = [
     [5, [1,0,2]],
     [4, [1,2,2]]

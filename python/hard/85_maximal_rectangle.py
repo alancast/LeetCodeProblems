@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # At each point compute height of rectangle, then go left and right
     # Time O(nm)
     # Space O(m)
-    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+    def maximalRectangle(self, matrix: list[list[str]]) -> int:
         if not matrix:
             return 0
 
@@ -57,7 +54,7 @@ class Solution:
     # Go over row by row and convert to a histogram of heights for each row
     # Time O(nm)
     # Space O(nm)
-    def maximalRectangleHist(self, matrix: List[List[str]]) -> int:
+    def maximalRectangleHist(self, matrix: list[list[str]]) -> int:
         if not matrix:
             return 0
 
@@ -96,7 +93,7 @@ class Solution:
     # Go over indexes and see what max area is
     # Time O(n^2*m)
     # Space O(nm)
-    def maximalRectangle_dp(self, matrix: List[List[str]]) -> int:
+    def maximalRectangle_dp(self, matrix: list[list[str]]) -> int:
         maxarea = 0
 
         # DP of how many 1's to left at that index
@@ -114,18 +111,19 @@ class Solution:
                 for k in range(i, -1, -1):
                     width = min(width, dp[k][j])
                     maxarea = max(maxarea, width * (i - k + 1))
-    
+
         return maxarea
 
     # Go over all squares and if it's a 1 start a search
     # Takes too long
-    def maximalRectangle_TLE(self, matrix: List[List[str]]) -> int:
+    def maximalRectangle_TLE(self, matrix: list[list[str]]) -> int:
         maxarea = 0
         dp = [[0] * len(matrix[0]) for _ in range(len(matrix))]
 
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
-                if matrix[i][j] == '0': continue
+                if matrix[i][j] == '0':
+                    continue
 
                 # compute the maximum width and update dp with it
                 width = dp[i][j] = dp[i][j-1] + 1 if j else 1

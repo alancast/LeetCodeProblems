@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Breadth first search with bitmask
-    def shortestPathLength(self, graph: List[List[int]]) -> int:
+    def shortestPathLength(self, graph: list[list[int]]) -> int:
         if len(graph) == 1:
             return 0
-        
+
         n = len(graph)
         # Bitmask being used. 0 for every node that we haven't been to yet. Turns to 1 when we visit it
         # So when all visited all n nodes will be 1
@@ -25,13 +22,16 @@ class Solution:
                     next_mask = mask | (1 << neighbor)
                     if next_mask == ending_mask:
                         return 1 + steps
-                    
+
                     if (neighbor, next_mask) not in seen:
                         seen.add((neighbor, next_mask))
                         next_queue.append((neighbor, next_mask))
-            
+
             steps += 1
             queue = next_queue
+
+        # This would never happen but appeases linter (could throw here)
+        return -1
 
 testCases = [
     [[[1,2,3],[0],[0],[0]], 4],
@@ -42,3 +42,5 @@ for graph, expected in testCases:
     answer = implementation.shortestPathLength(graph)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. Graph: {graph}")
+
+print("Ran all tests")

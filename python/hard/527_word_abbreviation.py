@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -8,7 +7,7 @@ class Solution:
     # Create abbreviations from trie
     # Time O(c) where c is total characters across words (each char operated on)
     # Space O(c) each char also has information stored with it
-    def wordsAbbreviation(self, words: List[str]) -> List[str]:
+    def wordsAbbreviation(self, words: list[str]) -> list[str]:
         # Groups of len, start, end. If multiple then know overlapping abbrev
         # Create grouping
         groups = defaultdict(list)
@@ -16,10 +15,11 @@ class Solution:
             groups[len(word), word[0], word[-1]].append((word, index))
 
         # Every word will have 1 entry
-        answer = [None] * len(words)
+        answer = [""] * len(words)
 
 
-        Trie = lambda: defaultdict(Trie)
+        def Trie():
+            return defaultdict(Trie)
         COUNT = False
 
         # Go over every group and create the abbrevs for each word
@@ -36,23 +36,27 @@ class Solution:
             # Go over all the words again and append abbreviation to answer
             for word, index in group:
                 cur = trie
-                for i, letter in enumerate(word[1:], 1):
+                size = 1
+                for _, letter in enumerate(word[1:], 1):
                     # If this is the only word in the group that has the next
                     # Letter than we have our abbreviation so just quit
-                    if cur[COUNT] == 1: 
+                    if cur[COUNT] == 1:
                         break
 
                     # Otherwise go down to next letter
                     cur = cur[letter]
-                
+
+                    # Increment size
+                    size += 1
+
                 # Make sure abbreviation is actually shorter
-                if len(word) - i - 1 > 1:
-                    answer[index] = word[:i] + str(len(word) - i - 1) + word[-1]
+                if len(word) - size - 1 > 1:
+                    answer[index] = word[:size] + str(len(word) - size - 1) + word[-1]
                 else:
                     answer[index] = word
-    
+
         return answer
-    
+
 test_cases = [
     [["l2e","god","internal","me","i6t","interval","inte4n","f2e","intr4n"], ["like","god","internal","me","internet","interval","intension","face","intrusion"]],
     [["aa","aaa"], ["aa","aaa"]]

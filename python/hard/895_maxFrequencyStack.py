@@ -16,9 +16,8 @@ class FreqStack:
         self.frequencies[val] = new_frequency
 
         # Check if element is new leader
-        if new_frequency > self.maxfreq:
-            self.maxfreq = new_frequency
-        
+        self.maxfreq = max(self.maxfreq, new_frequency)
+
         # Add value to list of values with this frequency
         self.values_at_frequency[new_frequency].append(val)
 

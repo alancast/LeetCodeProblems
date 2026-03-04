@@ -1,12 +1,11 @@
-from heapq import heappush, heappop
-from typing import List
+from heapq import heappop, heappush
 
 
 class Solution:
     # Djikstras search basically
     # Time O(n^2logn)
     # Space O(n^2)
-    def swimInWater(self, grid: List[List[int]]) -> int:
+    def swimInWater(self, grid: list[list[int]]) -> int:
         n = len(grid)
 
         max_seen = grid[0][0]
@@ -39,6 +38,9 @@ class Solution:
                 # Add the new cell to the queue
                 heappush(djikstras, (grid[new_row][new_col], new_row, new_col))
                 queued.add((new_row, new_col))
+
+        # This would never happen but appeases linter (could throw here)
+        return -1
 
 test_cases = [
     [3, [[0,2],[1,3]]],

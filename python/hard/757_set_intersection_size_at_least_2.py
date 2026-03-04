@@ -1,23 +1,20 @@
-from typing import List
-
-
 class Solution:
     # Time O(n^2)
     # Space O(n)
-    def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
+    def intersectionSizeTwo(self, intervals: list[list[int]]) -> int:
         intervals.sort(key=lambda x: (x[1], -x[0]))
 
         answer = 0
         a = b = -1
 
-        for l, r in intervals:
-            if l > b:
-                a = r - 1
-                b = r
+        for left, right in intervals:
+            if left > b:
+                a = right - 1
+                b = right
                 answer += 2
-            elif l > a:
+            elif left > a:
                 a = b
-                b = r
+                b = right
                 answer += 1
 
         return answer

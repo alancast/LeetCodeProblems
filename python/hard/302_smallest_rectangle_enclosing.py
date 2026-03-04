@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(mlogn+nlogm)
     # Space O(1)
-    def minArea(self, image: List[List[str]], x: int, y: int) -> int:
+    def minArea(self, image: list[list[str]], x: int, y: int) -> int:  # noqa: PLR0912, PLR0915
         # Do binary search to find column with min_x and max_x
         # And for row of min_y, max_y
         min_x = max_x = x
@@ -24,10 +21,10 @@ class Solution:
                     found_one = True
                     min_x = mid
                     break
-            
+
             if not found_one:
                 left = mid + 1
-        
+
         # find max_x
         left = x
         right = n_x - 1
@@ -40,10 +37,10 @@ class Solution:
                     found_one = True
                     max_x = mid
                     break
-            
+
             if not found_one:
                 right = mid - 1
-        
+
         # find min_y
         left = 0
         right = y
@@ -56,10 +53,10 @@ class Solution:
                     found_one = True
                     min_y = mid
                     break
-            
+
             if not found_one:
                 left = mid + 1
-        
+
         # find max_y
         left = y
         right = n_y - 1
@@ -72,15 +69,15 @@ class Solution:
                     found_one = True
                     max_y = mid
                     break
-            
+
             if not found_one:
                 right = mid - 1
-            
+
         return (max_x - min_x + 1) * (max_y - min_y + 1)
 
     # Time O(k) where k is number of 1's (guaranteed to be <= m x n)
     # Space O(k) as queue could include all k neighbors at once
-    def minArea_bfs(self, image: List[List[str]], x: int, y: int) -> int:
+    def minArea_bfs(self, image: list[list[str]], x: int, y: int) -> int:
         # Append to queue every touching 1
         # Update grid to be 0 at that location
         # Keep track of min and max x and y
@@ -106,15 +103,15 @@ class Solution:
             if y+1 < n_y and image[x][y+1] == "1":
                 queue.append((x, y+1))
                 image[x][y+1] = "0"
-            
+
             # update min and maxes
             min_x = min(x, min_x)
             max_x = max(x, max_x)
             min_y = min(y, min_y)
             max_y = max(y, max_y)
-    
+
         return (max_x - min_x + 1) * (max_y - min_y + 1)
-    
+
 test_cases = [
     [6, [["0","0","1","0"],["0","1","1","0"],["0","1","0","0"]], 0, 2]
 ]

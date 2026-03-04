@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     # Use binary search of possible sums to see which value is right
     # O(n*log(sum)) time O(1) space
-    def splitArray(self, nums: List[int], m: int) -> int:
+    def splitArray(self, nums: list[int], m: int) -> int:
 
         def min_subarrays_required(max_sum_allowed: int) -> int:
             current_sum = 0
             splits_required = 0
-            
+
             for element in nums:
                 # Add element only if the sum doesn't exceed max_sum_allowed
                 if current_sum + element <= max_sum_allowed:
@@ -22,14 +19,15 @@ class Solution:
 
             # Return the number of subarrays, which is the number of splits + 1
             return splits_required + 1
-        
+
         # Define the left and right boundary of binary search
         left = max(nums)
         right = sum(nums)
+        minimum_largest_split_sum = left
         while left <= right:
             # Find the mid value
             max_sum_allowed = (left + right) // 2
-            
+
             # Find the minimum splits. If splits_required is less than
             # or equal to m move towards left i.e., smaller values
             if min_subarrays_required(max_sum_allowed) <= m:
@@ -38,7 +36,7 @@ class Solution:
             else:
                 # Move towards right if splits_required is more than m
                 left = max_sum_allowed + 1
-        
+
         return minimum_largest_split_sum
 
 testCases = [
@@ -51,3 +49,5 @@ for nums, m, expected in testCases:
     answer = implementation.splitArray(nums, m)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: nums: {nums} m: {m}")
+
+print("Ran all tests")

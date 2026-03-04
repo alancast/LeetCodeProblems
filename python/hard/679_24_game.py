@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Backtracking solution.
     # Pick 2 numbers, do an operation on them, add new number to array
@@ -9,11 +6,11 @@ class Solution:
     # End if all operations with all numbers tried (or found one that's true)
     # Time O(N!) can be more precise with more math
     # Space O(N^2) recursive stack and each one having array of len cards
-    def judgePoint24(self, cards: List[int]) -> bool:
-        return self.check_if_result_reached(cards)
+    def judgePoint24(self, cards: list[int]) -> bool:
+        return self.check_if_result_reached(cards) # type: ignore
 
     # Returns a list of all possible operations we can perform on two numbers.
-    def generate_possible_results(self, a: float, b: float) -> List[float]:
+    def generate_possible_results(self, a: float, b: float) -> list[float]:
         # Ones that we can definitely do
         res = [a + b, a - b, b - a, a * b]
 
@@ -24,13 +21,13 @@ class Solution:
             res.append(a / b)
 
         return res
-    
+
     # Check if using current list we can reach result 24.
-    def check_if_result_reached(self, cards: List[float]) -> bool:
+    def check_if_result_reached(self, cards: list[float]) -> bool:
         # Base Case: We have only one number left, check if it is approximately 24.
         # Approximately because floating point rounding could be slightly off
         if len(cards) == 1:
-            return abs(cards[0] - 24.0) <= 0.1
+            return abs(cards[0] - 24.0) <= 0.1  # noqa: PLR2004
 
         # Wasn't equal to 24, so go over all cards and try
         for i in range(len(cards)):
@@ -41,24 +38,24 @@ class Solution:
 
                 # Create a new list with the remaining numbers and the new result.
                 # So just remove cards[i] and cards[j]
-                new_list = [number for k, number in enumerate(cards) if (k != i and k != j)]
-                
+                new_list = [number for k, number in enumerate(cards) if (k not in (i, j))]
+
                 # Generate all possible operations between these two numbers
                 # Try them all iteratively and add result then see if we can reach 24
                 for res in self.generate_possible_results(card_i, card_j):
                     # Add the new result to the list.
                     new_list.append(res)
-                    
+
                     # Check if using this new list we can obtain the result 24.
                     if self.check_if_result_reached(new_list):
                         return True
-                    
+
                     # Backtrack: remove the result from the list.
                     new_list.pop()
 
         # Tried all combinations and none worked, so can't be done
         return False
-    
+
 test_cases = [
     [True, [4,1,8,7]],
     [False, [1,2,1,2]]

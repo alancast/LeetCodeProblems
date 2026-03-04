@@ -40,12 +40,12 @@ class Solution:
                 current_num *= 10
             # Otherwise increment digit by 1
             else:
-                while current_num % 10 == 9 or current_num >= n:
+                while current_num % 10 == 9 or current_num >= n:  # noqa: PLR2004
                     current_num //= 10
                 current_num += 1
 
         return current_num
-    
+
 test_cases = [
     [2, 10, 3],
     [10, 13, 2],

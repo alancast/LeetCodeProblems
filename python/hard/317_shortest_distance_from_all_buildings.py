@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
@@ -10,7 +9,7 @@ class Solution:
     # If you ever reach a house that can't expand to correct negative num return -1
     # Time O(n^2*m^2)
     # Space O(n*m) as we have a full grid copy
-    def shortestDistance(self, grid: List[List[int]]) -> int:
+    def shortestDistance(self, grid: list[list[int]]) -> int:  # noqa: PLR0912
         y = len(grid)
         x = len(grid[0])
         distances = [[0 for _ in range(x)] for _ in range(y)]
@@ -72,8 +71,8 @@ class Solution:
                         min_distance = min(min_distance, distances[temp_y][temp_x])
                         grid[temp_y][temp_x] = update_num
 
-        return min_distance
-    
+        return int(min_distance)
+
 test_cases = [
     [7, [[1,0,2,0,1],[0,0,0,0,0],[0,0,1,0,0]]],
     [1, [[1,0]]],

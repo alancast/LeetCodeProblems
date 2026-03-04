@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List, Optional
 
 
 # Definition for a binary tree node.
@@ -16,12 +15,12 @@ class Solution:
     # of size k with the k closest values
     # Time O(n) as each node is visited just once
     # Space O(n + k) n for call stack, k for deque
-    def closestKValues(self, root: Optional[TreeNode], target: float, k: int) -> List[int]:
+    def closestKValues(self, root: TreeNode | None, target: float, k: int) -> list[int]:
         # Do in order traversal and add k closest to queue
-        def in_order(node: TreeNode, queue: deque) -> None:
+        def in_order(node: TreeNode | None, queue: deque) -> None:
             if not node:
                 return
-            
+
             # Check smaller child
             in_order(node.left, queue)
 
@@ -40,12 +39,12 @@ class Solution:
                 if distance > left_distance:
                     queue.pop()
                     return
-                else:
-                    queue.popleft()
+
+                queue.popleft()
 
             # Process right child
             in_order(node.right, queue)
-            
+
         answer = deque()
         in_order(root, answer)
 
