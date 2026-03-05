@@ -55,11 +55,11 @@ class Solution:
                 row -= 1
                 col -= 1
             elif dp[row - 1][col] < dp[row][col - 1]:
-                # If str1’s character is part of the supersequence, move up
+                # If str1's character is part of the supersequence, move up
                 super_sequence.append(str1[row - 1])
                 row -= 1
             else:
-                # If str2’s character is part of the supersequence, move left
+                # If str2's character is part of the supersequence, move left
                 super_sequence.append(str2[col - 1])
                 col -= 1
 
@@ -94,7 +94,7 @@ class Solution:
             for col in range(1, str2_length + 1):
                 # If characters match, extend the supersequence from the diagonal value
                 if str1[row - 1] == str2[col - 1]:
-                    curr_row[col] = prev_row[col - 1] + str1[row - 1]
+                    curr_row[col] = prev_row[col - 1] + str1[row - 1] # type: ignore
                 else:
                     # If characters do not match, choose the shorter supersequence
                     # From previous row (exclude current str1 char)
@@ -103,16 +103,16 @@ class Solution:
                     pick_s2 = curr_row[col - 1]
 
                     curr_row[col] = (
-                        pick_s1 + str1[row - 1]
-                        if len(pick_s1) < len(pick_s2)
-                        else pick_s2 + str2[col - 1]
+                        pick_s1 + str1[row - 1] # type: ignore
+                        if len(pick_s1) < len(pick_s2) # type: ignore
+                        else pick_s2 + str2[col - 1] # type: ignore
                     )
 
             # Move to the next row (update previous row reference)
             prev_row = curr_row
 
         # Return the shortest common supersequence from the last cell
-        return prev_row[str2_length]
+        return prev_row[str2_length] # type: ignore
 
     # Priority queue sorted by smallest string
     # Append character by character. Quit once we get a string with both strings empty
@@ -129,7 +129,7 @@ class Solution:
             # Check if this sequence is a complete subsequence
             if item.str1_index == len1 and item.str2_index == len2:
                 return item.string_sequence
-            
+
             # Append new entries to queue
             # Same character so append it and iterate both
             if item.str1_index < len1 and item.str2_index < len2 \
@@ -147,7 +147,9 @@ class Solution:
             if item.str2_index < len2:
                 next_str = item.string_sequence + str2[item.str2_index]
                 heappush(pq, SuperSequenceQueueItem(next_str, item.str1_index, item.str2_index + 1))
-    
+
+        # This will never happen (could throw here) (for linter)
+        return ""
 test_cases = [
     ["cabac", "abac", "cab"],
     ["dddbbdcaabccaccbababaacbdcbacddadcdacbdddcadccacdadbadcbabdaccbccdabcdcbcaccacbabdaccbdabba", "bcaaacbbbcbdcaddadcacbdddcdcccdadadcbabaccbccdcdcbcaccacbbdcbabb", "dddbbdcbccaccbababaacbcbacdddcdabadcacddbacadabdabcdbaaabaccbdaa"],

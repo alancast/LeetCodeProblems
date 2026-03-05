@@ -1,5 +1,4 @@
 from collections import Counter
-from typing import List
 
 
 class Trie:
@@ -15,7 +14,7 @@ class Trie:
 class Solution:
     # Build tree of paths, then serialize subnodes of all nodes
     # Then look for dupes and delete
-    def deleteDuplicateFolder(self, paths: List[List[str]]) -> List[List[str]]:
+    def deleteDuplicateFolder(self, paths: list[list[str]]) -> list[list[str]]:
         root = Trie()
 
         # Build tree of paths
@@ -36,18 +35,18 @@ class Solution:
         self._operate(root)
 
         return self.answer
-    
+
     # Construct serialization of node
     # post-order traversal based on depth-first search
     # calculate the serialized representation of each node structure
     def _construct(self, node: Trie) -> None:
-        # if it is a leaf node, then the serialization is represented 
+        # if it is a leaf node, then the serialization is represented
         # as an empty string, and no operation is required.
         if not node.children:
             return
 
         v = []
-        # if it is not a leaf node, the serialization representation 
+        # if it is not a leaf node, the serialization representation
         # of the child node structure needs to be calculated first.
         for folder, child in node.children.items():
             self._construct(child)
@@ -62,11 +61,11 @@ class Solution:
 
     # Go over all the nodes and see if there are duplicate folders
     def _operate(self, node: Trie) -> None:
-        # if the serialization appears more than once in the hash table, 
+        # if the serialization appears more than once in the hash table,
         # it needs to be deleted.
         if self.freq[node.serial] > 1:
             return
-        
+
         # Serialization is unique so add this path to the answer set
         if self.path:
             self.answer.append(self.path[:])

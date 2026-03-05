@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # DP starting from end and working back to beginning
     # Time O(n*m)
     # Space O(n)
-    def maxDotProduct(self, nums1: List[int], nums2: List[int]) -> int:
+    def maxDotProduct(self, nums1: list[int], nums2: list[int]) -> int:
         # Check for corner cases where dot product is definitely negative
         if max(nums1) < 0 and min(nums2) > 0:
             return max(nums1) * min(nums2)

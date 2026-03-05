@@ -1,17 +1,16 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class MovieRentingSystem:
     _rented: set
-    _rented_prices: List
+    _rented_prices: list
     _cheapest_movie_locs: defaultdict
     _movie_prices: dict
 
 
     # Time O(nlogn + n) for creating cheapest movie locations and populating prices
-    def __init__(self, n: int, entries: List[List[int]]):
+    def __init__(self, n: int, entries: list[list[int]]):
         # Initially empty as nothing is rented
         self._rented = set()
         self._rented_prices = []
@@ -33,9 +32,9 @@ class MovieRentingSystem:
     # Go over cheapest locations, make sure they are unrented
     # Time O(n) as worst case all are same movie and all rented
     # In practice likely mostly O(1)
-    def search(self, movie: int) -> List[int]:
+    def search(self, movie: int) -> list[int]:
         locations = []
-    
+
         for _, location, _ in self._cheapest_movie_locs[movie]:
             # If the movie is currently rented then don't add it
             if (location, movie) in self._rented:
@@ -43,7 +42,7 @@ class MovieRentingSystem:
 
             locations.append(location)
 
-            if len(locations) == 5:
+            if len(locations) == 5:  # noqa: PLR2004
                 break
 
         return locations
@@ -62,13 +61,13 @@ class MovieRentingSystem:
 
     # Go over rented prices and make sure are still rented
     # Time O(n) as worst case all unrented now
-    def report(self) -> List[List[int]]:
+    def report(self) -> list[list[int]]:
         cheapest_rented = []
         # In case a movie is in the rented prices array already
         already_added = set()
 
         # Pop all movies from queue until we have 5 that are rented
-        while self._rented_prices and len(cheapest_rented) < 5:
+        while self._rented_prices and len(cheapest_rented) < 5:  # noqa: PLR2004
             _, shop, movie = heappop(self._rented_prices)
 
             # Movie was returned

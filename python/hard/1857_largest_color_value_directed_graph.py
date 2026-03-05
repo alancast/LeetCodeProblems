@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 class Solution:
@@ -10,7 +9,7 @@ class Solution:
     # Then either there is a cycle or we have processed all nodes
     # Time O(n+e) as we process all nodes and all edges
     # Space O(n+e) as we store adjacency graph of size e and in degree array of size n
-    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
+    def largestPathValue(self, colors: str, edges: list[list[int]]) -> int:
         n = len(colors)
 
         # Create and populate adjacency graph and in_degree
@@ -45,7 +44,7 @@ class Solution:
                 in_degree[neighbor] -= 1
                 if in_degree[neighbor] == 0:
                     q.append(neighbor)
-                
+
                 # Update color counts for all colors
                 for i in range(26):
                     count[neighbor][i] = max(count[neighbor][i], count[node][i])
@@ -55,7 +54,7 @@ class Solution:
             return -1
 
         return answer
-    
+
 test_cases = [
     [3, "abaca", [[0,1],[0,2],[2,3],[3,4]]],
     [-1, "a", [[0,0]]]

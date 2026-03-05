@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over array once. Find num with the highest count.
     # Make sure count * k less than len(nums)
     # Time O(n)
     # Space O(1)
-    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:
+    def canDivideIntoSubsequences(self, nums: list[int], k: int) -> bool:
         n = len(nums)
         max_count_limit = n//k
 
@@ -19,7 +16,7 @@ class Solution:
                     return False
             else:
                 curr_count = 1
-            
+
             prev_num = num
 
         return True

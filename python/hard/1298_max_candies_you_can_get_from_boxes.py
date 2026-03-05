@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
@@ -7,14 +6,12 @@ class Solution:
     # Space O(n) as worst case all boxes are contained in box so queue is size n
     def maxCandies(
         self,
-        status: List[int],
-        candies: List[int],
-        keys: List[List[int]],
-        containedBoxes: List[List[int]],
-        initialBoxes: List[int]
+        status: list[int],
+        candies: list[int],
+        keys: list[list[int]],
+        containedBoxes: list[list[int]],
+        initialBoxes: list[int]
     ) -> int:
-        n = len(status)
-
         # Boxes we've attempted to open since we last could
         # This is to avoid infinite loop of not having keys
         boxes_attempted_since_opening = 0
@@ -56,7 +53,7 @@ class Solution:
                 break
 
         return answer
-    
+
 test_cases = [
     [16, [1,0,1,0], [7,5,4,100], [[],[],[1],[]], [[1,2],[3],[],[]], [0]],
     [6, [1,0,0,0,0,0], [1,1,1,1,1,1], [[1,2,3,4,5],[],[],[],[],[]], [[1,2,3,4,5],[],[],[],[],[]], [0]]

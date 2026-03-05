@@ -1,34 +1,33 @@
 from bisect import bisect, bisect_left
-from typing import List
 
 
 class Solution:
-    def jobScheduling(self, startTime, endTime, profit):
+    def jobScheduling(self, startTime: list[int], endTime: list[int], profit: list[int]) -> int:
         # Jobs sorted by increasing end time
-        jobs = sorted(zip(startTime, endTime, profit), key=lambda v: v[1])
+        jobs = sorted(zip(startTime, endTime, profit, strict=False), key=lambda v: v[1])
 
         # Format is [endTime, profit]
         dp = [[0, 0]]
-        for start, end, profit in jobs:
+        for start, end, prof in jobs:
             # Find previous entry where it's end time is before this start time
             i = bisect(dp, [start + 1]) - 1
-            if dp[i][1] + profit > dp[-1][1]:
-                dp.append([end, dp[i][1] + profit])
+            if dp[i][1] + prof > dp[-1][1]:
+                dp.append([end, dp[i][1] + prof])
 
         return dp[-1][1]
 
-    def jobSchedulingDP(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+    def jobSchedulingDP(self, startTime: list[int], endTime: list[int], profit: list[int]) -> int:
         n = len(startTime)
-        jobs = sorted(list(zip(startTime, endTime, profit)))
+        jobs = sorted(zip(startTime, endTime, profit, strict=False))
         startTimes = [jobs[i][0] for i in range(n)]
         memos = [0] * n
 
         def dp(i):
-            if i == n: 
+            if i == n:
                 return 0
             if memos[i] != 0:
                 return memos[i]
-            
+
             #  Don't take job i
             ans = dp(i + 1)
 
@@ -42,18 +41,18 @@ class Solution:
 
         return dp(0)
 
-    def jobSchedulingDP(self, startTime: List[int], endTime: List[int], profit: List[int]) -> int:
+    def jobSchedulingDP2(self, startTime: list[int], endTime: list[int], profit: list[int]) -> int:
         n = len(startTime)
-        jobs = sorted(list(zip(startTime, endTime, profit)))
+        jobs = sorted(zip(startTime, endTime, profit, strict=False))
         memos = [0] * n
 
         def dp(i):
-            if i == n: 
+            if i == n:
                 return 0
             if memos[i] != 0:
                 return memos[i]
-            
-            # Don't take job i 
+
+            # Don't take job i
             ans = dp(i + 1)
 
             # Examine all future jobs
@@ -80,3 +79,5 @@ for starts, ends, profits, expected in testCases:
     if answer != expected:
         print(f"FAILED TEST: Got {answer}, expected {expected}")
         print(f"INPUTS: starts: {starts}, ends: {ends}, profits: {profits}")
+
+print("Ran all tests")

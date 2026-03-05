@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over length of array and see how many needed individually for each number
     # Can take advantage of incrementing past ones with it
     # Time O(n)
     # Space O(1)
-    def minNumberOperations(self, target: List[int]) -> int:
+    def minNumberOperations(self, target: list[int]) -> int:
         n = len(target)
         answer = target[0]
         prev = target[0]
@@ -16,7 +13,7 @@ class Solution:
             # Do we need to increment this separate from previous one or no?
             if target[i] >= prev:
                 answer += target[i] - prev
-        
+
             prev = target[i]
 
         return answer

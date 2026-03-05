@@ -14,7 +14,7 @@ class Solution:
             # Ways to arrange all deliveries, 1*3*5*...*(2n-1)
             ans = ans * (2 * i - 1)
             ans %= MOD
-        
+
         return ans
 
     # Bottom up DP
@@ -25,21 +25,21 @@ class Solution:
 
         # If nothing left to pick or deliver only one option
         dp[0][0] = 1
-        
+
         for unpicked in range(n + 1):
             for undelivered in range(unpicked, n + 1):
-                # There are some unpicked elements left. 
+                # There are some unpicked elements left.
                 # We have choice to pick any one of those orders.
                 if unpicked > 0:
                     dp[unpicked][undelivered] += unpicked * dp[unpicked - 1][undelivered]
                 dp[unpicked][undelivered] %= MOD
-                
+
                 # Number of deliveries done is less than picked orders.
-                # We have choice to deliver any one of (undelivered - unpicked) orders. 
+                # We have choice to deliver any one of (undelivered - unpicked) orders.
                 if undelivered > unpicked:
                     dp[unpicked][undelivered] += (undelivered - unpicked) * dp[unpicked][undelivered - 1]
                 dp[unpicked][undelivered] %= MOD
-        
+
         return dp[n][n]
 
     # Top down recursion
@@ -53,7 +53,7 @@ class Solution:
 
             if (unpicked < 0 or undelivered < 0 or undelivered < unpicked):
                 # We can't pick or deliver more than N items
-                # Number of deliveries can't exceed number of pickups 
+                # Number of deliveries can't exceed number of pickups
                 # as we can only deliver after a pickup.
                 return 0
 
@@ -66,6 +66,6 @@ class Solution:
             ans %= MOD
 
             return ans
-        
+
         MOD = 1_000_000_007
         return totalWays(n, n)

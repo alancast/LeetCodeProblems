@@ -1,11 +1,10 @@
 from heapq import heapify, heappop, heappush
 from math import inf
-from typing import List
 
 
 class Solution:
     # Heap of elements. Keep popping from heap until find odd (can't divide) and compute deviation
-    def minimumDeviation(self, nums: List[int]) -> int:
+    def minimumDeviation(self, nums: list[int]) -> int:
         if not nums:
             return 0
 
@@ -32,12 +31,12 @@ class Solution:
                 # if the maximum is odd, break and return
                 break
 
-        return min_deviation
+        return int(min_deviation)
 
     # Create all possible entries for an index and then sliding window
     # Until a window gets one of each index, compute deviation and move slider
     # Do until end and return minimum
-    def minimumDeviationSliding(self, nums: List[int]) -> int:
+    def minimumDeviationSliding(self, nums: list[int]) -> int:
         n = len(nums)
         if n == 0:
             return 0
@@ -57,7 +56,7 @@ class Solution:
         possible.sort()
         # start sliding window
         min_deviation = inf
-        need_include = {i: 1 for i in range(n)}
+        need_include = dict.fromkeys(range(n), 1)
         not_included = n
         current_start = 0
 
@@ -69,14 +68,13 @@ class Solution:
                 while need_include[possible[current_start][1]] < 0:
                     need_include[possible[current_start][1]] += 1
                     current_start += 1
-                if min_deviation > current_value - possible[current_start][0]:
-                    min_deviation = current_value - possible[current_start][0]
+                min_deviation = min(min_deviation, current_value - possible[current_start][0])
 
                 need_include[possible[current_start][1]] += 1
                 current_start += 1
                 not_included += 1
 
-        return min_deviation
+        return int(min_deviation)
 
 testCases = [
     [[1,2,3,4], 1],
@@ -90,3 +88,5 @@ for nums, expected in testCases:
     answer = implementation.minimumDeviation(nums)
     if answer != expected:
         print(f"FAILED TEST: Got {answer}, expected {expected}. Input: {nums}")
+
+print("Ran all tests")

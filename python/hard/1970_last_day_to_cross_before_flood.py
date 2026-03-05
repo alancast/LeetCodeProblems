@@ -1,6 +1,3 @@
-from typing import List
-
-
 class DSU:
     def __init__(self, n):
         self.root = list(range(n))
@@ -16,7 +13,7 @@ class DSU:
         root_y = self.find(y)
         if root_x == root_y:
             return
-        
+
         if self.size[root_x] > self.size[root_y]:
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
@@ -28,7 +25,7 @@ class Solution:
     # Find last day water doesn't connect left to right
     # Time O(row * col)
     # Space O(row * col)
-    def latestDayToCross(self, row: int, col: int, cells: List[List[int]]) -> int:
+    def latestDayToCross(self, row: int, col: int, cells: list[list[int]]) -> int:
         n = row * col + 2
         root = list(range(n))
 
@@ -55,8 +52,8 @@ class Solution:
         # Go over all cells until water is connected left to right
         for r, c in cells:
             # Since things are 1 indexed subtract 1
-            r = r-1
-            c = c-1
+            r = r-1  # noqa: PLW2901
+            c = c-1  # noqa: PLW2901
 
             # Make this cell water
             grid[r][c] = 1
@@ -83,7 +80,7 @@ class Solution:
 
             # Increment day by 1 and go to next cell
             day += 1
-        
+
         # Broken out of loop with final day they connected
         return day
 
@@ -93,7 +90,7 @@ class Solution:
     # Find last way doable that way. That would be logc * row * col
     # Time O(row * col)
     # Space O(row * col)
-    def latestDayToCross_dsu_land(self, row: int, col: int, cells: List[List[int]]) -> int:
+    def latestDayToCross_dsu_land(self, row: int, col: int, cells: list[list[int]]) -> int:
         # Create disjoint set add 2, one for top row one for bottom
         dsu = DSU(row * col + 2)
         # Initialize everything to water as we are going backwards
@@ -125,7 +122,7 @@ class Solution:
             # See if top row and bottom row are now same set, if so we have answer
             if dsu.find(0) == dsu.find(row * col + 1):
                 return i
-        
+
         # This will never happen as input guarantees water blocks it eventually
         return -1
 
