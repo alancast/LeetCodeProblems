@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -8,7 +7,7 @@ class Solution:
     # Create those two and see what solution gives the min
     # Time O(nlogn)
     # Space O(n)
-    def minimumDifference(self, nums: List[int]) -> int:
+    def minimumDifference(self, nums: list[int]) -> int:
         n = len(nums) // 3
 
         # Create the max

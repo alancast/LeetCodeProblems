@@ -1,5 +1,3 @@
-from typing import List
-
 class FenwickTree:
     def __init__(self, size):
         # Fenwick trees always 1 indexed
@@ -22,7 +20,7 @@ class FenwickTree:
 class Solution:
     # Time O(nlogn) as the Fenwick tree operations are all logn and we do n of them
     # Space O(n) as we clone the array into a tree
-    def goodTriplets(self, nums1: List[int], nums2: List[int]) -> int:
+    def goodTriplets(self, nums1: list[int], nums2: list[int]) -> int:
         n = len(nums1)
         pos2, reversedIndexMapping = [0] * n, [0] * n
 
@@ -56,7 +54,7 @@ class Solution:
             res += left * right
 
         return res
-    
+
 test_cases = [
     [1, [2,0,1,3], [0,1,2,3]],
     [4, [4,0,1,3,2], [4,1,0,2,3]]

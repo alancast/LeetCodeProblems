@@ -16,7 +16,7 @@ class Solution:
             if count >= k:
                 candidate_chars.append(char)
 
-        # Sorted in reverse order to meet answer constraint of 
+        # Sorted in reverse order to meet answer constraint of
         # if tie sort lexicographically largest
         candidate_chars.sort(reverse=True)
 
@@ -36,13 +36,13 @@ class Solution:
                 it = iter(s)
                 # This checks to make sure that nxt appears in order in s k times
                 # nxt * k makes the string nxt repeated k times
-                # all char in it makes sure every char in that string is in it 
+                # all char in it makes sure every char in that string is in it
                 # in order (as s is iterated over)
                 if all(char in it for char in nxt * k):
                     q.append(nxt)
 
         return answer
-    
+
 test_cases = [
     ["let", "letsleetcode", 2],
     ["b", "bb", 2],

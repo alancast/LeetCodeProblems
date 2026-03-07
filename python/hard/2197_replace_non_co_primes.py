@@ -1,24 +1,26 @@
 from math import gcd
-from typing import List
 
 
 class Solution:
     # Time O(nlogc)
     # Space O(1)
-    def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
+    def replaceNonCoprimes(self, nums: list[int]) -> list[int]:
         answer = []
 
         # Go over all nums perform the replacement operation until nums[i]
         # And the element at the top are coprime, or stack becomes empty.
         for num in nums:
+            current = num
+
             while answer:
-                g = gcd(answer[-1], num)
+                g = gcd(answer[-1], current)
                 if g > 1:
-                    num = answer[-1] // g * num
+                    current = answer[-1] // g * current
                     answer.pop()
                 else:
                     break
-            answer.append(num)
+
+            answer.append(current)
 
         return answer
 

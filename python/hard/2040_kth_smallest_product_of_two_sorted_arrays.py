@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Break into 4 problem spaces (neg * neg, pos * pos, neg * pos, pos * neg)
     # Do binary search for number that has less than k products beneath it
     # Time O((n1+n2)logC) where C is range of problem space we are binary searching
     # Space O(1)
-    def kthSmallestProduct(self, nums1: List[int], nums2: List[int], k: int) -> int:
+    def kthSmallestProduct(self, nums1: list[int], nums2: list[int], k: int) -> int:  # noqa: PLR0912
         n1 = len(nums1)
         n2 = len(nums2)
 
@@ -74,10 +71,10 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid - 1
-        
+
         # Found number
         return left
-    
+
 test_cases = [
     [8, [2,5], [3,4], 2],
     [0, [-4, -2, 0, 3], [2,4], 6],

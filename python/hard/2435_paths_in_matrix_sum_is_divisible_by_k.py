@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # DP of how many ways to get to square with mod 0
     # Time O(n*m*k)
     # Space O(n*m*k)
-    def numberOfPaths(self, grid: List[List[int]], k: int) -> int:
+    def numberOfPaths(self, grid: list[list[int]], k: int) -> int:
         MOD = 10**9 + 7
 
         # Initialize DP array with all 0's as originally there are 0 paths

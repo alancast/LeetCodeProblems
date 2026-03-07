@@ -1,19 +1,16 @@
-from typing import List
-
-
 class Solution:
     MOD = pow(10, 9) + 7  # mod defined by problem
     MAX_N = 10010  # Max n defined by problem
     MAX_P = 15  # There are up to 15 prime factors
 
     # How many ways are there to choose k items from n items (e.g c[n][k])
-    c: List[List[int]] = None
+    c: list[list[int]]
     # Array of smallest prime factor for a number (index)
-    sieve: List[int]
+    sieve: list[int]
     # List of prime factors of number (index)
-    ps: List[List[int]]
+    ps: list[list[int]]
     # How many prime factors of a number (index)
-    psLen: List[int]
+    psLen: list[int]
 
     def __init__(self):
         Solution.init()
@@ -63,7 +60,7 @@ class Solution:
             mul = 1
             for p in self.ps[x]:
                 mul = mul * self.c[n + p - 1][p] % self.MOD
-    
+
             ans = (ans + mul) % self.MOD
 
         return ans

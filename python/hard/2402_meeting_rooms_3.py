@@ -1,5 +1,4 @@
-from heapq import heappush, heappop
-from typing import List
+from heapq import heappop, heappush
 
 
 class Solution:
@@ -9,7 +8,7 @@ class Solution:
     # After go through all meeting counts and pick max
     # Time O(mlogn + n + mlogm) as we go through all meetings and do log(n) push pop on it
     # Space O(n)
-    def mostBooked(self, n: int, meetings: List[List[int]]) -> int:
+    def mostBooked(self, n: int, meetings: list[list[int]]) -> int:
         unused_rooms = list(range(n))
         used_rooms = []
         meeting_count = [0] * n
@@ -40,7 +39,7 @@ class Solution:
             if count_i > count:
                 count = count_i
                 answer = i
- 
+
         return answer
 
 test_cases = [

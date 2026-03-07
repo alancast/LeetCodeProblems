@@ -25,7 +25,7 @@ class Solution:
             if limit < int(num[i]):
                 count += pow((limit + 1), (pre_len - i))
                 return count
-            # Number is below limit so they are all possible 
+            # Number is below limit so they are all possible
             count += int(num[i]) * pow((limit + 1), (pre_len - 1 - i))
 
         # See if we need to add final one for suffix
@@ -33,18 +33,18 @@ class Solution:
             count += 1
 
         return count
-    
+
     def validate_inputs(self, start: int, finish: int, limit: int, s: str) -> None:
         if start > finish:
             raise ValueError("Start can't be more than finish")
         if start < 1 or finish < 1:
             raise ValueError("Start and Finish must both be positive")
-        if limit < 1 or limit > 9:
+        if limit < 1 or limit > 9:  # noqa: PLR2004
             raise ValueError("limit must be between 1 and 9")
         for char in s:
             if int(char) > limit:
                 raise ValueError("Every digit in s must be less than limit")
-    
+
 test_cases = [
     [8, 20, 1159, 5, "20"],
     [7, 1, 771, 7, "72"],

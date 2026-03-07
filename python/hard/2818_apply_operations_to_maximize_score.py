@@ -1,18 +1,17 @@
 from collections import deque
 from heapq import heappop, heappush
 from math import sqrt
-from typing import List
 
 
 class Solution:
     MOD = 10**9 + 7
 
     # M is max num, n is len of nums
-    # Time O(n * sqrt(m) + n * log(n)) 
+    # Time O(n * sqrt(m) + n * log(n))
     # calculating primes is n sqrt (m) populating next and prev dominant is n
     # Adding every item to priority queue is n log n
     # Space O(n) as we just store multiple other arrays of size n
-    def maximumScore(self, nums: List[int], k: int) -> int:
+    def maximumScore(self, nums: list[int], k: int) -> int:
         n = len(nums)
         prime_scores = [0] * n
 
@@ -31,7 +30,7 @@ class Solution:
                         num //= factor
 
             # If num is still greater than or equal to 2, it's a prime factor
-            if num >= 2:
+            if num >= 2:  # noqa: PLR2004
                 prime_scores[index] += 1
 
         # Initialize next and previous dominant index arrays
@@ -46,7 +45,7 @@ class Solution:
             # While the stack is not empty and the current prime score is greater than the stack's top
             while decreasing_prime_score_stack \
                 and prime_scores[decreasing_prime_score_stack[-1]] < prime_scores[index]:
-    
+
                 top_index = decreasing_prime_score_stack.pop()
 
                 # Set the next dominant element for the popped index
@@ -90,7 +89,7 @@ class Solution:
             k -= operations
 
         return score
-    
+
     # Helper function to compute the power of a number modulo MOD
     def _power_with_mod(self, base, exponent):
         res = 1
@@ -106,13 +105,13 @@ class Solution:
             exponent //= 2
 
         return res
-    
+
 
 # This solution finds prime numbers in a different way
 class Solution2:
     MOD = int(1e9 + 7)
 
-    def maximumScore(self, nums: List[int], k: int) -> int:
+    def maximumScore(self, nums: list[int], k: int) -> int:
         n = len(nums)
         prime_scores = [0] * n
 
@@ -218,7 +217,7 @@ class Solution2:
         return score
 
     # Function to generate prime numbers up to a given limit using the Sieve of Eratosthenes
-    def get_primes(self, limit: int) -> List[int]:
+    def get_primes(self, limit: int) -> list[int]:
         is_prime = [True] * (limit + 1)
         primes = []
 

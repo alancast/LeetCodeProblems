@@ -1,19 +1,16 @@
-from typing import List
-
-
 class Solution:
     # Trie plus Floyd Warshall plus DP
     # Crazy hard problem. Read through editorial then chatted with AI to understand
     # n is source length, m is length of original array, L is average str length
     # Time O(n^2 + m^3 + mL)
     # Space O(n + m^2 + mL)
-    def minimumCost(
+    def minimumCost(  # noqa: PLR0912, PLR0915
         self,
         source: str,
         target: str,
-        original: List[str],
-        changed: List[str],
-        cost: List[int],
+        original: list[str],
+        changed: list[str],
+        cost: list[int],
     ) -> int:
         INF = 10**18
         INF_INT = 10**9
@@ -76,8 +73,7 @@ class Solution:
         for i in range(P):
             dist[i][i] = 0
         for x, y, w in edges:
-            if w < dist[x][y]:
-                dist[x][y] = w
+            dist[x][y] = min(dist[x][y], w)
 
         # Apply Floyd-Warshall algorithm
         for k in range(P):
@@ -90,8 +86,7 @@ class Solution:
                 base = dik
                 for j in range(P):
                     nd = base + dk[j]
-                    if nd < di[j]:
-                        di[j] = nd
+                    di[j] = min(di[j], nd)
 
         # DP[i] = min cost to convert source[0:i] to target[0:i]
         dp = [INF] * (n + 1)
@@ -120,29 +115,28 @@ class Solution:
                 # Navigate both tries character by character
                 u = child[u][s_arr[i]]
                 v = child[v][t_arr[i]]
-                
+
                 # If either substring doesn't exist in trie, stop exploring
                 # And go to next starting point j
                 if u == -1 or v == -1:
                     break
-                
+
                 # Get transformation IDs for current substrings (or -1 if not a complete word)
                 uid = tid[u]
                 vid = tid[v]
-                
+
                 # Only proceed if both substrings are complete words in our transformation set
                 if uid != -1 and vid != -1:
                     # Look up shortest transformation cost from source word to target word
                     w = dist[uid][vid]
-                    
+
                     # If a valid transformation path exists
                     if w != INF_INT:
                         ni = i + 1  # Next position in source/target strings
                         cand = base + w  # Candidate cost: previous cost + transformation cost
-                        
+
                         # Update DP if this path is cheaper than previously found
-                        if cand < dp[ni]:
-                            dp[ni] = cand
+                        dp[ni] = min(dp[ni], cand)
 
         ans = dp[n]
         return -1 if ans >= INF else ans

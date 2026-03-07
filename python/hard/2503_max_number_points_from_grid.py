@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # n is num rows, m is num cols, k is num queries
     # Time O(klogk + n*mlogmn)
     # Space O(nm + k)
-    def maxPoints(self, grid: List[List[int]], queries: List[int]) -> List[int]:
+    def maxPoints(self, grid: list[list[int]], queries: list[int]) -> list[int]:
         row_count = len(grid)
         col_count = len(grid[0])
         result = [0] * len(queries)
@@ -51,7 +50,7 @@ class Solution:
             result[query_index] = total_points
 
         return result
-    
+
 test_cases = [
     [[5,8,1], [[1,2,3],[2,5,7],[3,5,1]], [5,6,2]],
     [[0], [[5,2,1],[1,1,2]], [3]]

@@ -45,12 +45,12 @@ class Solution:
                 if self.isPalindrome(p, k):
                     total += p
                     n -= 1
-            
+
             # Add more digits to palindrome
             length *= 10
 
         return total
-    
+
 test_cases = [
     [25, 2, 5],
     [499, 3, 7],

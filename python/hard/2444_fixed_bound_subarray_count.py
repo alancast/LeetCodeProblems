@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we just go through the subarray once
     # Space O(1)
-    def countSubarrays(self, nums: List[int], minK: int, maxK: int) -> int:
+    def countSubarrays(self, nums: list[int], minK: int, maxK: int) -> int:
         left = 0
         min_index = max_index = -1
         count = 0
@@ -29,7 +26,7 @@ class Solution:
                 count += max_low_index - left + 1
 
         return count
-    
+
 test_cases = [
     [1, [4,3], 3, 3],
     [2, [1,3,5,2,7,5], 1, 5],

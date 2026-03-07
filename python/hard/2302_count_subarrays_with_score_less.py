@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Basically same logic as below but much cleaner
     # Sliding window. See how many sub arrays can end at a given index
     # Then move left forward one and see how far right can go
     # Time O(n) as we go through the nums list just once
     # Space O(1)
-    def countSubarrays(self, nums: List[int], k: int) -> int:
+    def countSubarrays(self, nums: list[int], k: int) -> int:
         n = len(nums)
         count = sum = start = 0
 
@@ -20,7 +17,7 @@ class Solution:
                 start += 1
 
             count += end - start + 1
-            
+
         return count
 
 
@@ -28,7 +25,7 @@ class Solution:
     # Then move left forward one and see how far right can go
     # Time O(n) as we go through the nums list just once
     # Space O(1)
-    def countSubarrays_uglier(self, nums: List[int], k: int) -> int:
+    def countSubarrays_uglier(self, nums: list[int], k: int) -> int:
         n = len(nums)
         count = right = sum = length = 0
 
@@ -61,7 +58,7 @@ class Solution:
                 right += 1
 
         return count
-    
+
 test_cases = [
     [6, [2,1,4,3,5], 10],
     [0, [100], 10],

@@ -21,7 +21,7 @@ class Solution:
 
                 # If two seats, then this is the last S in the section
                 # Update seats for the next section
-                if seats == 2:
+                if seats == 2:  # noqa: PLR2004
                     previous_pair_last = index
                     seats = 0
                 # If one seat, then this is the first S in the section
@@ -29,7 +29,7 @@ class Solution:
                 elif seats == 1 and previous_pair_last is not None:
                     answer *= (index - previous_pair_last)
                     answer %= self.MOD
-        
+
         # If odd seats, or zero seats
         if seats == 1 or previous_pair_last is None:
             return 0

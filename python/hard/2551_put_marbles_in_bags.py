@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # All that matters is start and end of each bag
     # So all that matters is pairs next to each other
@@ -8,11 +5,11 @@ class Solution:
     # Answer then is sum(max k-1 pairs) - sum(min k-1 pairs)
     # Time O(nlogn) as we sort a list of size n-1
     # Space O(n) as we store full pairs of size n-1
-    def putMarbles(self, weights: List[int], k: int) -> int:
+    def putMarbles(self, weights: list[int], k: int) -> int:
         n = len(weights)
-        if n == k or k == 1:
+        if k in (n, 1):
             return 0
-        
+
         pair_sums = [0] * (n - 1)
         for i in range(n-1):
             pair_sums[i] = weights[i] + weights[i+1]
@@ -38,7 +35,7 @@ class Solution:
             answer += pair_sums[n - 2 - i] - pair_sums[i]
 
         return answer
-    
+
 test_cases = [
     [4, [1,3,5,1], 2],
     [3, [1,4,2,5,2], 3],

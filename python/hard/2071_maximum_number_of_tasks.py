@@ -1,15 +1,14 @@
 from collections import deque
-from sortedcontainers import SortedList
-from typing import List
+from sortedcontainers import Sortedlist
 
 
 class Solution:
     # Solve with a function to see if it's possible to complete k tasks
     # Then find maximum value of k that works and that's the answer
-    # Time O(nlogn + mlogm + min(m,n)logmin(m,n)) 
+    # Time O(nlogn + mlogm + min(m,n)logmin(m,n))
     # first two are for sorting lists, third is for check function
     # Space O(logn+logm+min(m,n)) (again first ones are for sort, then min is for the binary search)
-    def maxTaskAssign(self, tasks: List[int], workers: List[int], pills: int, strength: int) -> int:
+    def maxTaskAssign(self, tasks: list[int], workers: list[int], pills: int, strength: int) -> int:
         n = len(tasks)
         m = len(workers)
         tasks.sort()
@@ -46,7 +45,7 @@ class Solution:
 
                 # No workers to complete the task
                 return False
-            
+
             return True
 
         # Binary search to see largest k whose tasks we can complete
@@ -67,7 +66,7 @@ class Solution:
     # Then find maximum value of k that works and that's the answer
     # Time O(nlogn+mlogm + min(m,n)log^2min(m,n)) (first ones are for sorting lists)
     # Space O(logn+logm+min(m,n)) (again first ones are for sort, then min is for the binary search)
-    def maxTaskAssign_suboptimal_check_helper(self, tasks: List[int], workers: List[int], pills: int, strength: int) -> int:
+    def maxTaskAssign_suboptimal_check_helper(self, tasks: list[int], workers: list[int], pills: int, strength: int) -> int:
         n = len(tasks)
         m = len(workers)
         tasks.sort()
@@ -77,7 +76,7 @@ class Solution:
         def can_complete_k_tasks(k: int) -> bool:
             p = pills
             # Ordered set of workers (with the k highest value)
-            ws = SortedList(workers[m - k :])
+            ws = Sortedlist(workers[m - k :])
             # Enumerate each task from largest to smallest
             for i in range(k - 1, -1, -1):
                 # If the largest element in the ordered set is greater than or equal to tasks[i]
@@ -89,13 +88,13 @@ class Solution:
                     # No pills left so it can't be solved
                     if p == 0:
                         return False
-                    
+
                     # Find the lowest index of the sorted list that can solve it with a pill
                     rep = ws.bisect_left(tasks[i] - strength)
                     # If it is the end of the list that means none existed, so can't be solved
                     if rep == len(ws):
                         return False
-                    
+
                     # Use pill and pop that worker
                     p -= 1
                     ws.pop(rep)
@@ -114,7 +113,7 @@ class Solution:
                 right = mid - 1
 
         return answer
-    
+
 test_cases = [
     [3, [3,2,1], [0,3,3], 1, 1],
     [1, [5,4], [0,0,0], 1, 5],
