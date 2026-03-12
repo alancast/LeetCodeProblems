@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Apparently you can also do this silly math, good luck figuring that out
     # Time O(logk)
     # Space O(1)
-    def kthCharacter(self, k: int, operations: List[int]) -> str:
+    def kthCharacter(self, k: int, operations: list[int]) -> str:
         ans = 0
         while k != 1:
             t = k.bit_length() - 1
@@ -18,7 +15,7 @@ class Solution:
         return chr(ord("a") + (ans % 26))
 
     # Brute Force exceeds time limit
-    def kthCharacter_brute_force(self, k: int, operations: List[int]) -> str:
+    def kthCharacter_brute_force(self, k: int, operations: list[int]) -> str:
         word = "a"
         index = 0
         while len(word) < k:
@@ -29,12 +26,12 @@ class Solution:
                 word = self._rotate_and_append_word(word)
 
             index += 1
-        
+
         return word[k-1]
-    
+
     def _duplicate_word(self, word: str) -> str:
         return word + word
-    
+
     def _rotate_and_append_word(self, word: str) -> str:
         char_map = {'z': 'a'}
         next_word = []
@@ -46,7 +43,7 @@ class Solution:
                 next_word.append(chr(ord(char) + 1))
 
         return word + ''.join(next_word)
-    
+
 test_cases = [
     ["a", 5, [0,0,0]],
     ["b", 10, [0,1,0,1]]

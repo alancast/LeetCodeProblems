@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # Go through each query and find out how many operations for that query
     # Time O(nlog(r))
     # Space O(1)
-    def minOperations(self, queries: List[List[int]]) -> int:
+    def minOperations(self, queries: list[list[int]]) -> int:
         answer = 0
 
         # Go through each query and find out how many operations for that query
-        for l, r in queries:
-            query_sum = self._depth_sum(r) - self._depth_sum(l-1) + 1
+        for left, right in queries:
+            query_sum = self._depth_sum(right) - self._depth_sum(left - 1) + 1
             # Divide by 2 because we do two numbers at a time per operation
             answer += query_sum // 2
 

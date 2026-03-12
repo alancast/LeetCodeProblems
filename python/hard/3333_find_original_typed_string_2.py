@@ -31,7 +31,6 @@ class Solution:
 
         # Now go through all possibilities of where downsizing to 1 isn't possible
         # Iterate over all the frequencies and make combinations if they are downsized
-        f = [1] + [0] * (k - 1)
         g = [1] * k
         for i in range(len(letter_frequencies)):
             f_new = [0] * k
@@ -44,12 +43,11 @@ class Solution:
             for j in range(1, k):
                 g_new[j] = (g_new[j - 1] + f_new[j]) % self.MOD
 
-            f = f_new
             g = g_new
-        
+
         # Return answer
         return (answer - g[k - 1]) % self.MOD
-    
+
 test_cases = [
     [5, "aabbccdd", 7],
     [1, "aabbccdd", 8],

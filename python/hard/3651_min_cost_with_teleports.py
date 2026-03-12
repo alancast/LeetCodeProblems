@@ -1,12 +1,11 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
-    # Dynamic programming 
+    # Dynamic programming
     # Time O(nlogn) where n is total size of grid
     # Space O(n)
-    def minCost(self, grid: List[List[int]], k: int) -> int:
+    def minCost(self, grid: list[list[int]], k: int) -> int:
         rows = len(grid)
         cols = len(grid[0])
 
@@ -36,7 +35,7 @@ class Solution:
 
                 # If next space is same value just keep trying to find min cost
                 if i + 1 < n and sorted_spaces[i][0] == sorted_spaces[i + 1][0]:
-                    i += 1
+                    i += 1  # noqa: PLW2901
                     continue
 
                 # The next space has a different cost from the previous ones
@@ -76,7 +75,7 @@ class Solution:
     # As well as teleport to all squares less
     # Time O(nlogn) where n is total size of grid
     # Space O(n)
-    def minCost_djikstras(self, grid: List[List[int]], k: int) -> int:
+    def minCost_djikstras(self, grid: list[list[int]], k: int) -> int:
         rows = len(grid)
         cols = len(grid[0])
 
@@ -95,7 +94,7 @@ class Solution:
 
         # Go over sorted spaces and see what teleport options are left
         # Returns list of row col pairs that are viable
-        def get_tel_options(grid_val: int) -> List[List[int]]:
+        def get_tel_options(grid_val: int) -> list[list[int]]:
             spaces = []
 
             # Teleport to all possible spaces
@@ -126,7 +125,7 @@ class Solution:
             # See if at end
             if row == rows - 1 and col == cols - 1:
                 return cost
-            
+
             # Add to djikstras below and to the right
             # Below
             if row < rows - 1:

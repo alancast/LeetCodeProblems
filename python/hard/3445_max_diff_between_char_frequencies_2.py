@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 class Solution:
     # Math stuff where you map each set of a, and b chars to 00, 01, 10, 11
     # Where 0 represents even count and 1 represents odd, so we only care about 10
@@ -8,13 +5,13 @@ class Solution:
     # Time O(n * e^2) where e is the char set
     # Space O(1)
     def maxDifference(self, s: str, k: int) -> int:
-        # Map count_a cound_b to either 00, 01, 10, 11
+        # Map count_a count_b to either 00, 01, 10, 11
         # We only care about 10
         def getStatus(cnt_a: int, cnt_b: int) -> int:
             return ((cnt_a & 1) << 1) | (cnt_b & 1)
 
         n = len(s)
-        ans = float("-inf")
+        answer = float("-inf")
         # Enumerate all ab pairs
         for a in ["0", "1", "2", "3", "4"]:
             for b in ["0", "1", "2", "3", "4"]:
@@ -31,7 +28,7 @@ class Solution:
                     cnt_a += s[right] == a
                     cnt_b += s[right] == b
                     # Make sure substring is greater than k and are at least 2 b's in str
-                    while right - left >= k and cnt_b - prev_b >= 2:
+                    while right - left >= k and cnt_b - prev_b >= 2:  # noqa: PLR2004
                         left_status = getStatus(prev_a, prev_b)
                         best[left_status] = min(best[left_status], prev_a - prev_b)
                         left += 1
@@ -40,9 +37,9 @@ class Solution:
 
                     right_status = getStatus(cnt_a, cnt_b)
                     if best[right_status ^ 0b10] != float("inf"):
-                        ans = max(ans, cnt_a - cnt_b - best[right_status ^ 0b10])
+                        answer = max(answer, cnt_a - cnt_b - best[right_status ^ 0b10])
 
-        return ans
+        return int(answer)
 
 test_cases = [
     [-1, "12233", 4],

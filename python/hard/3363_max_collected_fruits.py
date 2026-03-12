@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # This problem is silly. But the 3 kids each only get n-1 moves
     # So the kid starting at 0,0 must just take the diagonal
@@ -9,7 +6,7 @@ class Solution:
     # add the diagonal and done.
     # Time O(n^2) as we go over the grid
     # Space O(n)
-    def maxCollectedFruits(self, fruits: List[List[int]]) -> int:
+    def maxCollectedFruits(self, fruits: list[list[int]]) -> int:
         n = len(fruits)
 
         # Compute the diagonal path (for kid at 0,0)
@@ -27,7 +24,7 @@ class Solution:
             prev[n - 1] = fruits[0][n - 1]
 
             # Iterate over max of all previous ones and store that in the max of current
-            # dp[i][j]=max(dp[i−1][j−1], dp[i−1][j], dp[i−1][j+1])+fruits[i][j].
+            # dp[i][j]=max(dp[i−1][j−1], dp[i−1][j], dp[i−1][j+1])+fruits[i][j].  # noqa: RUF003
             for i in range(1, n - 1):
                 for j in range(max(n - 1 - i, i + 1), n):
                     best = prev[j]
@@ -37,7 +34,7 @@ class Solution:
                         best = max(best, prev[j + 1])
 
                     curr[j] = best + fruits[i][j]
-                
+
                 # Swap current and previous
                 temp = prev
                 prev = curr
@@ -58,8 +55,8 @@ class Solution:
         # Add the amount for the kid starting bottom left
         answer += dp()
 
-        return answer 
-   
+        return int(answer)
+
 test_cases = [
     [100, [[1,2,3,4],[5,6,8,7],[9,10,11,12],[13,14,15,16]]],
     [4, [[1,1],[1,1]]]

@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over array and find strictly decreasing part
     # Then go to left and right to find increase and see if it creates a max
     # Time O(n)
     # Space O(1)
-    def maxSumTrionic(self, nums: List[int]) -> int:
+    def maxSumTrionic(self, nums: list[int]) -> int:
         n = len(nums)
         answer = float('-inf')
 

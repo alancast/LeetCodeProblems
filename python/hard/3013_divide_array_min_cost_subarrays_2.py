@@ -1,5 +1,4 @@
 from bisect import bisect_left, insort
-from typing import List
 
 
 class Solution:
@@ -13,7 +12,7 @@ class Solution:
         def windowSize(self) -> int:
             return len(self.low) + len(self.high)
 
-        def _erase_one(self, arr: List[int], x: int) -> bool:
+        def _erase_one(self, arr: list[int], x: int) -> bool:
             i = bisect_left(arr, x)
             if i < len(arr) and arr[i] == x:
                 arr.pop(i)
@@ -54,7 +53,7 @@ class Solution:
     # Find the smallest k over a sliding window of range dist in array
     # Time O(nlogn)
     # Space O(n)
-    def minimumCost(self, nums: List[int], k: int, dist: int) -> int:
+    def minimumCost(self, nums: list[int], k: int, dist: int) -> int:
         n = len(nums)
         k -= 1
         window = self.SmartWindow(k)

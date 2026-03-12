@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 # This exceeds the time limit, but the other solution is just matrix math not worth understanding
@@ -9,7 +8,7 @@ class SolutionUnderstandable:
     # Time Limit exceeds with long s, high t, and large nums
     # Time O(n + t*num) get count of each char and then iterate
     # Space O(1) store multiple 26 int lists
-    def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:
+    def lengthAfterTransformations(self, s: str, t: int, nums: list[int]) -> int:
         # Create map for char index and what it goes to
         # key: char index value: list of chars that get added
         transformation_map = defaultdict(list)
@@ -17,17 +16,17 @@ class SolutionUnderstandable:
             for j in range(1, nums[i] + 1):
                 # Take care of wraparound
                 offset = i + j
-                if i + j > 25:
+                if i + j > 25:  # noqa: PLR2004
                     offset -= 26
                 transformation_map[i].append(offset)
 
         # Initialize char count array
         char_count = [0] * 26
         for ch in s:
-            char_count[ord(ch) - ord('a')] += 1   
+            char_count[ord(ch) - ord('a')] += 1
 
         # Go through every transformation and create new char counts
-        for round in range(t):
+        for _ in range(t):
             nxt = [0] * 26
 
             for i, count in enumerate(char_count):
@@ -35,7 +34,7 @@ class SolutionUnderstandable:
                     nxt[next_char] += count
                     nxt[next_char] %= self.MOD
 
-            char_count = nxt 
+            char_count = nxt
 
         return sum(char_count) % self.MOD
 
@@ -44,8 +43,8 @@ L = 26
 
 
 class Mat:
-    def __init__(self, copy_from: "Mat" = None) -> None:
-        self.a: List[List[int]] = [[0] * L for _ in range(L)]
+    def __init__(self, copy_from: "Mat" = None) -> None: # type: ignore
+        self.a: list[list[int]] = [[0] * L for _ in range(L)]
         if copy_from:
             for i in range(L):
                 for j in range(L):
@@ -61,7 +60,7 @@ class Mat:
 
 
 class Solution:
-    def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:
+    def lengthAfterTransformations(self, s: str, t: int, nums: list[int]) -> int:
         T = Mat()
         for i in range(26):
             for j in range(1, nums[i] + 1):
@@ -79,9 +78,9 @@ class Solution:
                 ans = (ans + res.a[i][j] * f[j]) % MOD
 
         return ans
-    
+
     # identity matrix
-    def I(self) -> Mat:
+    def I(self) -> Mat:  # noqa: E743
         m = Mat()
         for i in range(L):
             m.a[i][i] = 1

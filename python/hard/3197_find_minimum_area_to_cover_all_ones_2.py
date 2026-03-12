@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     # Really stupid problem
     # Only 6 possible partition patterns, so just enumerate all 6
     # Move cuts for all 6 and find min
     # Time O(n^2*m^2)
     # Space O(n*m)
-    def minimumSum(self, grid: List[List[int]]) -> int:
+    def minimumSum(self, grid: list[list[int]]) -> int:
         rotated_grid = self._rotate(grid)
         return min(self._solve(grid), self._solve(rotated_grid))
-    
+
     # Rotates the input grid counterclockwise 90 degrees
-    def _rotate(self, grid: List[List[int]]) -> List[List[int]]:
+    def _rotate(self, grid: list[list[int]]) -> list[list[int]]:
         n = len(grid)
         m = len(grid[0]) if n > 0 else 0
 
@@ -24,9 +21,9 @@ class Solution:
                 rotated_grid[m - j - 1][i] = grid[i][j]
 
         return rotated_grid
-    
+
     # Iterate over all potential break lines and find min answer
-    def _solve(self, grid: List[List[int]]) -> int:
+    def _solve(self, grid: list[list[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0]) if rows > 0 else 0
 
@@ -39,7 +36,7 @@ class Solution:
                 temp_answer = self._minimumArea(grid, 0, row_index, 0, cols - 1)
                 temp_answer += self._minimumArea(grid, row_index + 1, rows - 1, 0, col_index)
                 temp_answer += self._minimumArea(grid, row_index + 1, rows - 1, col_index + 1, cols - 1)
-                
+
                 answer = min(answer, temp_answer)
 
                 # Find answer for bottom full with and two rectangles above
@@ -55,7 +52,7 @@ class Solution:
                 temp_answer = self._minimumArea(grid, 0, row_index, 0, cols - 1)
                 temp_answer += self._minimumArea(grid, row_index + 1, row_index_2, 0, cols - 1)
                 temp_answer += self._minimumArea(grid, row_index_2 + 1, rows - 1, 0, cols - 1)
-                
+
                 answer = min(answer, temp_answer)
 
         return answer
@@ -64,13 +61,10 @@ class Solution:
     # Set the up, down, left, and right bounds
     # Time O(m*n)
     # Space O(1)
-    def _minimumArea(
-        self, grid: List[List[int]], top_bound: int, 
+    def _minimumArea(  # noqa: PLR0912
+        self, grid: list[list[int]], top_bound: int,
         bottom_bound: int, left_bound: int, right_bound: int
     ) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-
         left = right = top = bottom = -1
 
         # Find top-most (set others when we see one)
@@ -83,34 +77,33 @@ class Solution:
                     top = bottom = row_index
                     # Break because we know we won't find a better top
                     break
-            
+
             if top != -1:
                 break
-        
+
         # Make sure we found a 1, if not then there are none in this grid section
         if top == -1:
-            return float('inf')
-        
+            # Number outside of range of problem
+            return 100000000000
+
         # Find bottom-most (set others when we see one)
         for row_index in range(bottom_bound, top, -1):
             bottom_found = False
             for col_index in range(left_bound, right_bound + 1):
                 if grid[row_index][col_index] == 1:
                     # See if left or right should be updated as well
-                    if col_index < left:
-                        left = col_index
-                    if col_index > right:
-                        right = col_index
+                    left = min(left, col_index)
+                    right = max(right, col_index)
 
                     # Set bottom
                     bottom = row_index
                     bottom_found = True
                     # Break because we know we won't find a better bottom
                     break
-            
+
             if bottom_found:
                 break
-        
+
         # Find left-most
         for col_index in range(left_bound, right_bound + 1):
             left_found = False
@@ -121,10 +114,10 @@ class Solution:
                     left_found = True
                     # Break because we know we won't find a better left
                     break
-            
+
             if left_found:
                 break
-        
+
         # Find right-most
         for col_index in range(right_bound, right, -1):
             right_found = False
@@ -135,7 +128,7 @@ class Solution:
                     right_found = True
                     # Break because we know we won't find a better right
                     break
-            
+
             if right_found:
                 break
 

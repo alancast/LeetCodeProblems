@@ -1,15 +1,14 @@
-from typing import List
 from bisect import bisect_left
 
 
 class SegmentTree:
-    def __init__(self, xs: List[int]):
+    def __init__(self, xs: list[int]):
         self.xs = xs
         self.n = len(xs) - 1
         self.count = [0] * (4 * self.n)
         self.covered = [0] * (4 * self.n)
 
-    def update(self, qleft, qright, qval, left, right, pos):
+    def update(self, qleft, qright, qval, left, right, pos):  # noqa: PLR0913
         if self.xs[right + 1] <= qleft or self.xs[left] >= qright:
             return
         if qleft <= self.xs[left] and self.xs[right + 1] <= qright:
@@ -21,13 +20,12 @@ class SegmentTree:
 
         if self.count[pos] > 0:
             self.covered[pos] = self.xs[right + 1] - self.xs[left]
+        elif left == right:
+            self.covered[pos] = 0
         else:
-            if left == right:
-                self.covered[pos] = 0
-            else:
-                self.covered[pos] = (
-                    self.covered[pos * 2 + 1] + self.covered[pos * 2 + 2]
-                )
+            self.covered[pos] = (
+                self.covered[pos * 2 + 1] + self.covered[pos * 2 + 2]
+            )
 
     def query(self):
         return self.covered[0]
@@ -36,10 +34,10 @@ class Solution:
     # Go over all bottom widths and compute area until it's half
     # Time O(nlogn) for sorting horizontal_lines
     # Space O(n)
-    def separateSquares(self, squares: List[List[int]]) -> float:
+    def separateSquares(self, squares: list[list[int]]) -> float:
         events = []
         xs_set = set()
-        for x, y, l in squares:
+        for x, y, l in squares:  # noqa: E741
             # First one is lower line, second one is top
             events.append((y, 1, x, x + l))
             events.append((y + l, -1, x, x + l))

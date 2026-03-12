@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     MOD = 10**9 + 7
 
@@ -13,12 +10,12 @@ class Solution:
         differentChoices = pow(m - 1, n - 1 - k, self.MOD)
 
         return m * choosePositions % self.MOD * differentChoices % self.MOD
-    
+
 
     def modularInverse(self, x: int) -> int:
         return pow(x, self.MOD - 2, self.MOD)
 
-    def computeFactorials(self, limit: int) -> int:
+    def computeFactorials(self, limit: int):
         factorial = [1] * (limit + 1)
         inverseFactorial = [1] * (limit + 1)
 
@@ -31,10 +28,10 @@ class Solution:
 
         return factorial, inverseFactorial
 
-    def combination(self, n: int, k: int, factorial: List[int], inverseFactorial: List[int]) -> int:
+    def combination(self, n: int, k: int, factorial: list[int], inverseFactorial: list[int]) -> int:
         if k < 0 or k > n:
             return 0
-    
+
         return factorial[n] * inverseFactorial[k] % self.MOD * inverseFactorial[n - k] % self.MOD
 
 test_cases = [

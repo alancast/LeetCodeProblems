@@ -1,13 +1,12 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 class UnionFind:
-    parent: List[int]
-    weight: List[int]
+    parent: list[int]
+    weight: list[int]
 
     def __init__(self, n: int):
-        self.parent = [i for i in range(n)]
+        self.parent = list(range(n))
         # -1 has only 1s in its binary representation
         self.weight = [-1] * n
 
@@ -16,31 +15,31 @@ class UnionFind:
             node = self.parent[node]
 
         return node
-    
+
     def union(self, node1: int, node2: int, weight: int) -> int:
         p1 = self.find(node1)
         p2 = self.find(node2)
-        
+
         # Always merge p2 with p1 return weight of walk
         self.parent[p2] = p1
         self.weight[p1] = self.weight[p1] & weight & self.weight[p2]
 
         return self.weight[p1]
-    
+
     def get_cost(self, node1: int, node2: int) -> int:
         p1 = self.find(node1)
         p2 = self.find(node2)
 
         if p1 != p2:
             return -1
-        
+
         return self.weight[p1]
 
 class Solution:
     # Use BFS to find all the components and their walk cost. Then go over queries
     # Time O(V*N+Q)
     # Space O(V+N)
-    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:
+    def minimumCost(self, n: int, edges: list[list[int]], query: list[list[int]]) -> list[int]:
         # Create the adjacency graph
         adj_map = defaultdict(list[tuple])
         for source, dest, weight in edges:
@@ -77,8 +76,8 @@ class Solution:
 
     # Helper function to calculate the cost of a component using BFS
     def _get_component_cost(
-        self, source: int, adj_map: dict, visited: List[int], 
-        components: List[int], component_id: int
+        self, source: int, adj_map: dict, visited: list[bool],
+        components: list[int], component_id: int
     ):
         nodes_queue = deque()
 
@@ -112,7 +111,7 @@ class Solution:
     # Use modified UnionFind but instead of storing rank just store the weight of the walk
     # Time O(V*N)
     # Space O(V+N)
-    def minimumCost_union_find(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:
+    def minimumCost_union_find(self, n: int, edges: list[list[int]], query: list[list[int]]) -> list[int]:
         # Create UnionFind and get weights
         uf = UnionFind(n)
         for source, dest, weight in edges:
@@ -123,7 +122,7 @@ class Solution:
             answer.append(uf.get_cost(source, dest))
 
         return answer
-    
+
 test_cases = [
     [[0,0,0,0,0,0,0,0,0,0], 4, [[2,3,1],[1,3,5],[1,2,6],[3,0,7],[1,3,7],[0,2,5],[0,1,7]], [[2,1],[1,2],[0,1],[2,0],[0,2],[1,2],[3,2],[0,3],[2,1],[1,2]]],
     [[1,-1], 5, [[0,1,7],[1,3,7],[1,2,1]], [[0,3],[3,4]]],

@@ -14,7 +14,7 @@ class Solution:
             digit = int(char)
             digit_count[digit] += 1
             tot += digit
-    
+
         # If sum of digits is odd it's impossible to balance even and odd digits so return 0
         if tot % 2 != 0:
             return 0
@@ -44,7 +44,7 @@ class Solution:
 
                     f[curr][odd_cnt] = res % MOD
 
-        return f[target][max_odd]    
+        return f[target][max_odd]
 
 test_cases = [
     [2, "123"],

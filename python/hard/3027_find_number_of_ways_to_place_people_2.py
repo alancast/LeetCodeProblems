@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # Sort points so it goes left and downward
     # Time O(nlogn + n^2)
     # Space O(n) for sorting
-    def numberOfPairs(self, points: List[List[int]]) -> int:
+    def numberOfPairs(self, points: list[list[int]]) -> int:
         # Sort points so it is now going from left to right and top to bottom
         points.sort(key=lambda x: (x[0], -x[1]))
 
         answer = 0
-        # Go over all point A's (upper left) 
+        # Go over all point A's (upper left)
         # We don't care about x because it's already sorted left to right
         for i, (_, top) in enumerate(points):
             bottom = float("-inf")

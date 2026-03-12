@@ -1,6 +1,5 @@
 from bisect import bisect_left, bisect_right
 from collections import Counter, defaultdict
-from typing import List
 
 
 class Solution:
@@ -10,7 +9,7 @@ class Solution:
     # And see how many nums it's possible to get from each value
     # Time O(nlogn)
     # Space O(n) for sort and possible answer nums array
-    def maxFrequency(self, nums: List[int], k: int, numOperations: int) -> int:
+    def maxFrequency(self, nums: list[int], k: int, numOperations: int) -> int:
         nums.sort()
 
         # Create set of all possible numbers that could be answer
@@ -40,17 +39,17 @@ class Solution:
         answer = 0
         for num in sorted(possible_answer_nums):
             # Find leftmost index that could be num
-            l = bisect_left(nums, num - k)
+            left = bisect_left(nums, num - k)
             # Find rightmost index that could be num
-            r = bisect_right(nums, num + k) - 1
+            right = bisect_right(nums, num + k) - 1
 
             # Find how many nums could be converted to this after operation
             # If this num is in the array that makes the potential higher
             # Otherwise it's just the full range of indexes found above
             if num in num_count:
-                temp_answer = min(r - l + 1, num_count[num] + numOperations)
+                temp_answer = min(right - left + 1, num_count[num] + numOperations)
             else:
-                temp_answer = min(r - l + 1, numOperations)
+                temp_answer = min(right - left + 1, numOperations)
 
             answer = max(answer, temp_answer)
 
@@ -59,7 +58,7 @@ class Solution:
     # Use prefix sum to do in linear time
     # Time O(n + max)
     # Space O(max)
-    def maxFrequency_linear(self, nums: List[int], k: int, numOperations: int) -> int:
+    def maxFrequency_linear(self, nums: list[int], k: int, numOperations: int) -> int:
         # Find max num (Add 1 for bound checking)
         max_val = max(nums) + 1
 
@@ -90,7 +89,7 @@ class Solution:
     # And see how many nums it's possible to get from each value
     # Time O(nlogn + n + range*logn) for sort->counter->range check
     # Space O(n) for sort
-    def maxFrequency_sorted(self, nums: List[int], k: int, numOperations: int) -> int:
+    def maxFrequency_sorted(self, nums: list[int], k: int, numOperations: int) -> int:
         nums.sort()
 
         answer = 0
@@ -101,17 +100,17 @@ class Solution:
         # Go over all possible nums
         for num in range(nums[0], nums[-1] + 1):
             # Find leftmost index that could be num
-            l = bisect_left(nums, num - k)
+            left = bisect_left(nums, num - k)
             # Find rightmost index that could be num
-            r = bisect_right(nums, num + k) - 1
+            right = bisect_right(nums, num + k) - 1
 
             # Find how many nums could be converted to this after operation
             # If this num is in the array that makes the potential higher
             # Otherwise it's just the full range of indexes found above
             if num in num_count:
-                temp_answer = min(r - l + 1, num_count[num] + numOperations)
+                temp_answer = min(right - left + 1, num_count[num] + numOperations)
             else:
-                temp_answer = min(r - l + 1, numOperations)
+                temp_answer = min(right - left + 1, numOperations)
 
             answer = max(answer, temp_answer)
 

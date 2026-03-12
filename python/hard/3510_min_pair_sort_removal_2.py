@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Also an array to see what's been removed and what's next
     # Time O(nlogn)
     # Space O(n)
-    def minimumPairRemoval(self, nums: List[int]) -> int:
+    def minimumPairRemoval(self, nums: list[int]) -> int:  # noqa: PLR0912
         n = len(nums)
         if n <= 1:
             return 0
@@ -49,8 +48,8 @@ class Solution:
             curr_sum, idx_one, idx_two = heappop(min_heap)
 
             # Make sure the sum popped from heap is still valid
-            if (removed[idx_one] or 
-                next_indices[idx_one] != idx_two or 
+            if (removed[idx_one] or
+                next_indices[idx_one] != idx_two or
                 nums_copy[idx_one] + nums_copy[idx_two] != curr_sum):
                 continue
 
@@ -103,7 +102,7 @@ class Solution:
     # This would make deletion O(1) but make space O(n)
     # Time O(n^2)
     # Space O(1)
-    def minimumPairRemoval_naive(self, nums: List[int]) -> int:
+    def minimumPairRemoval_naive(self, nums: list[int]) -> int:
         n = len(nums)
         pairs_removed = 0
 
@@ -118,11 +117,11 @@ class Solution:
             for i in range(1, n - pairs_removed):
                 if nums[i-1] > nums[i]:
                     sorted = False
-                
+
                 if nums[i-1] + nums[i] < min_sum:
                     min_sum_index = i-1
                     min_sum = nums[i-1] + nums[i]
-            
+
             # See if we need to remove a pair and then do it
             if not sorted:
                 nums[min_sum_index] = nums[min_sum_index] + nums[min_sum_index + 1]
