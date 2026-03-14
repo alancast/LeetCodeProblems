@@ -9,7 +9,7 @@ class Solution:
         if k > possible_strings_left:
             return ""
 
-        answer = str()
+        answer = ""
         # Can find the first character by seeing which 3rd of possible options k is in
         # Then update k for new search space
         if k > (2 * (possible_strings_left // 3)):
@@ -37,11 +37,11 @@ class Solution:
             possible_strings_left //= 2
 
         return answer
-    
+
     def validate_input(self, n: int, k: int) -> None:
-        if n < 1 or n > 10:
+        if n < 1 or n > 10:  # noqa: PLR2004
             raise ValueError("n must be between 1 and 10")
-        if k < 1 or k > 100:
+        if k < 1 or k > 100:  # noqa: PLR2004
             raise ValueError("k must be between 1 and 100")
 
 test_cases = [
