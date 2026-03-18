@@ -1,10 +1,8 @@
-from typing import List
-
 class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
+    def rotate(self, nums: list[int], k: int) -> None:
         if not nums:
             return
-        
+
         N = len(nums)
         k %= N
         if k == 0:
@@ -21,10 +19,10 @@ class Solution:
                 nums[next_idx], prev = prev, nums[next_idx]
                 current_idx = next_idx
                 count += 1
-                
+
                 if start_idx == current_idx:
                     break
-            
+
             # Iterate swap
             start_idx += 1
 
@@ -32,10 +30,10 @@ class Solution:
         while start < end:
             nums[start], nums[end] = nums[end], nums[start]
             start, end = start + 1, end - 1
-                
-    def rotateReverse(self, nums: List[int], k: int) -> None:
+
+    def rotateReverse(self, nums: list[int], k: int) -> None:
         if not nums:
-            return 
+            return
 
         N = len(nums)
         k %= N
@@ -59,3 +57,5 @@ for nums, k, expected in testCases:
     solution.rotate(answer, k)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected}, got {answer}. Inputs: {nums}, {k}")
+
+print("Ran all tests")

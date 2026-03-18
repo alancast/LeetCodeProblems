@@ -1,23 +1,23 @@
 class Solution:
     def removeKdigits(self, num: str, k: int) -> str:
         numStack = []
-        
+
         # Append increasing digits
         for digit in num:
             # If this digit is less than the top of the stack, remove the top of the stack
             while k and numStack and numStack[-1] > digit:
                 numStack.pop()
                 k -= 1
-        
+
             numStack.append(digit)
-        
+
         # If we still have digits to remove, remove the last k (in case of all increasing)
         if k > 0:
             numStack = numStack[:-k]
-        
+
         # trim the leading zeros
         return "".join(numStack).lstrip('0') or "0"
-    
+
     # This is the same logic as above, just not as python-y
     def removeKdigitsStack(self, num: str, k: int) -> str:
         num_len = len(num)
@@ -57,13 +57,13 @@ class Solution:
             if answerString == "0":
                 if char == "0":
                     continue
-                else:
-                    answerString = char
+
+                answerString = char
             else:
                 answerString += char
 
         return answerString
-    
+
     # Slow implementation that each time looks the length of the string for what to remove
     def removeKdigitsSlow(self, num: str, k: int) -> str:
         num_len = len(num)
@@ -82,14 +82,14 @@ class Solution:
                     continue
 
                 digit = int(num[i])
-                if digit < previousDigit and previousDigit != 10:
+                if digit < previousDigit and previousDigit != 10:  # noqa: PLR2004
                     removedIndexes.add(previousIndex)
                     removedIndex = True
                     break
 
                 previousDigit = digit
                 previousIndex = i
-            
+
             # See if number to remove is last one
             if not removedIndex:
                 removedIndexes.add(previousIndex)
@@ -106,8 +106,8 @@ class Solution:
             if answerString == "0":
                 if char == "0":
                     continue
-                else:
-                    answerString = char
+
+                answerString = char
             else:
                 answerString += char
 
@@ -131,3 +131,5 @@ for num, k, expected in testCases:
     answer = implementation.removeKdigits(num, k)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected}, got {answer}. Inputs: {num}, {k}")
+
+print("Ran all tests")

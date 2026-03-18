@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over all elements once, do bound checking and simple math of where
     # next entry would be for diagonals with each time
     # Time O(n*m) as we go over everything once with O(1) operations
     # Space O(1) as all that's stored is answer array
-    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+    def findDiagonalOrder(self, mat: list[list[int]]) -> list[int]:
         if not mat or not mat[0]:
             return []
 

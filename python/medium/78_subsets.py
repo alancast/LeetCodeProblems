@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     # Bitmasking
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets(self, nums: list[int]) -> list[list[int]]:
         allSubsets = []
         n = len(nums)
 
@@ -13,8 +10,10 @@ class Solution:
 
         return allSubsets
 
-    def subsetsBacktracking(self, nums: List[int]) -> List[List[int]]:
-        def backtrack(first = 0, curr = []):
+    def subsetsBacktracking(self, nums: list[int]) -> list[list[int]]:
+        def backtrack(first = 0, curr = None):
+            if curr is None:
+                curr = []
             if len(curr) == k:
                 allSubsets.append(curr[:])
                 return
@@ -23,14 +22,14 @@ class Solution:
                 curr.append(nums[i])
                 backtrack(i+1, curr)
                 curr.pop()
-        
+
         allSubsets = []
         n = len(nums)
-        for k in range(n + 1):
+        for k in range(n + 1):  # noqa: B007
             backtrack()
         return allSubsets
 
-    def subsetsBrute(self, nums: List[int]) -> List[List[int]]:
+    def subsetsBrute(self, nums: list[int]) -> list[list[int]]:
         allSubsets = [[]]
         for num in nums:
             previous_subsets = allSubsets.copy()

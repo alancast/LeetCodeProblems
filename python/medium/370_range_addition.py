@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Build array with prefix sum
     # Time O(U + n)
     # Space O(1) all we need is answer array
-    def getModifiedArray(self, length: int, updates: List[List[int]]) -> List[int]:
+    def getModifiedArray(self, length: int, updates: list[list[int]]) -> list[int]:
         # Initialize array with 1 extra to account for things that end at end
         answer = [0] * (length + 1)
 

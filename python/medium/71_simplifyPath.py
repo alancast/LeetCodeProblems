@@ -16,8 +16,7 @@ class Solution:
                 stack.append(portion)
 
         # Stich together all the directory names together
-        final_str = "/" + "/".join(stack)
-        return final_str
+        return "/" + "/".join(stack)
 
 testCases = [
     ["/home/", "/home"],
@@ -31,3 +30,5 @@ for path, expected in testCases:
     answer = implementation.simplifyPath(path)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {path}")
+
+print("Ran all tests")

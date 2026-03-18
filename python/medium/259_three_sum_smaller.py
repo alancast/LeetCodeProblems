@@ -1,4 +1,3 @@
-from typing import List
 from bisect import bisect_left
 
 
@@ -6,7 +5,7 @@ class Solution:
     # Sort the array and then use two pointers
     # Time O(n^2)
     # Space O(n) for sort
-    def threeSumSmaller(self, nums: List[int], target: int) -> int:
+    def threeSumSmaller(self, nums: list[int], target: int) -> int:
         n = len(nums)
         nums.sort()
 
@@ -16,26 +15,26 @@ class Solution:
             num_i = nums[i]
 
             # Now do 2 sum smaller which is O(n) but with num_i locked
-            l = i+1
-            r = n-1
-            while l < r:
-                triplet_sum = num_i + nums[l] + nums[r]
+            left = i+1
+            right = n-1
+            while left < right:
+                triplet_sum = num_i + nums[left] + nums[right]
 
-                # If triplet sum works, make lower bound (l) larger
+                # If triplet sum works, make lower bound (left) larger
                 if triplet_sum < target:
                     # All pairs this and in between work
-                    answer += r - l
-                    l += 1
-                # If it's too big, make upper bound (r) smaller
+                    answer += right - left
+                    left += 1
+                # If it's too big, make upper bound (right) smaller
                 else:
-                    r -= 1
-            
+                    right -= 1
+
         return answer
 
     # Sort the array and then binary search to find ending num
     # Time O(nlogn + n^2logn)
     # Space O(n) for sort
-    def threeSumSmaller_binary_search(self, nums: List[int], target: int) -> int:
+    def threeSumSmaller_binary_search(self, nums: list[int], target: int) -> int:
         n = len(nums)
         nums.sort()
 

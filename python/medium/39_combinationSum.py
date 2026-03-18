@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         sortedCandidates = sorted(candidates)
         candidatesSize = len(candidates)
         answer = []
@@ -12,13 +9,13 @@ class Solution:
             if num > target:
                 break
             q.append([[num], i, target - num])
-        
+
         while q:
             entry, minIndex, newTarget = q.pop()
             if newTarget == 0:
                 answer.append(entry)
                 continue
-            
+
             for i in range(minIndex, candidatesSize):
                 tempEntry = entry.copy()
                 num = sortedCandidates[i]
@@ -26,7 +23,7 @@ class Solution:
                     break
                 tempEntry.append(num)
                 q.append([tempEntry, i, newTarget - num])
-        
+
         return answer
 
 testCases = [
@@ -43,3 +40,5 @@ for candidates, target, expected in testCases:
     sortedExpected = sorted(expected)
     if sortedAnswer != sortedExpected:
         print(f"FAILED TEST: answer: {sortedAnswer}, expected {sortedExpected}. Inputs: {candidates}, {target}")
+
+print("Ran all tests")

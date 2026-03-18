@@ -1,19 +1,18 @@
 from collections import deque
-from typing import List
 
 
 # Keep a a deque and set of the snake body
 # And make computations based off that
 class SnakeGame:
-    movement = {'U': [-1, 0], 'L': [0, -1], 'R': [0, 1], 'D': [1, 0]}
+    movement = {'U': [-1, 0], 'L': [0, -1], 'R': [0, 1], 'D': [1, 0]}  # noqa: RUF012
     snake: deque
     snake_set: dict
     width: int
     height: int
     food_index: int
-    food_queue: List[List[int]]
+    food_queue: list[list[int]]
 
-    def __init__(self, width: int, height: int, food: List[List[int]]):
+    def __init__(self, width: int, height: int, food: list[list[int]]):
         self.snake = deque([(0,0)])
         self.snake_set = {(0,0) : 1}
         self.width = width
@@ -24,40 +23,39 @@ class SnakeGame:
     def move(self, direction: str) -> int:
         """
         Moves the snake.
-        @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down 
-        @return The game's score after the move. Return -1 if game over. 
+        @param direction - 'U' = Up, 'L' = Left, 'R' = Right, 'D' = Down
+        @return The game's score after the move. Return -1 if game over.
         Game over when snake crosses the screen boundary or bites its body.
         """
-        
+
         newHead = (self.snake[0][0] + self.movement[direction][0],
                    self.snake[0][1] + self.movement[direction][1])
-        
+
         # Boundary conditions.
         crosses_boundary1 = newHead[0] < 0 or newHead[0] >= self.height
         crosses_boundary2 = newHead[1] < 0 or newHead[1] >= self.width
-        
+
         # Checking if the snake bites itself and isn't the tail
         bites_itself = newHead in self.snake_set and newHead != self.snake[-1]
-     
+
         # If any of the terminal conditions are satisfied, then we exit with rcode -1.
         if crosses_boundary1 or crosses_boundary2 or bites_itself:
             return -1
 
         # Note the food list could be empty at this point.
         next_food_item = self.food_queue[self.food_index] if self.food_index < len(self.food_queue) else None
-        
+
         # Either eat food or remove tail
         if self.food_index < len(self.food_queue) and \
-            next_food_item[0] == newHead[0] and \
-                next_food_item[1] == newHead[1]:
+            next_food_item[0] == newHead[0] and next_food_item[1] == newHead[1]: # type: ignore
             self.food_index += 1
-        else:              
-            tail = self.snake.pop()  
+        else:
+            tail = self.snake.pop()
             del self.snake_set[tail]
-            
+
         # A new head always gets added
         self.snake.appendleft(newHead)
-        
+
         # Also add the head to the set
         self.snake_set[newHead] = 1
 
@@ -71,15 +69,15 @@ class SnakeGameBigMemoryUsage:
     # 3 means snake moving right
     # 4 means snake moving down
     # 5 means snake moving left
-    grid: List[List[int]]
+    grid: list[list[int]]
     head_x: int
     head_y: int
     tail_x: int
     tail_y: int
-    food_queue: List[List[int]]
+    food_queue: list[list[int]]
     score: int
 
-    def __init__(self, width: int, height: int, food: List[List[int]]):
+    def __init__(self, width: int, height: int, food: list[list[int]]):
         self.grid = [[0 for _ in range(width)] for _ in range(height)]
         self.head_x = self.head_y = self.tail_x = self.tail_y = self.score = 0
 
@@ -92,7 +90,7 @@ class SnakeGameBigMemoryUsage:
         # Put first food down (assume it's not 0,0 but in real life check)
         self._add_next_food()
 
-    def move(self, direction: str) -> int:
+    def move(self, direction: str) -> int:  # noqa: PLR0912
         # Figure out what next square is
         next_x = self.head_x
         next_y = self.head_y
@@ -135,15 +133,15 @@ class SnakeGameBigMemoryUsage:
             tail_value = self.grid[self.tail_y][self.tail_x]
             next_tail_x = self.tail_x
             next_tail_y = self.tail_y
-            if tail_value == 2:
+            if tail_value == 2:  # noqa: PLR2004
                 next_tail_y -= 1
-            elif tail_value == 3:
+            elif tail_value == 3:  # noqa: PLR2004
                 next_tail_x += 1
-            elif tail_value == 4:
+            elif tail_value == 4:  # noqa: PLR2004
                 next_tail_y += 1
             else:
                 next_tail_x -= 1
-            
+
             # Make old tali value now free space
             self.grid[self.tail_y][self.tail_x] = 0
             # Set new tail coordinates
@@ -155,7 +153,7 @@ class SnakeGameBigMemoryUsage:
             self._add_next_food()
 
         return self.score
-    
+
     def _add_next_food(self) -> None:
         for i in range(len(self.food_queue) - 1, -1, -1):
             coordinates = self.food_queue[i]

@@ -1,16 +1,15 @@
-from functools import lru_cache
-from typing import List
+from functools import cache
 
 
 class Solution:
     # Bottom up dp fully space optimized so all we need is 1d array
     # Time O(mn)
     # Space O(m)
-    def canPartition(self, nums: List[int]) -> bool:
+    def canPartition(self, nums: list[int]) -> bool:
         nums_sum = sum(nums)
         if nums_sum % 2 == 1:
             return False
-        
+
         target = nums_sum//2
 
         # Create a DP array but all we actually need is one row
@@ -23,17 +22,17 @@ class Solution:
                 dp[sum_left] = dp[sum_left] or dp[sum_left - num]
 
         return dp[target]
-    
+
     # Same approach as bottom up DP below but space optimized
-    # With the knowledge that all that matters is the previous row 
+    # With the knowledge that all that matters is the previous row
     # Time O(mn)
     # Space O(m)
-    def canPartition_bottom_up_memory_optimized(self, nums: List[int]) -> bool:
+    def canPartition_bottom_up_memory_optimized(self, nums: list[int]) -> bool:
         n = len(nums)
         nums_sum = sum(nums)
         if nums_sum % 2 == 1:
             return False
-        
+
         target = nums_sum//2
 
         # Create a DP array but all we actually need is one row
@@ -53,25 +52,23 @@ class Solution:
             prev = current_row
 
         return prev[target]
-    
+
     # Find sum of array, divide by two, and see if you can build a subset that adds to that
     # Use dynamic programming to figure it out
     # Top down dynamic programming to memoize function calls already made
     # Time O(mn)
     # Space O(mn)
-    def canPartition_top_down_dp(self, nums: List[int]) -> bool:
-        @lru_cache(maxsize=None)
-        def dfs(nums: List[int], n: int, subset_sum: int) -> bool:
+    def canPartition_top_down_dp(self, nums: list[int]) -> bool:
+        @cache
+        def dfs(nums: list[int], n: int, subset_sum: int) -> bool:
             # Base cases
             if subset_sum == 0:
                 return True
             if n == 0 or subset_sum < 0:
                 return False
-            
+
             # Subcases to evaluate
-            result = dfs(nums, n - 1, subset_sum - nums[n - 1]) or dfs(nums, n - 1, subset_sum)
-            
-            return result
+            return dfs(nums, n - 1, subset_sum - nums[n - 1]) or dfs(nums, n - 1, subset_sum) # type: ignore
 
         # find sum of array elements
         total_sum = sum(nums)
@@ -90,12 +87,12 @@ class Solution:
     # If sum == 0, it's possible so true. If index == len it's not so false
     # Time O(mn)
     # Space O(mn)
-    def canPartition_bottom_up_dp(self, nums: List[int]) -> bool:
+    def canPartition_bottom_up_dp(self, nums: list[int]) -> bool:
         n = len(nums)
         nums_sum = sum(nums)
         if nums_sum % 2 == 1:
             return False
-        
+
         target = nums_sum//2
 
         # Create DP array
@@ -112,7 +109,7 @@ class Solution:
                     dp[index][sum_left] = dp[index-1][sum_left] or dp[index-1][sum_left - current_num]
 
         return dp[n][target]
-    
+
 test_cases = [
     [True, [1,5,11,5]],
     [False, [1,2,3,5]]

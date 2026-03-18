@@ -1,29 +1,26 @@
-from typing import List
-
-
 class Solution:
-    def search(self, nums: List[int], target: int) -> bool:
-        l, r = 0, len(nums)-1
-        while l <= r:
-            mid = l + (r-l)//2
+    def search(self, nums: list[int], target: int) -> bool:
+        left = 0
+        right = len(nums)-1
+        while left <= right:
+            mid = left + (right - left)//2
             if nums[mid] == target:
                 return True
-            while l < mid and nums[l] == nums[mid]: # tricky part
-                l += 1
+            while left < mid and nums[left] == nums[mid]: # tricky part
+                left += 1
             # the first half is ordered
-            if nums[l] <= nums[mid]:
+            if nums[left] <= nums[mid]:
                 # target is in the first half
-                if nums[l] <= target < nums[mid]:
-                    r = mid - 1
+                if nums[left] <= target < nums[mid]:
+                    right = mid - 1
                 else:
-                    l = mid + 1
+                    left = mid + 1
             # the second half is ordered
+            # target is in the second half
+            elif nums[mid] < target <= nums[right]:
+                left = mid + 1
             else:
-                # target is in the second half
-                if nums[mid] < target <= nums[r]:
-                    l = mid + 1
-                else:
-                    r = mid - 1
+                right = mid - 1
 
         return False
 
@@ -36,3 +33,5 @@ for nums, target, expected in testCases:
     answer = implementation.search(nums, target)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: nums: {nums} target: {target}")
+
+print("Ran all tests")

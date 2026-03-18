@@ -7,9 +7,9 @@ class Solution:
         ans = 0
         while target > startValue:
             ans += 1
-            if target % 2 == 1: 
+            if target % 2 == 1:
                 target += 1
-            else: 
+            else:
                 target //= 2
 
         return ans + startValue - target
@@ -28,6 +28,9 @@ class Solution:
             queue.append((value * 2, count + 1))
             queue.append((value - 1, count + 1))
 
+        # This would never happen, but appeases linter, could throw here
+        return 0
+
 testCases = [
     [2, 3, 2],
     [5, 8, 2],
@@ -38,3 +41,5 @@ for startValue, target, expected in testCases:
     answer = implementation.brokenCalc(startValue, target)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: startValue: {startValue} target: {target}")
+
+print("Ran all tests")

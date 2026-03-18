@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     # The solution below that isn't memory efficient is better imo. But if you need memory here's how
     # Go through whole grid, as soon as you see a 0 set first row and col to it
-    # Since we go in order that won't screw up. 
+    # Since we go in order that won't screw up.
     # Then go through grid and if zero at first spot zero full row/col
     # Special logic around first row to not zero everything
     # Time O(mn)
     # Space O(1)
-    def setZeroes_memory_efficient(self, matrix: List[List[int]]) -> None:
+    def setZeroes_memory_efficient(self, matrix: list[list[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
@@ -52,13 +49,13 @@ class Solution:
     # Then go through those and zero things out
     # Time O(mn)
     # Space O(m + n)
-    def setZeroes(self, matrix: List[List[int]]) -> None:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
         """
         Do not return anything, modify matrix in-place instead.
         """
         rows = len(matrix)
         cols = len(matrix[0])
-        
+
         row_zero_set = set()
         col_zero_set = set()
 

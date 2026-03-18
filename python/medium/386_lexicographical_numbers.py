@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as each number has constant operations
     # Space O(1) as nothing other than answer list
-    def lexicalOrder(self, n: int) -> List[int]:
+    def lexicalOrder(self, n: int) -> list[int]:
         lexicographical_numbers = []
         current_number = 1
 
@@ -17,12 +14,12 @@ class Solution:
                 current_number *= 10
             else:
                 # Adjust the current number by moving up one digit
-                while current_number % 10 == 9 or current_number >= n:
+                while current_number % 10 == 9 or current_number >= n:  # noqa: PLR2004
                     current_number //= 10
                 current_number += 1
 
         return lexicographical_numbers
-    
+
 test_cases = [
     [[1,10,11,12,13,2,3,4,5,6,7,8,9], 13],
     [[1,2], 2]

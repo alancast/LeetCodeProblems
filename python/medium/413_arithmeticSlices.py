@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     # math formula of how many subsets in range
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
+    def numberOfArithmeticSlices(self, nums: list[int]) -> int:
         slices = 0
         count = 0
         for i in range(2, len(nums)):
@@ -19,7 +16,7 @@ class Solution:
         return slices
 
     # Dynamic programming adding up sum
-    def numberOfArithmeticSlicesDP(self, nums: List[int]) -> int:
+    def numberOfArithmeticSlicesDP(self, nums: list[int]) -> int:
         dp = 0
         count = 0
         for i in range(2, len(nums)):
@@ -40,3 +37,5 @@ for nums, expected in testCases:
     answer = implementation.numberOfArithmeticSlices(nums)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {nums}")
+
+print("Ran all tests")

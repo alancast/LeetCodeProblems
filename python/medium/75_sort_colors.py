@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) go through once
-    # Space O(1) 
-    def sortColors(self, nums: List[int]) -> None:
+    # Space O(1)
+    def sortColors(self, nums: list[int]) -> None:
         """
         Dutch National Flag problem solution.
         """
@@ -23,7 +20,7 @@ class Solution:
                 p0 += 1
                 curr += 1
             # Swap p2 num with 2 and change counts
-            elif nums[curr] == 2:
+            elif nums[curr] == 2:  # noqa: PLR2004
                 nums[curr] = nums[p2]
                 nums[p2] = 2
                 p2 -= 1
@@ -32,8 +29,8 @@ class Solution:
                 curr += 1
 
     # Time O(n) go through and count then go through and overwrite
-    # Space O(1) 
-    def sortColors_two_pass(self, nums: List[int]) -> None:
+    # Space O(1)
+    def sortColors_two_pass(self, nums: list[int]) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
@@ -56,7 +53,7 @@ class Solution:
             else:
                 nums[i] = 2
 
-        
+
 test_cases = [
     [[0,0,1,1,2,2], [2,0,2,1,1,0]],
     [[0,1,2], [2,0,1]]

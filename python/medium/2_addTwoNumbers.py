@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -8,7 +5,7 @@ class ListNode:
         self.next = next
 
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def addTwoNumbers(self, l1: ListNode | None, l2: ListNode | None) -> ListNode | None:
         preHead = ListNode()
         head = preHead
         carriedValue = 0
@@ -33,7 +30,7 @@ class Solution:
             head.next = ListNode(nextVal)
             head = head.next
             l2 = l2.next
-        
+
         # In case the final digit is a carried over 1
         if carriedValue:
             head.next = ListNode(carriedValue)

@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # This doesn't actually check for valid sudokus, that is much harder
     # Think of case where first row is (.87654321) and the first col is (.23456789)
@@ -13,7 +10,7 @@ class Solution:
     # Space can be optimized by using bitmap instead of set
     # So each row col and box is just an int, and we do ands and ors
     # To set which nums we see. Which would just make space 3N
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
         N = 9
 
         # Use hash set to record the status

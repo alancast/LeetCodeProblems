@@ -1,22 +1,19 @@
-from typing import List, Tuple
-
-
 class Solution:
-    def computeMNFromIndex(self, index: int) -> Tuple[int, int]:
+    def computeMNFromIndex(self, index: int) -> tuple[int, int]:
         if index == 0:
             return 0, 0
-            
+
         m = (index - 1) // self.N
         n = (index - 1) % self.N
         return m,n
 
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
         if not matrix or not matrix[0]:
             return False
-        
+
         self.M = len(matrix)
         self.N = len(matrix[0])
-        
+
         left = 0
         right = self.M * self.N
 
@@ -26,7 +23,8 @@ class Solution:
             num = matrix[row_index][col_index]
             if num == target:
                 return True
-            elif num < target:
+
+            if num < target:
                 left = mid + 1
             else:
                 right = mid - 1
@@ -44,3 +42,5 @@ for matrix, target, expected in testCases:
     answer = implementation.searchMatrix(matrix, target)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: matrix: {matrix} target: {target}")
+
+print("Ran all tests")

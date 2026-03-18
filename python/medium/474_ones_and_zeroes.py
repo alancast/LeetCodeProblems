@@ -1,11 +1,11 @@
-from typing import Counter, List
+from collections import Counter
 
 
 class Solution:
     # Faster way to do what's below
     # Time O(n*m*n)
     # Space O(n*m)
-    def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
+    def findMaxForm(self, strs: list[str], m: int, n: int) -> int:
         dp = {(0, 0): 0}
 
         # Go over every string
@@ -29,22 +29,22 @@ class Solution:
                 # If this new string is allowed with this combo
                 if new_zeroes <= m and new_ones <= n:
                     # Make sure it's a new max
-                    if (new_zeroes, new_ones) not in dp:
+                    if (new_zeroes, new_ones) not in dp:  # noqa: SIM114
                         new_dp[(new_zeroes, new_ones)] = v + 1
                     elif dp[(new_zeroes, new_ones)] < v + 1:
                         new_dp[(new_zeroes, new_ones)] = v + 1
-            
+
             # Update the dp with the new values
             dp.update(new_dp)
-        
+
         # Find the max in all the DP values
         return max(dp.values())
 
     # 2d DP array where it's how many strings can be included with [i][j]
-    # dp[i][j]=max(1+dp[i−zeroes_curr][j−ones_curr],dp[i][j])
+    # dp[i][j]=max(1+dp[i-zeroes_curr][j-ones_curr],dp[i][j])
     # Time O(n*m*n)
     # Space O(n*m)
-    def findMaxForm_slow_dp(self, strs: List[str], m: int, n: int) -> int:
+    def findMaxForm_slow_dp(self, strs: list[str], m: int, n: int) -> int:
         dp = [[0] * (n+1) for _ in range(m+1)]
 
         # Go over all strings

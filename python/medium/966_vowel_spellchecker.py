@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # Keep dictionary of wordlist to answer
     # Search each word first by exact casing, then by all lowercase, then vowel replacing
     # Time O(n + q)
     # Space O(n)
-    def spellchecker(self, wordlist: List[str], queries: List[str]) -> List[str]:
+    def spellchecker(self, wordlist: list[str], queries: list[str]) -> list[str]:
         # For perfect mappings
         words_perfect = set()
         # Initialize word mapping
-        word_mapping = dict()
+        word_mapping = {}
         for word in wordlist:
             words_perfect.add(word)
             # Make sure there isn't already a lower case word this maps to
@@ -33,20 +30,20 @@ class Solution:
             # Matches case independent
             lower_query = query.lower()
             if lower_query in word_mapping:
-                answer.append(word_mapping[lower_query])            
+                answer.append(word_mapping[lower_query])
                 continue
 
             # Do vowel replacement
             devowel_lower = self._devowel(lower_query)
             if devowel_lower in word_mapping:
-                answer.append(word_mapping[devowel_lower])            
+                answer.append(word_mapping[devowel_lower])
                 continue
 
             # No spellcheck replacement, just return empty string
             answer.append("")
 
         return answer
-    
+
     # Replaces all instances of vowels with *
     def _devowel(self, word: str) -> str:
         return "".join('*' if c in 'aeiou' else c for c in word)

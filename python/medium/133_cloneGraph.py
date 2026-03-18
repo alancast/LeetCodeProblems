@@ -12,7 +12,7 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if not node:
             return node
-        
+
         # Dictionary where key is initial node and value is cloned node (to avoid cycles)
         visited = {}
         q = deque([node])

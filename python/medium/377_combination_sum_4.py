@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Bottom up dynamic programming. How many ways to make number from 0 to target
     # Time O(t * n) where t is target and n is len nums
     # Space O(t)
-    def combinationSum4(self, nums: List[int], target: int) -> int:
+    def combinationSum4(self, nums: list[int], target: int) -> int:
         combinations = [0] * (target + 1)
         combinations[0] = 1
 
@@ -19,7 +16,7 @@ class Solution:
                 combinations[i] += combinations[i-num]
 
         return combinations[target]
-    
+
 test_cases = [
     [7 , [1,2,3], 4],
     [0, [9], 3]

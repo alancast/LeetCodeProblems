@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     # O(n) time and O(1) space
-    def findDuplicate(self, nums: List[int]) -> int:
+    def findDuplicate(self, nums: list[int]) -> int:
         # Flip nums at index to negative
         # If you see a negative number you know it's a dupe so return it
         for num in nums:
@@ -26,12 +23,15 @@ class Solution:
 
     # O(n) time and O(n) space
     # No better time than O(n), some more complex solutions to shrink space
-    def findDuplicateHash(self, nums: List[int]) -> int:
+    def findDuplicateHash(self, nums: list[int]) -> int:
         seen = set()
         for num in nums:
             if num in seen:
                 return num
             seen.add(num)
+
+        # This would never happen, just for linter, could throw here
+        return 0
 
 testCases = [
     [[1,3,4,2,2], 2],
@@ -42,3 +42,5 @@ for nums, expected in testCases:
     answer = implementation.findDuplicate(nums)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {nums}")
+
+print("Ran all tests")

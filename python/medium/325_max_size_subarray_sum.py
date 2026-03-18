@@ -1,11 +1,10 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Time O(n) as we go over nums once
     # Space O(n) as map could be entirely different sums
-    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+    def maxSubArrayLen(self, nums: list[int], k: int) -> int:
         # Map of prefix sum to the first index where it happens
         p_sum_to_first_index_map = defaultdict(int)
         p_sum_to_first_index_map[0] = -1
@@ -27,7 +26,7 @@ class Solution:
                 p_sum_to_first_index_map[prefix_sum] = i
 
         return max_distance
-    
+
 test_cases = [
     [4, [1,-1,5,-2,3], 3],
     [2, [-2,-1,2,1], 1],

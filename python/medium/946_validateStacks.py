@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+    def validateStackSequences(self, pushed: list[int], popped: list[int]) -> bool:
         index = 0
         stack = []
         for entry in pushed:
@@ -22,3 +19,5 @@ for pushed, popped, expected in testCases:
     answer = implementation.validateStackSequences(pushed, popped)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: Pushed:{pushed}, Popped: {popped}")
+
+print("Ran all tests")

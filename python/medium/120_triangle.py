@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Start at the end and modify array in place then take top
     # At each step add min to row above
     # Time O(n^2)
     # Space O(1)
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
+    def minimumTotal(self, triangle: list[list[int]]) -> int:
         n = len(triangle)
 
         for row in range(n-1, 0, -1):

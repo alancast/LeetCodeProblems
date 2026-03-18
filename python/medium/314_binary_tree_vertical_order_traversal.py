@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-from typing import List, Optional
 
 
 # Definition for a binary tree node.
@@ -17,7 +16,7 @@ class Solution:
     # Appending left child before right children
     # Time O(n) as each node is processed once with O(1) operations
     # Space O(n) as we keep full dictionary of same size as tree
-    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def verticalOrder(self, root: TreeNode | None) -> list[list[int]]:
         if not root:
             return []
 

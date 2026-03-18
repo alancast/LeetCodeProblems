@@ -1,23 +1,20 @@
-from typing import Optional
-
-
 # Definition for a Node.
 class Node:
-    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None): # type: ignore
         self.val = int(x)
         self.next = next
         self.random = random
 
 class Solution:
     # O(N) time O(1) space by weaving list in
-    def copyRandomList(self, head: Optional[Node]) -> Optional[Node]:
+    def copyRandomList(self, head: Node | None) -> Node | None:
         if not head:
             return head
 
         # Creating a new weaved list of original and copied nodes.
         ptr = head
         while ptr:
-            new_node = Node(ptr.val, None, None)
+            new_node = Node(ptr.val, None, None) # type: ignore
 
             # Inserting the cloned node just next to the original node.
             # If A->B->C is the original linked list,
@@ -30,7 +27,7 @@ class Solution:
 
         # Now link the random pointers of the new nodes created.
         while ptr:
-            ptr.next.random = ptr.random.next if ptr.random else None
+            ptr.next.random = ptr.random.next if ptr.random else None # type: ignore
             ptr = ptr.next.next
 
         # Unweave the linked list to get back the original linked list and the cloned list.
@@ -40,14 +37,14 @@ class Solution:
         head_new = head.next
         while ptr_old_list:
             ptr_old_list.next = ptr_old_list.next.next
-            ptr_new_list.next = ptr_new_list.next.next if ptr_new_list.next else None
+            ptr_new_list.next = ptr_new_list.next.next if ptr_new_list.next else None # type: ignore
             ptr_old_list = ptr_old_list.next
             ptr_new_list = ptr_new_list.next
-    
+
         return head_new
 
     # O(N) time and space
-    def copyRandomListON(self, head: Optional[Node]) -> Optional[Node]:
+    def copyRandomListON(self, head: Node | None) -> Node | None:
         if not head:
             return head
 
@@ -55,8 +52,8 @@ class Solution:
         visited = {}
 
         old_node = head
-        # Creating the new head node.       
-        new_node = Node(old_node.val, None, None)
+        # Creating the new head node.
+        new_node = Node(old_node.val, None, None) # type: ignore
         visited[old_node] = new_node
 
         # Iterate on the linked list until all nodes are cloned.
@@ -64,13 +61,13 @@ class Solution:
             # Populate new random node
             if old_node.random:
                 if old_node.random not in visited:
-                    visited[old_node.random] = Node(old_node.random.val, None, None)
+                    visited[old_node.random] = Node(old_node.random.val, None, None) # type: ignore
                 new_node.random = visited[old_node.random]
-                
+
             # Populate new next node
             if old_node.next:
                 if old_node.next not in visited:
-                    visited[old_node.next] = Node(old_node.next.val, None, None)
+                    visited[old_node.next] = Node(old_node.next.val, None, None) # type: ignore
                 new_node.next = visited[old_node.next]
 
             # Move one step ahead in the linked list.

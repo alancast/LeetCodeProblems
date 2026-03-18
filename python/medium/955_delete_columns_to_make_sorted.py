@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go column by column and make sure sorted
     # As soon as we don't need to delete a column no others matter
     # Time O(n*m) where m is length of strings
     # Space O(n)
-    def minDeletionSize(self, strs: List[str]) -> int:
+    def minDeletionSize(self, strs: list[str]) -> int:
         n = len(strs)
         # See if this index is sorted with regard to it's neighbor
         sorted_pairs = [False] * (n - 1)

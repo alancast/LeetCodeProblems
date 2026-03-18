@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over list once with a pointer for right and left
     # Time O(n)
     # Space O(1)
-    def maxArea(self, height: List[int]) -> int:
+    def maxArea(self, height: list[int]) -> int:
         answer = 0
         left = 0
         right = len(height) - 1

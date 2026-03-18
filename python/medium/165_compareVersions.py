@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def get_next_chunk(self, version: str, n: int, p: int) -> List[int]:
+    def get_next_chunk(self, version: str, n: int, p: int) -> tuple[int, int]:
         # if pointer is set to the end of string return 0
         if p > n - 1:
             return 0, p
@@ -26,7 +23,7 @@ class Solution:
         # compare versions
         while p1 < n1 or p2 < n2:
             i1, p1 = self.get_next_chunk(version1, n1, p1)
-            i2, p2 = self.get_next_chunk(version2, n2, p2)            
+            i2, p2 = self.get_next_chunk(version2, n2, p2)
             if i1 != i2:
                 return 1 if i1 > i2 else -1
 
@@ -47,7 +44,8 @@ class Solution:
             v2_int = int(v2[i])
             if v1_int > v2_int:
                 return 1
-            elif v2_int > v1_int:
+
+            if v2_int > v1_int:
                 return -1
 
             i += 1
@@ -83,3 +81,5 @@ for version1, version2, expected in testCases:
     answer = implementation.compareVersion(version1, version2)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. Version1: {version1} Version2: {version2}")
+
+print("Ran all tests")

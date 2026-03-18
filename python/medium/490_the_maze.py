@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Depth first search to see if destination is reachable
     # Time O(m*n * (m+n))
     # Space O(m*n) for visit array
-    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+    def hasPath(self, maze: list[list[int]], start: list[int], destination: list[int]) -> bool:
         rows = len(maze)
         cols = len(maze[0])
         # Keep track of what nodes have been visited thus far
@@ -14,14 +11,14 @@ class Solution:
         # Do a depth first search and see if destination is reachable
         return self._dfs(rows, cols, maze, start, destination, visit)
 
-    def _dfs(
+    def _dfs(  # noqa: PLR0913
         self,
         rows: int,
         cols: int,
-        maze: List[List[int]],
-        current_node: List[int],
-        destination: List[int],
-        visit: List[List[bool]],
+        maze: list[list[int]],
+        current_node: list[int],
+        destination: list[int],
+        visit: list[list[bool]],
     ) -> bool:
         # If we already visited this location don't redo work
         if visit[current_node[0]][current_node[1]]:

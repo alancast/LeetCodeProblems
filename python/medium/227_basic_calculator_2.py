@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # This time don't use the stack. More space optimized
     # Time O(n)
@@ -35,14 +32,14 @@ class Solution:
                     # Have to do int conversion to handle negative nums without rounding down
                     # e.g. -3//2 is -2 but we want -1
                     last_number = int(last_number / current_num)
-                
+
                 # Reset current number
                 current_num = 0
                 operator = char
 
         result += last_number
         return result
-    
+
     # Time O(n)
     # Space O(n)
     def calculate_using_stack(self, s: str) -> int:
@@ -62,7 +59,7 @@ class Solution:
             if char in '+-*/':
                 # Do previous operator if multiplication or div
                 self._handle_operation(stack, prev_operator, current_num)
-                
+
                 # Reset current number
                 current_num = 0
                 prev_operator = char
@@ -76,7 +73,7 @@ class Solution:
 
         return sum(stack)
 
-    def _handle_operation(self, stack: List[int], previous_operator: str, current_num: int) -> None:
+    def _handle_operation(self, stack: list[int], previous_operator: str, current_num: int) -> None:
         # Do previous operator if multiplication or div
         if previous_operator == '*':
             prev_num = stack.pop()

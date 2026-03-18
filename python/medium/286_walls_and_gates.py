@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
@@ -9,7 +8,7 @@ class Solution:
     # BFS from all gates to all options
     # Time O(m*n)
     # Space O(m*n)
-    def wallsAndGates(self, rooms: List[List[int]]) -> None:
+    def wallsAndGates(self, rooms: list[list[int]]) -> None:
         gate = 0
 
         # Add all the gates to a queue to process
@@ -41,8 +40,8 @@ class Solution:
                     # Make sure next cell is in bounds and is empty room we haven't been to
                     # As soon as we go there we have the min distance to there
                     # So eventually there will be no unvisited empty rooms left
-                    if (0 <= next_row < rows and 
-                        0 <= next_col < cols and 
+                    if (0 <= next_row < rows and
+                        0 <= next_col < cols and
                         rooms[next_row][next_col] == self.EMPTY_ROOM):
                         rooms[next_row][next_col] = distance
                         q.append([next_row, next_col])

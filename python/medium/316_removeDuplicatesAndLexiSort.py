@@ -16,7 +16,7 @@ class Solution:
                 in_stack.add(c)
                 stack.append(c)
 
-        return ''.join(stack)
+        return ''.join(stack) # type: ignore
 
 testCases = [
     ["bcabc", "abc"],
@@ -27,3 +27,5 @@ for s, expected in testCases:
     answer = implementation.removeDuplicateLetters(s)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {s}")
+
+print("Ran all tests")

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Two pass solution go through all m x n twice and find max
     # Time O(m*n)
     # Space O(m*n) as we have something of size grid
-    def maxKilledEnemies(self, grid: List[List[str]]) -> int:
+    def maxKilledEnemies(self, grid: list[list[str]]) -> int:  # noqa: PLR0912
         y = len(grid)
         x = len(grid[0])
 
@@ -34,7 +31,7 @@ class Solution:
             # Process til end of row
             for j in range(start, end):
                 col_count[j][i] = count
-        
+
         # Process each row and while doing so find max
         answer = 0
         for i in range(y):
@@ -69,7 +66,7 @@ class Solution:
                 answer = max(answer, row_count[i][j] + col_count[i][j])
 
         return answer
-    
+
 test_cases = [
     [3, [["0","E","0","0"],["E","0","W","E"],["0","E","0","0"]]],
     [1, [["W","W","W"],["0","0","0"],["E","E","E"]]]

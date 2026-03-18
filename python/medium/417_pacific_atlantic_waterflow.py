@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
@@ -7,11 +6,11 @@ class Solution:
     # Find all cells that can be reached from each then answer is intersection of that
     # Time O(mn)
     # Space O(mn)
-    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+    def pacificAtlantic(self, heights: list[list[int]]) -> list[list[int]]:
         # Check if input is empty
-        if not heights or not heights[0]: 
+        if not heights or not heights[0]:
             return []
-            
+
         num_rows = len(heights)
         num_cols = len(heights[0])
 
@@ -26,7 +25,7 @@ class Solution:
         for i in range(num_cols):
             pacific_queue.append((0, i))
             atlantic_queue.append((num_rows - 1, i))
-        
+
         def bfs(queue: deque) -> set:
             reachable = set()
 
@@ -58,11 +57,11 @@ class Solution:
                     queue.append((new_row, new_col))
 
             return reachable
-        
+
         # Perform a BFS for each ocean to find all cells accessible by each ocean
         pacific_reachable = bfs(pacific_queue)
         atlantic_reachable = bfs(atlantic_queue)
-        
+
         # Find all cells that can reach both oceans, and convert to list
         return list(pacific_reachable.intersection(atlantic_reachable))
 

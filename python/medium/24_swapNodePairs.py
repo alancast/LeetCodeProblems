@@ -3,11 +3,10 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-from typing import Optional
 
 
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def swapPairs(self, head: ListNode | None) -> ListNode | None:
         if not head or not head.next:
             return head
 
@@ -27,9 +26,9 @@ class Solution:
                 break
             swap2 = swap1.next
 
-        return nextHead  
+        return nextHead
 
-    def swapPairsRecurse(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def swapPairsRecurse(self, head: ListNode | None) -> ListNode | None:
         # If the list has no node or has only one node left.
         if not head or not head.next:
             return head
@@ -44,4 +43,3 @@ class Solution:
 
         # Now the head is the second node
         return second_node
-              
