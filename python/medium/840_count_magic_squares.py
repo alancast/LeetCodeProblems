@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     # Check each upper left starting point
     # Do some pruning to optimize
     # Time O(m*n)
     # Space O(1)
-    def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
+    def numMagicSquaresInside(self, grid: list[list[int]]) -> int:
         rows = len(grid)
         cols = len(grid[0])
 
-        def is_magic(row: int, col: int) -> bool:
+        def is_magic(row: int, col: int) -> bool:  # noqa: PLR0911
             # quick prune: center must be 5 in 1..9 magic square
-            if grid[row + 1][col + 1] != 5:
+            if grid[row + 1][col + 1] != 5:  # noqa: PLR2004
                 return False
 
             # Set of what numbers seen so that we make sure all are unique
@@ -21,7 +18,7 @@ class Solution:
                 for j in range(col, col + 3):
                     grid_num = grid[i][j]
                     # Can't have duplicates (or numbers outside of range)
-                    if grid_num < 1 or grid_num > 9 or grid_num in seen:
+                    if grid_num < 1 or grid_num > 9 or grid_num in seen:  # noqa: PLR2004
                         return False
 
                     seen.add(grid_num)
@@ -44,10 +41,8 @@ class Solution:
             # Make sure the diagonals all sum up too
             if (grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2]) != target_sum:
                 return False
-            if (grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col]) != target_sum:
-                return False
 
-            return True
+            return grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col] == target_sum
 
         answer = 0
         # Go over all starting points and see if it is upper left of magic square

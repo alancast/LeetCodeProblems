@@ -1,13 +1,10 @@
-from typing import List
-
-
-class Solution():
+class Solution:
     # Go through string and find last index, then go through again updating last each time
     # Time O(n) as we go through string twice
     # Space O(1) as we store a map of 26 entries
-    def partitionLabels(self, s: str) -> List[int]:
+    def partitionLabels(self, s: str) -> list[int]:
         # Map of char to last index for it
-        last_index_map = dict()
+        last_index_map = {}
         for i, char in enumerate(s):
             last_index_map[char] = i
 
@@ -19,7 +16,7 @@ class Solution():
             if i == end:
                 answer.append(end - start + 1)
                 start = i + 1
-            
+
         return answer
 
 testCases = [

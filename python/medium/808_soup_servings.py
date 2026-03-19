@@ -6,9 +6,9 @@ from math import ceil
 class Solution:
     # Really optimized for speed but same idea as below
     def soupServings(self, n: int) -> float:
-        if n > 4800:
+        if n > 4800:  # noqa: PLR2004
             return 1
-        
+
         n = (n+24) // 25
 
         @cache
@@ -19,9 +19,9 @@ class Solution:
                 return 1
             if b <= 0:
                 return 0
-            
+
             return 0.25 * (dp(a-4, b) + dp(a-3,b-1) + dp(a-2, b-2) + dp(a-1, b-3))
-        
+
         return dp(n, n)
 
     # DP to compute probability of final answer
@@ -44,7 +44,7 @@ class Solution:
             # B ran out first
             if j <= 0:
                 return 0.0
-            
+
             # If it's already been calculated just return that value
             if i in dp and j in dp[i]:
                 return dp[i][j]
@@ -60,14 +60,14 @@ class Solution:
             # Return the answer
             return dp[i][j]
 
-        # Compute from 1 up to servings. 
+        # Compute from 1 up to servings.
         # If it ever gets close enough to 1 just cut it off and return 1
         for k in range(1, servings + 1):
             if calculate_dp(k, k) > 1 - 1e-5:
                 return 1.0
-            
+
         return calculate_dp(servings, servings)
-    
+
 test_cases = [
     [.62500, 50],
     [.71875, 100]

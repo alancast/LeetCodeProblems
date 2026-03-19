@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -14,13 +11,13 @@ class Solution:
         self.pre_index = 0
         self.post_index = 0
 
-    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def constructFromPrePost(self, preorder: list[int], postorder: list[int]) -> TreeNode | None:
         return self._construct_tree(preorder, postorder)
 
     # Helper function to construct the tree recursively
     # Time O(n) n calls to _construct_tree
     # Space O(n) purely from the callstack being called n times
-    def _construct_tree(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def _construct_tree(self, preorder: list[int], postorder: list[int]) -> TreeNode | None:
         root = TreeNode(preorder[self.pre_index])
         self.pre_index += 1
 
@@ -36,7 +33,7 @@ class Solution:
         self.post_index += 1
         return root
 
-    def constructFromPrePost_index_array(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def constructFromPrePost_index_array(self, preorder: list[int], postorder: list[int]) -> TreeNode | None:
         num_of_nodes = len(preorder)
 
         # Create the index list for `postorder`
@@ -55,9 +52,9 @@ class Solution:
         pre_start: int,
         pre_end: int,
         post_start: int,
-        preorder: List[int],
-        index_in_post_order: List[int],
-    ) -> Optional[TreeNode]:
+        preorder: list[int],
+        index_in_post_order: list[int],
+    ) -> TreeNode | None:
         # Base case: If there are no nodes to process, return None
         if pre_start > pre_end:
             return None
@@ -75,26 +72,26 @@ class Solution:
         root = TreeNode(preorder[pre_start])
 
         # Recursively construct the left subtree
-        root.left = self._construct_tree(
+        root.left = self._construct_tree_index_array(
             pre_start + 1,
             pre_start + num_of_nodes_in_left,
             post_start,
             preorder,
-            index_in_post_order,
+            index_in_post_order
         )
 
         # Recursively construct the right subtree
-        root.right = self._construct_tree(
+        root.right = self._construct_tree_index_array(
             pre_start + num_of_nodes_in_left + 1,
             pre_end,
             post_start + num_of_nodes_in_left,
             preorder,
-            index_in_post_order,
+            index_in_post_order
         )
 
         return root
 
-    def constructFromPrePost_recursion(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+    def constructFromPrePost_recursion(self, preorder: list[int], postorder: list[int]) -> TreeNode | None:
         num_of_nodes = len(preorder)
         return self._construct_tree_recursion(0, num_of_nodes - 1, 0, preorder, postorder)
 
@@ -106,9 +103,9 @@ class Solution:
         pre_start: int,
         pre_end: int,
         post_start: int,
-        preorder: List[int],
-        postorder: List[int],
-    ) -> Optional[TreeNode]:
+        preorder: list[int],
+        postorder: list[int],
+    ) -> TreeNode | None:
         # Base case: If there are no nodes to process, return None
         if pre_start > pre_end:
             return None
@@ -128,21 +125,21 @@ class Solution:
         root = TreeNode(preorder[pre_start])
 
         # Recursively construct the left subtree
-        root.left = self._construct_tree(
+        root.left = self._construct_tree_recursion(
             pre_start + 1,
             pre_start + num_of_nodes_in_left,
             post_start,
             preorder,
-            postorder,
+            postorder
         )
 
         # Recursively construct the right subtree
-        root.right = self._construct_tree(
+        root.right = self._construct_tree_recursion(
             pre_start + num_of_nodes_in_left + 1,
             pre_end,
             post_start + num_of_nodes_in_left,
             preorder,
-            postorder,
+            postorder
         )
 
         return root

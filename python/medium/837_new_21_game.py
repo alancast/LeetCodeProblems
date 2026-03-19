@@ -14,19 +14,19 @@ class Solution:
 
         for i in range(1, n + 1):
             # Update DP entry to sum * 1/max_points prob
-            dp[i] = probs_sum_smaller_k / maxPts
+            dp[i] = probs_sum_smaller_k // maxPts
 
             # If i less than k add to probs sum
             if i < k:
                 probs_sum_smaller_k += dp[i]
-            
+
             # Roll off back end of sliding window max points in the past
             if i - maxPts >= 0 and i - maxPts < k:
                 probs_sum_smaller_k -= dp[i - maxPts]
 
         # Sum up all values k to n
         return sum(dp[k:])
-    
+
 test_cases = [
     [1.00000, 10, 1, 10],
     [.60000, 6, 1, 10],

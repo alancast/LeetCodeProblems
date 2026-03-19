@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -7,13 +6,13 @@ class Solution:
     # Somewhat confusing, very hard for a medium
     # Time O(A^n) where n is length of bottom and A is alphabet size
     # Space O(n^2)
-    def pyramidTransition(self, bottom: str, allowed: List[str]) -> bool:
+    def pyramidTransition(self, bottom: str, allowed: list[str]) -> bool:
         # Create a dictionary of for this left and right, what can be on top
         tab = defaultdict(set)
         for left, right, top in allowed:
             tab[left, right].add(top)
 
-        def add_neighbor(node: str) -> List[str]:
+        def add_neighbor(node: str) -> list[str]:
             neighbor = ['']
 
             # Go over all bottom pairs and see who can be on top
@@ -25,14 +24,14 @@ class Solution:
                     return []
 
             return neighbor
-        
+
         visited = set()
 
         def dfs(node: str) -> bool:
             # If we got to the top then we pass
             if len(node) == 1:
                 return True
-            
+
             # If we have already seen this node and didn't get to top, fail
             if node in visited:
                 return False

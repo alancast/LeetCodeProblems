@@ -5,7 +5,7 @@ class Solution:
     # See if entry is closer to left or right falling domino
     # Time O(n) as we go through dominoes 3 times
     # Space O(n) as we keep an n size array for from left and right
-    def _push_dominoes_three_pass(self, dominoes: str) -> str:
+    def _push_dominoes_three_pass(self, dominoes: str) -> str:  # noqa: PLR0912
         n = len(dominoes)
         final_str = []
         # How far is this index from a L or R that could impact it
@@ -47,15 +47,14 @@ class Solution:
         # Create string
         for i in range(n):
             char = dominoes[i]
-            if char == 'L' or char == 'R':
+            if char in {'L', 'R'}:
                 final_str.append(char)
+            elif from_left[i] < from_right[i]:
+                final_str.append('L')
+            elif from_right[i] < from_left[i]:
+                final_str.append('R')
             else:
-                if from_left[i] < from_right[i]:
-                    final_str.append('L')
-                elif from_right[i] < from_left[i]:
-                    final_str.append('R')
-                else:
-                    final_str.append('.')
+                final_str.append('.')
 
         return ''.join(final_str)
 
@@ -80,10 +79,7 @@ class Solution:
                     # Check if it will be pushed left
                     if i + 1 < n and dominoes[i+1] == 'L':
                         # Make sure it's not being pushed left and right
-                        if next_char == 'R':
-                            next_char = '.'
-                        else:
-                            next_char = 'L'
+                        next_char = '.' if next_char == 'R' else 'L'
 
                     if next_char != '.':
                         changed = True
@@ -95,7 +91,7 @@ class Solution:
             next_dominoes.clear()
 
         return dominoes
-    
+
 test_cases = [
     ["LLL.", "LLL."],
     ["RR.L", "RR.L"],

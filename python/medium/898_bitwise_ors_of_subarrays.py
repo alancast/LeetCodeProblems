@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Time O(n*b) where b is number of bits in max num and n is number of nums
     # Space O(n*b)
-    def subarrayBitwiseORs(self, arr: List[int]) -> int:
+    def subarrayBitwiseORs(self, arr: list[int]) -> int:
         # This set will store all unique OR values found across all subarrays.
         result_ors = set()
-        
+
         # This set stores the distinct ORs of all subarrays ending at the previous position.
         current_ors = set()
 
@@ -21,16 +18,16 @@ class Solution:
 
             # Also add the num itself
             next_ors.add(num)
-            
+
             # Add all newly found ORs to the answer set
             result_ors.update(next_ors)
-            
+
             # Update current ors for next num
             current_ors = next_ors
-            
+
         # The number of different options is just the size of this set
         return len(result_ors)
-    
+
 test_cases = [
     [1, [0]],
     [3, [1,1,2]],

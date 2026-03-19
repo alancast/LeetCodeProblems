@@ -6,6 +6,7 @@
         "logn",
         "numpy",
         "popleft",
+        "postorder",
         "preorder",
         "pydocstyle",
         "Pylint",

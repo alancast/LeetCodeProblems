@@ -12,15 +12,10 @@ class Solution:
 
         # Find the target we are looking for
         target = sort_digits(n)
-        
+
         # Go through all powers of 2 less than 10^9 and see if equal
-        for i in range(31):
-            if sort_digits(1 << i) == target:
-                return True
-            
-        # None are so return false
-        return False
-    
+        return any(sort_digits(1 << i) == target for i in range(31))
+
 test_cases = [
     [True, 1],
     [False, 10]

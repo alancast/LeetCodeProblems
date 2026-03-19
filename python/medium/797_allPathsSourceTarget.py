@@ -1,7 +1,5 @@
-from typing import List
-
 class Solution:
-    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+    def allPathsSourceTarget(self, graph: list[list[int]]) -> list[list[int]]:
         if not graph:
             return []
 

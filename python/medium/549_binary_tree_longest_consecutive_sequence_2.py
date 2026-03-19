@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -13,12 +10,12 @@ class Solution:
     # Single traversal of tree
     # Time O(n) as each node in tree is visited once
     # Space O(n) for call stack
-    def longestConsecutive(self, root: Optional[TreeNode]) -> int:
+    def longestConsecutive(self, root: TreeNode | None) -> int:
 
         # Returns an array in form [incrementing, decrementing]
         # Which represent the longest incrementing and decrementing
         # path beneath this node. Including itself
-        def find_longest_path(root: Optional[TreeNode]) -> List[int]:
+        def find_longest_path(root: TreeNode | None) -> list[int]:
             nonlocal longest_path
 
             # Not a real node, so 0,0

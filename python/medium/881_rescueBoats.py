@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     # O(nlogn) time (for sort). O(n) space because of sort
-    def numRescueBoats(self, people: List[int], limit: int) -> int:
+    def numRescueBoats(self, people: list[int], limit: int) -> int:
         people = sorted(people)
         lightest = 0
         heaviest = len(people) - 1
@@ -32,3 +29,5 @@ for people, limit, expected in testCases:
     answer = implementation.numRescueBoats(people, limit)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: people: {people} limit: {limit}")
+
+print("Ran all tests")

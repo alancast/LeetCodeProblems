@@ -15,7 +15,7 @@ class Solution:
         curr_row = [0] * (n + 1)
         for j in range(1, n + 1):
             curr_row[j] = curr_row[j - 1] + ord(s2[j - 1])
-        
+
         # Compute answer row-by-row
         for i in range(1, m + 1):
             diag = curr_row[0]
@@ -37,7 +37,7 @@ class Solution:
                 # for the next column
                 diag = curr_row[j]
                 curr_row[j] = answer
-        
+
         # Return final answer
         return curr_row[-1]
 
@@ -57,7 +57,7 @@ class Solution:
             compute_cost[i][0] = compute_cost[i-1][0] + ord(s1[i-1])
         for j in range(1, n + 1):
             compute_cost[0][j] = compute_cost[0][j-1] + ord(s2[j-1])
-        
+
         # Fill the remaining cells using the Bellman Equation
         for i in range(1, m + 1):
             for j in range(1, n + 1):

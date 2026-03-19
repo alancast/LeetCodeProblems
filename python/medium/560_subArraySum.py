@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
+    def subarraySum(self, nums: list[int], k: int) -> int:
         cumulatives = {}
         count = 0
         sum = 0
@@ -14,7 +11,7 @@ class Solution:
 
         return count
 
-    def subarraySum_n2(self, nums: List[int], k: int) -> int:
+    def subarraySum_n2(self, nums: list[int], k: int) -> int:
         count = 0
         numLength = len(nums)
         for i in range(numLength):
@@ -37,3 +34,5 @@ for nums, k, expected in testCases:
     answer = solution.subarraySum(nums, k)
     if answer != expected:
         print(f"FAILED TEST: Got {answer} but expected {expected}. INPUTS: {nums}, {k}")
+
+print("Ran all tests")

@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
-    # Go over array with two pointers, 
+    # Go over array with two pointers,
     # As soon as there is a 3rd fruit see how long current spree is
     # And move left pointer
     # Time O(n) as we go over the list once
     # Space O(1) as we keep a hash map of exactly 2 keys
-    def totalFruit(self, fruits: List[int]) -> int:
+    def totalFruit(self, fruits: list[int]) -> int:
         n = len(fruits)
         left = answer = 0
         # Map of fruit to most recent index
@@ -26,7 +23,7 @@ class Solution:
                     if value < remove_value:
                         remove_key = key
                         remove_value = value
-                
+
                 # Remove that fruit and add the new one
                 left = most_recent_map[remove_key] + 1
                 del most_recent_map[remove_key]
@@ -37,7 +34,7 @@ class Solution:
             answer = max(i - left + 1, answer)
 
         return answer
-    
+
 test_cases = [
     [3, [1,2,1]],
     [3, [0,1,2,2]],

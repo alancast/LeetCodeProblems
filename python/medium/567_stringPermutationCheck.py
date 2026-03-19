@@ -15,16 +15,16 @@ class Solution:
             char2 = s2[i]
             s1_arr[ord(char1) - ord('a')] += 1
             sliding_arr[ord(char2) - ord('a')] += 1
-        
+
         count = 0
         for i in range(26):
             if s1_arr[i] == sliding_arr[i]:
                 count += 1
-                
+
         for i in range(s1_len, s2_len):
             leaving_index = ord(s2[i-s1_len]) - ord('a')
             adding_index = ord(s2[i]) - ord('a')
-            if count == 26:
+            if count == 26:  # noqa: PLR2004
                 return True
 
             sliding_arr[adding_index] += 1
@@ -39,7 +39,7 @@ class Solution:
             elif sliding_arr[leaving_index] == s1_arr[leaving_index] - 1:
                 count -= 1
 
-        return count == 26
+        return count == 26  # noqa: PLR2004
 
     def checkInclusionArr(self, s1: str, s2: str) -> bool:
         s1_len = len(s1)
@@ -54,7 +54,7 @@ class Solution:
             char2 = s2[i]
             s1_arr[ord(char1) - ord('a')] += 1
             sliding_arr[ord(char2) - ord('a')] += 1
-        
+
         if sliding_arr == s1_arr:
             return True
 
@@ -63,7 +63,7 @@ class Solution:
             char_adding = s2[i]
             sliding_arr[ord(char_leaving) - ord('a')] -= 1
             sliding_arr[ord(char_adding) - ord('a')] += 1
-        
+
             if sliding_arr == s1_arr:
                 return True
 
@@ -103,3 +103,5 @@ for s1, s2, expected in testCases:
     answer = solution.checkInclusion(s1, s2)
     if answer != expected:
         print(f"FAILED TEST: Inputs: {s1}, {s2}, got {answer}")
+
+print("Ran all tests")

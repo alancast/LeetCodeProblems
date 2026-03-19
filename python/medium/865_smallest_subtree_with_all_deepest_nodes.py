@@ -1,4 +1,3 @@
-from typing import Optional
 from typing import NamedTuple
 
 
@@ -12,7 +11,7 @@ class TreeNode:
 
 class Result(NamedTuple):
     # The lowest node which is a parent to all the deepest heights
-    node: Optional[TreeNode]
+    node: TreeNode | None
     # The height of the node
     height: int
 
@@ -23,8 +22,8 @@ class Solution:
     # If they are a different height, the answer is whichever one is taller
     # Time O(n)
     # Space O(n)
-    def subtreeWithAllDeepest(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        def dfs(node: Optional[TreeNode]) -> Result:
+    def subtreeWithAllDeepest(self, root: TreeNode | None) -> TreeNode | None:
+        def dfs(node: TreeNode | None) -> Result:
             # Return the result of the subtree at this node.
             if not node:
                 return Result(None, 0)

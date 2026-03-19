@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Queue of updated squares to go through
     # Time O(n^2) as worst case we go through the whole grid
     # Space O(n^2) as we store the dp array
-    def snakesAndLadders(self, board: List[List[int]]) -> int:
+    def snakesAndLadders(self, board: list[list[int]]) -> int:
         self.n = len(board)
         n_squared = self.n * self.n
 
@@ -40,7 +39,7 @@ class Solution:
                     new_spaces.append(destination)
 
         return moves_from_end[-1]
-    
+
     def _get_row_col_from_index(self, index: int) -> tuple:
         row = self.n - ((index-1)//self.n) - 1
         col = (index-1) % self.n
@@ -50,7 +49,7 @@ class Solution:
 
         return (row, col)
 
-    
+
 test_cases = [
     [4, [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]],
     [1, [[-1,-1],[-1,3]]],

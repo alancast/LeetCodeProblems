@@ -1,12 +1,11 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Djikstras algorithm
     # Time O(mnlogmn)
     # Space O(mn)
-    def shortestDistance(self, maze: List[List[int]], start: List[int], destination: List[int]) -> int:
+    def shortestDistance(self, maze: list[list[int]], start: list[int], destination: list[int]) -> int:
         if not maze or not maze[0]:
             return -1
 
@@ -36,8 +35,8 @@ class Solution:
                 new_y = y
 
                 # Go in this direction until you hit a wall
-                while (0 <= new_x + dx < m 
-                    and 0 <= new_y + dy < n 
+                while (0 <= new_x + dx < m
+                    and 0 <= new_y + dy < n
                     and maze[new_x + dx][new_y + dy] != 1):
                     steps += 1
                     new_x += dx

@@ -1,11 +1,10 @@
 from collections import Counter
-from typing import List
 
 
 class Solution:
     # Time O(n) as loop through array (twice)
     # Space O(n) as make copy of array
-    def numRabbits(self, answers: List[int]) -> int:
+    def numRabbits(self, answers: list[int]) -> int:
         num_rabbits = 0
         counts = Counter(answers)
 
@@ -14,12 +13,12 @@ class Solution:
         for key, value in counts.items():
             while value > key + 1:
                 num_rabbits += key + 1
-                value -= (key + 1)
+                value -= (key + 1)  # noqa: PLW2901
 
             num_rabbits += key + 1
 
         return num_rabbits
-    
+
 test_cases = [
     [5, [1,1,2]],
     [3, [2,2,2]],

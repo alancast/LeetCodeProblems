@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort nums, then iterate backwards and find right and left bound for pairs
     # Time O(n^2)
     # Space O(n) for sort
-    def triangleNumber(self, nums: List[int]) -> int:
+    def triangleNumber(self, nums: list[int]) -> int:
         nums.sort()
         n = len(nums)
         answer = 0
@@ -29,7 +26,7 @@ class Solution:
     # Sort nums, then go over all i,j pairs and find right bound of k pair
     # Time O(n^2)
     # Space O(n) for sort
-    def triangleNumber(self, nums: List[int]) -> int:
+    def triangleNumber_sort(self, nums: list[int]) -> int:
         n = len(nums)
         nums.sort()
 

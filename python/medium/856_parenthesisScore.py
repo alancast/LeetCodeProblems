@@ -38,3 +38,5 @@ for s, expected in testCases:
     answer = implementation.scoreOfParentheses(s)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {s}")
+
+print("Ran all tests")
