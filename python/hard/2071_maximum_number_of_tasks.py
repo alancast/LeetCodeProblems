@@ -1,5 +1,5 @@
-from collections import deque
-from sortedcontainers import Sortedlist
+from collections import deque  # noqa: I001
+from sortedcontainers import Sortedlist # type: ignore
 
 
 class Solution:
