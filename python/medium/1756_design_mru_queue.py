@@ -1,32 +1,34 @@
-from typing import List
-import math
+from math import isqrt
 
 
 # Use a fenwick tree
-# Don't fully understand this one. The square root buckets implementation is better
+# Honestly, this isn't really better than the square root buckets implementation
+# And the square roots bucket one is way easier to understand
 class FenwickTree:
-    tree: List[int]
+    tree: list[int]
 
-    def __init__(self, size):
+    def __init__(self, size: int):
         self.tree = [0] * (size + 1)
 
-    def sum(self, index):
+    def sum(self, index: int) -> int:
         result = 0
         while index > 0:
             result += self.tree[index]
+            # Find the parent index by doing this
             index = index & (index - 1)
 
         return result
 
-    def insert(self, index, value):
+    def insert(self, index: int, value: int):
         index += 1
         while index < len(self.tree):
             self.tree[index] += value
+            # Go down to next level
             index += index & -index
 
 
 class MRUQueue:
-    values: List[int]
+    values: list[int]
     tree: FenwickTree
     size: int
 
@@ -57,14 +59,14 @@ class MRUQueue:
 
 
 class MRUQueueBuckets:
-    buckets: List[List[int]]
-    index: List[int]
+    buckets: list[list[int]]
+    index: list[int]
     BUCKET_SIZE: int
     TOTAL_ELEMENTS: int
 
     def __init__(self, n: int):
         self.TOTAL_ELEMENTS = n
-        self.BUCKET_SIZE = math.isqrt(n)
+        self.BUCKET_SIZE = isqrt(n)
         self.buckets = []
         self.index = []
 
@@ -77,7 +79,6 @@ class MRUQueueBuckets:
                 self.index.append(number)
 
             self.buckets[-1].append(number)
-        
 
     # Time O(sqrt n) as it's sqrt n to find bucket and sqrt n within
     def fetch(self, k: int) -> int:
@@ -104,9 +105,9 @@ class MRUQueueBuckets:
             del self.index[bucket_index]
 
         return element
-    
+
     # Time O(sqrt n) as it's binary search
-    def _upper_bound(self, nums, target):
+    def _upper_bound(self, nums: list[int], target: int) -> int:
         left = 0
         right = len(nums)
 
@@ -119,12 +120,52 @@ class MRUQueueBuckets:
         return left
 
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class MRUQueueLinkedList:
+    def __init__(self, n: int):
+        self.head = ListNode()
+        self.tail = self.head
+        current = self.head
+        for i in range(1, n + 1):
+            current.next = ListNode(i)
+            current = current.next
+
+        self.tail = current
+
+    def fetch(self, k: int) -> int:
+        current = self.head
+        for _ in range(1, k):
+            if current is None:
+                return 0
+
+            current = current.next
+
+        # Fetch node value
+        if current is None or current.next is None:
+            return 0
+
+        val = current.next.val
+
+        # Move fetched node to tail
+        self.tail.next = current.next
+        current.next = current.next.next
+        self.tail = self.tail.next
+        self.tail.next = None
+
+        return val
+
+
 class MRUQueueBruteForce:
-    queue: List[int]
+    queue: list[int]
 
     def __init__(self, n: int):
-        self.queue = [i for i in range(n+1)]
-        
+        self.queue = list(range(n+1))
+
 
     # Time O(n) as we move every element in the array each time
     def fetch(self, k: int) -> int:
