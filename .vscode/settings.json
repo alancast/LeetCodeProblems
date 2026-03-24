@@ -11,6 +11,8 @@
         "preorder",
         "pydocstyle",
         "Pylint",
-        "pytest"
+        "pytest",
+        "submatrices",
+        "submatrix"
     ]
 }
