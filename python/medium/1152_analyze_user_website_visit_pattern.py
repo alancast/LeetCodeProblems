@@ -1,6 +1,5 @@
 from collections import defaultdict
 from itertools import combinations
-from typing import List
 
 
 # Information about a site visit
@@ -23,12 +22,12 @@ class Solution:
     # Time O(n^3)
     # Space O(n^3)
     def mostVisitedPattern(
-        self, username: List[str], timestamp: List[int], website: List[str]
-    ) -> List[str]:
+        self, username: list[str], timestamp: list[int], website: list[str]
+    ) -> list[str]:
         # Create visit nodes array purely to sort entries by timestamp
         visit_nodes = [
             VisitNode(name, ts, site)
-            for name, ts, site in zip(username, timestamp, website)
+            for name, ts, site in zip(username, timestamp, website, strict=False)
         ]
         visit_nodes.sort(key=lambda x: x.timestamp)
 
@@ -60,7 +59,7 @@ class Solution:
             if user_count > max_user_count or (user_count == max_user_count and pattern < answer):
                 max_user_count = user_count
                 answer = pattern
-        
+
         return list(answer)
 
 test_cases = [

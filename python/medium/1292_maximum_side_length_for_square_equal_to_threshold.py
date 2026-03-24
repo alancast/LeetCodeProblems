@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Optimized version with better prefix sum calculation
     # Can compute prefix sum and then in O(1) compute square sum
@@ -8,7 +5,7 @@ class Solution:
     # And go until no longer any exist
     # Time O(mn)
     # Space O(mn)
-    def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
+    def maxSideLength(self, mat: list[list[int]], threshold: int) -> int:
         # Compute prefix sum of matrix
         rows = len(mat)
         cols = len(mat[0])
@@ -57,7 +54,7 @@ class Solution:
     # Compute row prefix sums then try all squares from big to small
     # Time O(mn)
     # Space O(mn)
-    def maxSideLength_prefix_sum_rows(self, mat: List[List[int]], threshold: int) -> int:
+    def maxSideLength_prefix_sum_rows(self, mat: list[list[int]], threshold: int) -> int:
         rows = len(mat)
         cols = len(mat[0])
 

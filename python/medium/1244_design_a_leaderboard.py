@@ -1,6 +1,7 @@
 from collections import defaultdict
 from heapq import heappop, heappush
 
+
 class Leaderboard:
     _score_map: defaultdict
 
@@ -9,9 +10,9 @@ class Leaderboard:
 
     # Time O(1)
     def addScore(self, playerId: int, score: int) -> None:
-        # Since using default dict if not in there just makes 0 
+        # Since using default dict if not in there just makes 0
         self._score_map[playerId] += score
-        
+
     # Time O(n log k)
     # Can do in O(K) time if we make the other functions O(logn)
     def top(self, K: int) -> int:

@@ -1,11 +1,8 @@
-from collections import defaultdict
-
-
 class AlphabetSetUnion:
     def __init__(self):
         # The parent of every char
-        self.parents = [i for i in range(26)]
-    
+        self.parents = list(range(26))
+
     def join(self, char1: str, char2: str) -> None:
         parent1 = self.find(char1)
         index1 = ord(parent1) - ord('a')
@@ -18,7 +15,7 @@ class AlphabetSetUnion:
         # parent1's parent should now be parent2
         else:
             self.parents[index1] = index2
-    
+
     # Worst case scenario O(26)
     def find(self, char1: str) -> str:
         index = ord(char1) - ord('a')
@@ -46,7 +43,7 @@ class Solution:
             answer.append(asu.find(char))
 
         return ''.join(answer)
-    
+
 test_cases = [
     ["makkek", "parker", "morris", "parser"],
     ["hdld", "hello", "world", "hold"],

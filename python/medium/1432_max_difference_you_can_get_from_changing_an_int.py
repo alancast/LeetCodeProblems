@@ -18,10 +18,9 @@ class Solution:
                 if digit != "1":
                     min_num = min_num.replace(digit, "1")
                     break
-            else:
-                if digit != "0" and digit != min_num[0]:
-                    min_num = min_num.replace(digit, "0")
-                    break
+            elif digit != "0" and digit != min_num[0]:
+                min_num = min_num.replace(digit, "0")
+                break
 
         return int(max_num) - int(min_num)
 
@@ -64,7 +63,7 @@ class Solution:
             if char == min_char_zero:
                 min_num_arr_zero.append('0')
             # Can't have a leading 0
-            elif min_char_zero == 'z' and char != '0' and char != first_char:
+            elif min_char_zero == 'z' and char not in ('0', first_char):
                 min_char_zero = char
                 min_num_arr_zero.append('0')
             else:
@@ -81,7 +80,7 @@ class Solution:
 
         # Do the math
         return max_int - min_int
-    
+
 test_cases = [
     [888, 555],
     [8, 9],

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Keep pointer to left and last zero, compute max width
     # Time O(n) as the array is gone over once
     # Space O(1)
-    def longestSubarray(self, nums: List[int]) -> int:
+    def longestSubarray(self, nums: list[int]) -> int:
         left = answer = 0
         last_zero = -1
         # Set this to one if we see a zero. Only used to see if string is all ones

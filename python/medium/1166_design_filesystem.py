@@ -16,9 +16,9 @@ class FileSystem:
 
     def createPath(self, path: str, value: int) -> bool:
         # Not valid paths
-        if path == "" or path == "/":
+        if path in {"", "/"}:
             return False
-        
+
         folders = path.split('/')
         # Remove the initial empty string
         folders = folders[1:]
@@ -32,7 +32,7 @@ class FileSystem:
             # This folder doesn't exist
             if folder not in node.children:
                 return False
-            
+
             node = node.children[folder]
 
         # We have now gotten here fully from the parents
@@ -41,7 +41,7 @@ class FileSystem:
         new_folder = folders[-1]
         if new_folder in node.children:
             return False
-        
+
         # Create the folder (add it to the children of the parent)
         node.children[new_folder] = TrieNode(new_folder, value)
 
@@ -59,12 +59,12 @@ class FileSystem:
         for folder in folders:
             if folder not in node.children:
                 return -1
-            
+
             node = node.children[folder]
 
         # We got through the full path so now return the value of the node
         return node.value
-    
+
 # Just store everything in a dictionary
 # When creating make sure the parent exists
 class FileSystemBasic:
@@ -76,12 +76,12 @@ class FileSystemBasic:
         # Make sure path is valid and doesn't already exist
         if path == "/" or len(path) == 0 or path in self.paths:
             return False
-        
+
         # Make sure the parent path exists ('/' is a valid parent)
         parent = path[:path.rfind('/')]
         if len(parent) > 1 and parent not in self.paths:
             return False
-        
+
         # Add new path
         self.paths[path] = value
 

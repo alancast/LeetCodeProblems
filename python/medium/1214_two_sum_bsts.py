@@ -1,5 +1,4 @@
 from collections import deque
-from typing import Optional
 
 
 # Definition for a binary tree node.
@@ -14,7 +13,7 @@ class Solution:
     # Then traverse second tree and search for target
     # Time O(n)
     # Space O(n)
-    def twoSumBSTs(self, root1: Optional[TreeNode], root2: Optional[TreeNode], target: int) -> bool:
+    def twoSumBSTs(self, root1: TreeNode | None, root2: TreeNode | None, target: int) -> bool:
         # Traverse tree one and create set of it
         values_one = set()
         bfs_deque = deque()
@@ -26,7 +25,7 @@ class Solution:
                 bfs_deque.append(node.left)
             if node.right:
                 bfs_deque.append(node.right)
-        
+
         # Traverse tree two and see if it's possible to get sum
         bfs_deque.append(root2)
         while bfs_deque:

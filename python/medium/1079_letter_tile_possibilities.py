@@ -6,7 +6,7 @@ class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
         self.validate_input(tiles)
         return self.num_tile_possibilities_gen_perms(tiles)
-    
+
     # Time O(n * 2^n) each letter could or could not be in and factorial takes O(n) time
     # Space O(n * 2^n) call stack size n and seen set worst case could be all unique strings
     def num_tile_possibilities_gen_perms(self, tiles: str) -> int:
@@ -20,7 +20,7 @@ class Solution:
 
     def _count_permutations(self, seq: str) -> int:
         # Math of this function follows the formula:
-        # if we have 3 characters with frequencies n1, n2, and n3, 
+        # if we have 3 characters with frequencies n1, n2, and n3,
         # the number of 3 length sequences are: (n1 + n2 + n3)!/(n1!*n2!*n3!))
 
         # Calculate permutations using factorial formula
@@ -42,7 +42,7 @@ class Solution:
 
         # Try including and excluding current character
         return self._generate_sequences(tiles, current_str, pos + 1, seen) + self._generate_sequences(tiles, current_str + tiles[pos], pos + 1, seen)
-    
+
     # Time O(n!) as we get all combinations of tiles length n
     # Space O(n) as we only keep char count array which is O(1) and call stack can be n deep
     def num_tile_possibilities_better_recursion(self, tiles: str) -> int:
@@ -93,9 +93,9 @@ class Solution:
                 used[pos] = False
 
     def validate_input(self, tiles: str) -> None:
-        if len(tiles) < 1 or len(tiles) > 7:
+        if len(tiles) < 1 or len(tiles) > 7:  # noqa: PLR2004
             raise ValueError("tiles must be between length 1 and 7")
-    
+
 test_cases = [
     [8, "aab"],
     [1, "a"],

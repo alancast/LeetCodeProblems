@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
-    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+    def removeCoveredIntervals(self, intervals: list[list[int]]) -> int:
         if not intervals:
             return 0
-        
+
         intervals = sorted(intervals, key= lambda x: (x[0], -x[1]))
         count = 0
         previousEnd = -1
@@ -28,3 +25,5 @@ for intervals, expected in testCases:
     answer = implementation.removeCoveredIntervals(intervals)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected}, got {answer}. INPUT: {intervals}")
+
+print("Ran all tests")

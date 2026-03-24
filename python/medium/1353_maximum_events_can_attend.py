@@ -1,12 +1,11 @@
-from heapq import heappush, heappop
-from typing import List
+from heapq import heappop, heappush
 
 
 class Solution:
     # Sort and greedy
     # Time O((T+n)logn) as we sort the list then go over all T days with logn operations
     # Space O(n) for sorting algorithm as well as min heap
-    def maxEvents(self, events: List[List[int]]) -> int:
+    def maxEvents(self, events: list[list[int]]) -> int:
         n = len(events)
         max_day = max(event[1] for event in events)
         events.sort()
@@ -29,7 +28,7 @@ class Solution:
                 answer += 1
 
         return answer
-    
+
 test_cases = [
     [3, [[1,2], [2,3], [3,4]]],
     [4, [[1,2], [2,3], [3,4], [1,2]]],

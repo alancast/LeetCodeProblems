@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Math basically. A number has 4 divisors if one of the two is true
     # Case 1: p^3
-    # Case 2: p×q (Where p and q are two distinct primes)
-    def sumFourDivisors(self, nums: List[int]) -> int:
+    # Case 2: pxq (Where p and q are two distinct primes)
+    def sumFourDivisors(self, nums: list[int]) -> int:
         answer = 0
 
         # Go over all nums and see if it is a 4 divisor num and if so add
@@ -31,17 +28,14 @@ class Solution:
                 if a != b and self._isPrime(a) and self._isPrime(b):
                     return 1 + a + b + num
                 return -1
-    
+
         return -1
 
     # See if a number is prime
     def _isPrime(self, x: int) -> bool:
-        if x < 2:
+        if x < 2:  # noqa: PLR2004
             return False
-        for i in range(2, int(x ** 0.5) + 1):
-            if x % i == 0:
-                return False
-        return True
+        return all(x % i != 0 for i in range(2, int(x ** 0.5) + 1))
 
 test_cases = [
     [32, [21, 4, 7]],

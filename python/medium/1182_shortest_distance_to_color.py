@@ -1,6 +1,5 @@
-from collections import defaultdict
-from typing import List
 from bisect import bisect_left
+from collections import defaultdict
 
 
 class Solution:
@@ -8,12 +7,12 @@ class Solution:
     # Do binary search on each query and find closest index
     # Time O(n +mlogn) n for creating map, logn for each m queries
     # Space O(n) n for storing map
-    def shortestDistanceColor(self, colors: List[int], queries: List[List[int]]) -> List[int]:
+    def shortestDistanceColor(self, colors: list[int], queries: list[list[int]]) -> list[int]:
         # Create and fill color to index mapping list
         color_to_index_list_mapping = defaultdict(list)
         for index, color in enumerate(colors):
             color_to_index_list_mapping[color].append(index)
-        
+
         answer = []
         for index, color in queries:
             # If this color doesn't exist

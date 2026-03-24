@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Disjoint Set and greedy addition of edges to find minimum spanning tree
     # Sort edges by lowest cost, then greedily add edges that make set bigger
@@ -9,7 +6,7 @@ class Solution:
     # Then go through all N cities and make sure all have same root
     # Time O(MlogM + MlogN + N) for sorting M connections then everything else
     # Space O(N)
-    def minimumCost(self, n: int, connections: List[List[int]]) -> int:
+    def minimumCost(self, n: int, connections: list[list[int]]) -> int:
         # Find what set the city is in
         def find(city: int) -> int:
             # Recursively re-set city's parent to its parent's parent.
@@ -17,7 +14,7 @@ class Solution:
                 parent[city] = find(parent[city])
 
             return parent[city]
-        
+
         # Union the two cities into the same set
         def union(city_1: int, city_2: int) -> bool:
             # Find the set the cities are in
@@ -33,7 +30,7 @@ class Solution:
 
             # Successful union
             return True
-        
+
         # Keep track of disjoint sets. Initially each city is its own set.
         # This could be it's own DisjointSet class too but didn't want to implement today
         parent = {city: city for city in range(1, n+1)}

@@ -9,7 +9,7 @@ class Solution:
             remainder = (remainder*10+1) % k
             if remainder == 0:
                 return length_N
-        
+
         # Never found possible answer
         return -1
 
@@ -27,8 +27,8 @@ class Solution:
 
             if remainder in remainders_set:
                 return -1
-            else:
-                remainders_set.add(remainder)
+
+            remainders_set.add(remainder)
 
         return answer
 

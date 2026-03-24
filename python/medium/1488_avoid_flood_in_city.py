@@ -1,5 +1,4 @@
 from bisect import bisect_right
-from typing import List
 
 
 class Solution:
@@ -8,16 +7,16 @@ class Solution:
     # Pick which day to dry with binary search
     # Time O(nlogn)
     # Space O(n)
-    def avoidFlood(self, rains: List[int]) -> List[int]:
+    def avoidFlood(self, rains: list[int]) -> list[int]:
         n = len(rains)
-        
+
         # Initialize all days to no drying
         answer = [1] * n
 
         # Queue of days where we can dry a lake (for updating array)
         dry_days = []
         # Map of what lake is full and what day it got full
-        full_lakes = dict()
+        full_lakes = {}
         for i in range(n):
             lake = rains[i]
 
@@ -25,32 +24,31 @@ class Solution:
             if lake == 0:
                 dry_days.append(i)
                 continue
-            
+
             # It's raining somewhere, see if there is a flood or not
-            else:
-                answer[i] = -1
-                # Lake is going from dry to full
-                if lake not in full_lakes:
-                    full_lakes[lake] = i
-                    continue
+            answer[i] = -1
+            # Lake is going from dry to full
+            if lake not in full_lakes:
+                full_lakes[lake] = i
+                continue
 
-                # Lake is already full, see if it's possible to dry
-                if lake in full_lakes:
-                    # Binary search to find smallest day after day it was filled
-                    # Where it can be dried
-                    dry_day = bisect_right(dry_days, full_lakes[lake])
+            # Lake is already full, see if it's possible to dry
+            if lake in full_lakes:
+                # Binary search to find smallest day after day it was filled
+                # Where it can be dried
+                dry_day = bisect_right(dry_days, full_lakes[lake])
 
-                    # If no dry day after it was filled impossible to avoid flood
-                    # So return empty array
-                    if dry_day == len(dry_days):
-                        return []
-                    
-                    # Dry the lake on that day
-                    answer[dry_days[dry_day]] = lake
+                # If no dry day after it was filled impossible to avoid flood
+                # So return empty array
+                if dry_day == len(dry_days):
+                    return []
 
-                    # Update the data structures, remove the dry day and update lake filling day
-                    dry_days.pop(dry_day)
-                    full_lakes[lake] = i
+                # Dry the lake on that day
+                answer[dry_days[dry_day]] = lake
+
+                # Update the data structures, remove the dry day and update lake filling day
+                dry_days.pop(dry_day)
+                full_lakes[lake] = i
 
         return answer
 

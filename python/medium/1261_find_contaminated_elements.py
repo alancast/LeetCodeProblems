@@ -1,7 +1,4 @@
 # Definition for a binary tree node.
-from typing import Optional
-
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -18,13 +15,13 @@ class TreeNode:
 class FindElements:
     seen: set[int]
 
-    def __init__(self, root: Optional[TreeNode]):
+    def __init__(self, root: TreeNode | None):
         self.seen = set()
         self.dfs_build_tree(root, 0)
-        
+
     def find(self, target: int) -> bool:
         return target in self.seen
-    
+
     def dfs_build_tree(self, current_node, current_value):
         if current_node is None:
             return
@@ -32,7 +29,7 @@ class FindElements:
         self.seen.add(current_value)
         self.dfs_build_tree(current_node.left, current_value * 2 + 1)
         self.dfs_build_tree(current_node.right, current_value * 2 + 2)
-        
+
     def bfs_build_tree(self, root: TreeNode) -> None:
         root.val = 0
         queue = [root]
@@ -46,7 +43,6 @@ class FindElements:
             if node.right:
                 node.right.val = (2 * node.val) + 2
                 queue.append(node.right)
-        
 
 
 # Your FindElements object will be instantiated and called as such:

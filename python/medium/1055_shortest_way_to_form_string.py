@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -47,7 +46,7 @@ class Solution:
     # Iterate over target as many chars as you can until need to start again
     # m is len target n is len source
     # Time O(n + m logn) as worst case it's all the same char so each time search full map list
-    # Space O(n) as every index 
+    # Space O(n) as every index
     def shortestWay_map_binary_search(self, source: str, target: str) -> int:
         # Key is char, value is list of indexes, increasing
         index_list_map = defaultdict(list[int])
@@ -62,7 +61,7 @@ class Solution:
             # Make sure the char is in the source string
             if char not in index_list_map:
                 return -1
-            
+
             # See if it can be part of current substring
             index = self._smallest_index_above_x(index_list_map[char], current_index)
             # It is so can be part of same subsequence
@@ -74,10 +73,10 @@ class Solution:
                 count += 1
 
         return count
-    
+
     # Does binary search on indexes to find smallest index greater than index
     # Returns -1 if not possible
-    def _smallest_index_above_x(self, sorted_indexes: List[int], index: int) -> int:
+    def _smallest_index_above_x(self, sorted_indexes: list[int], index: int) -> int:
         left = 0
         right = len(sorted_indexes)
 
@@ -93,7 +92,7 @@ class Solution:
             return -1
 
         return sorted_indexes[left]
-    
+
 test_cases = [
     [2, "abc", "abcbc"],
     [-1, "abc", "acdbc"],

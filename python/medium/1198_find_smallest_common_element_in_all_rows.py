@@ -1,6 +1,5 @@
 from bisect import bisect_left
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -9,7 +8,7 @@ class Solution:
     # N is length for row, M is num rows
     # Time O(n*m*logn)
     # Space O(m) as we store lower bound for each row
-    def smallestCommonElement(self, mat: List[List[int]]) -> int:
+    def smallestCommonElement(self, mat: list[list[int]]) -> int:
         m = len(mat)
         n = len(mat[0])
 
@@ -34,7 +33,7 @@ class Solution:
                 # Any nums after as they will also all be too big
                 if idx == n:
                     return -1
-                
+
                 # The num doesn't exist in the row
                 if other_row[idx] != candidate_num:
                     in_all = False
@@ -51,7 +50,7 @@ class Solution:
     # If get to end of first row return -1
     # Time O(n*m*logn)
     # Space O(1)
-    def smallestCommonElement_binary_search(self, mat: List[List[int]]) -> int:
+    def smallestCommonElement_binary_search(self, mat: list[list[int]]) -> int:
         m = len(mat)
         n = len(mat[0])
 
@@ -69,7 +68,7 @@ class Solution:
                 # Any nums after as they will also all be too big
                 if idx == n:
                     return -1
-                
+
                 # The num doesn't exist in the row
                 if other_row[idx] != candidate_num:
                     in_all = False
@@ -79,12 +78,12 @@ class Solution:
                 return candidate_num
 
         return -1
-    
+
     # Go over all nums and compute count
     # Then go over counts map and see which num is smallest that has full count
     # Time O(nm)
     # Space O(nm) if they are all different nums
-    def smallestCommonElement_num_counts(self, mat: List[List[int]]) -> int:
+    def smallestCommonElement_num_counts(self, mat: list[list[int]]) -> int:
         m = len(mat)
         n = len(mat[0])
 
@@ -97,14 +96,11 @@ class Solution:
         answer = -1
         for key, value in num_counts.items():
             # Make sure the num has the correct count
-            if value == m:
-                if answer == -1:
-                    answer = key
-                elif key < answer:
-                    answer = key
+            if value == m and (answer == -1 or key < answer):
+                answer = key
 
         return answer
-    
+
 test_cases = [
     [5, [[1,2,3,4,5],[2,4,5,8,10],[3,5,7,9,11],[1,3,5,7,9]]],
     [2, [[1,2,3],[2,3,4],[2,3,5]]],

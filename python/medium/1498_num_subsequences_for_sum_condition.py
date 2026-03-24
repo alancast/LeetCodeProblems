@@ -1,5 +1,4 @@
 import bisect
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Can sort and then just use a pointer to right and left
     # Time O(nlogn) for sorting algorithm
     # Space O(n) for sorting algorithm
-    def numSubseq(self, nums: List[int], target: int) -> int:
+    def numSubseq(self, nums: list[int], target: int) -> int:
         mod = 10 ** 9 + 7
 
         n = len(nums)
@@ -23,10 +22,10 @@ class Solution:
                 right -= 1
 
         return answer % mod
-    
+
     # Time O(nlogn) for sorting algorithm as well as binary searches
     # Space O(n) for sorting algorithm
-    def numSubseq_binary_search(self, nums: List[int], target: int) -> int:
+    def numSubseq_binary_search(self, nums: list[int], target: int) -> int:
         mod = 10 ** 9 + 7
 
         n = len(nums)
@@ -49,7 +48,7 @@ class Solution:
 
 
         return answer % mod
-    
+
 test_cases = [
     [4, [3,5,6,7], 9],
     [6, [3,3,6,8], 10],

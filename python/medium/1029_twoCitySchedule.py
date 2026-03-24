@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
-    def twoCitySchedCost(self, costs: List[List[int]]) -> int:
+    def twoCitySchedCost(self, costs: list[list[int]]) -> int:
         # Sort by gain company gets by sending person to city A instead of city B
         costs.sort(key = lambda x : x[0] - x[1])
-        
+
         total = 0
         n = len(costs) // 2
         # Send the first n people to the city A and the others to city B
@@ -25,3 +22,5 @@ for costs, expected in testCases:
     answer = implementation.twoCitySchedCost(costs)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUT: {costs}")
+
+print("Ran all tests")

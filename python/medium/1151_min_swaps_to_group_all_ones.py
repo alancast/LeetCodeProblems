@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n)
     # Space O(1)
-    def minSwaps(self, data: List[int]) -> int:
+    def minSwaps(self, data: list[int]) -> int:
         # Count how many ones there are, then create a window of that size
         # Whatever window has the smallest number of 0's in it that wins
         min_zeros = float("inf")
@@ -19,7 +16,7 @@ class Solution:
         # Make sure there are at least 2 1's so a swap is possible
         if ones_count <= 1:
             return 0
-        
+
         # Create the initial window and slide it until the end and return the min
         right = zeroes_count = 0
         while right < ones_count:
@@ -38,8 +35,8 @@ class Solution:
             right += 1
             min_zeros = min(min_zeros, zeroes_count)
 
-        return min_zeros
-    
+        return int(min_zeros)
+
 test_cases = [
     [1, [1,0,1,0,1]],
     [0, [[0,0,0,1,0]]],

@@ -18,9 +18,9 @@ class Solution:
             # Add all substrings that end here, have all the chars (so how far forward left can go)
             # If don't have all chars the min will be -1 so will add 0
             count += min(newest_a, newest_b, newest_c) + 1
-    
+
         return count
-    
+
 test_cases = [
     [10, "abcabc"],
     [3, "aaacb"],

@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -17,11 +14,11 @@ class Solution:
     # Go over all sums at end and see what is max product
     # Time O(n) as each node is visited once
     # Space O(n) as recursive call stack as well as storage of sums
-    def maxProduct(self, root: Optional[TreeNode]) -> int:
+    def maxProduct(self, root: TreeNode | None) -> int:
         all_sums = set()
 
         # Compute the total sum of a tree with this as the root node
-        def tree_sum(root: Optional[TreeNode]) -> int:
+        def tree_sum(root: TreeNode | None) -> int:
             # If no node just return
             if not root:
                 return 0
@@ -41,6 +38,6 @@ class Solution:
 
         # Go over all sums and compute product they can produce
         for sum in all_sums:
-            answer = max(answer, sum * (total - sum))   
+            answer = max(answer, sum * (total - sum))
 
         return answer % self.MOD

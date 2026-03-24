@@ -1,12 +1,11 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Keep hash map of final word to phrase as well as map of first word to phrase
     # Time O(nlogn) as we sort the answer at the very end
     # Space O(n) as we store hash maps as well as need it for sort
-    def beforeAndAfterPuzzles(self, phrases: List[str]) -> List[str]:
+    def beforeAndAfterPuzzles(self, phrases: list[str]) -> list[str]:
         first_to_rest = defaultdict(list)
         last_to_rest = defaultdict(list)
 
@@ -59,9 +58,9 @@ class Solution:
             # Add these phrases to the maps for future strings
             first_to_rest[words[0]].append(' '.join(words[1:]))
             last_to_rest[words[-1]].append(' '.join(words[:-1]))
-    
-        return sorted(list(answer))
-    
+
+        return sorted(answer)
+
 test_cases = [
     [["writing code rocks"], ["writing code","code rocks"]],
     [["a chip off the old block party",

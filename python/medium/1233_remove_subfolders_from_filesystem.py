@@ -1,7 +1,3 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
 
     class TrieNode:
@@ -15,7 +11,7 @@ class Solution:
     # Create a Trie
     # Time O(n*L)
     # Space O(n*l)
-    def removeSubfolders(self, folder: List[str]) -> List[str]:
+    def removeSubfolders(self, folder: list[str]) -> list[str]:
         # Build Trie from all folder paths
         for path in folder:
             current_node = self.root
@@ -53,7 +49,7 @@ class Solution:
                 if next_node.is_end_of_folder and i != len(folders) - 1:
                     is_subfolder = True
                     break
-    
+
                 current_node = next_node
 
             # If not a subfolder after getting to end, add to the answer
@@ -61,11 +57,11 @@ class Solution:
                 answer.append(path)
 
         return answer
-    
+
     # Sort folders list (so subfolders guaranteed to appear after folder)
     # Time O(n*Llogn) for sorting
     # Space O(n*l) for sorting bu also for creating answer set
-    def removeSubfolders_sorting(self, folder: List[str]) -> List[str]:
+    def removeSubfolders_sorting(self, folder: list[str]) -> list[str]:
         # Sort the folders alphabetically
         folder.sort()
 
@@ -81,7 +77,7 @@ class Solution:
                 answer.append(folder[i])
 
         return answer
-    
+
 test_cases = [
     [["/a","/c/d","/c/f"], ["/a","/a/b","/c/d","/c/d/e","/c/f"]],
     [["/a","/c"], ["/a","/a/b","/c/d/e","/c/d/f","/c"]],

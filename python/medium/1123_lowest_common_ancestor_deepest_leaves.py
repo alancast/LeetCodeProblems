@@ -1,7 +1,3 @@
-from collections import deque
-from typing import Optional
-
-
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -21,10 +17,10 @@ class Solution:
     # If they are same return root, otherwise recursively call it on deeper side
     # Time O(n) as we do dfs
     # Space O(n) as deque could reach that size
-    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def lcaDeepestLeaves(self, root: TreeNode | None) -> TreeNode | None:
         return self.find_depth(root).node
 
-    def find_depth(self, root: TreeNode) -> DFSNode:
+    def find_depth(self, root: TreeNode | None) -> DFSNode:
         if not root:
             return DFSNode(0, None)
 
@@ -37,5 +33,5 @@ class Solution:
         if left.depth < right.depth:
             right.depth += 1
             return right
-        
+
         return DFSNode(left.depth + 1, root)

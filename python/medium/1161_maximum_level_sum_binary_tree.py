@@ -1,5 +1,4 @@
 from collections import deque
-from typing import Optional
 
 
 # Definition for a binary tree node.
@@ -14,7 +13,7 @@ class Solution:
     # A breadth first search computing sum on each level
     # Time O(n) as each node is seen once
     # Space O(logn) as queue is log of tree
-    def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+    def maxLevelSum(self, root: TreeNode | None) -> int:
         current_level_sum = max_sum = root.val # type: ignore
         max_level = 1
         current_level = 0

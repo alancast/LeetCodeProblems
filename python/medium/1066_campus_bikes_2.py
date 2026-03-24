@@ -1,18 +1,17 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Basically djikstras with bitmasking as we are guaranteed less than 10 bikes
     # So mask with 10 bit num and compute total cost each time
-    def assignBikes(self, workers: List[List[int]], bikes: List[List[int]]) -> int:
+    def assignBikes(self, workers: list[list[int]], bikes: list[list[int]]) -> int:
         # Compute the manhattan distance from a worker to a bike
         def manhattan_dist(worker_index: int, bike_index: int) -> int:
             x_dist = abs(workers[worker_index][0] - bikes[bike_index][0])
             y_dist = abs(workers[worker_index][1] - bikes[bike_index][1])
             return x_dist + y_dist
 
-        # Min cost heap for djikstras 
+        # Min cost heap for djikstras
         # Stores total cost (sort key), worker_index matched, which bikes are taken
         min_cost_heap = [[0, 0, 0]]
         # What worker index, bikes taken combinations we've already computed

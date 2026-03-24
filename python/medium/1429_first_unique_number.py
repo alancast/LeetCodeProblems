@@ -1,5 +1,4 @@
-from collections import deque, OrderedDict
-from typing import List
+from collections import OrderedDict, deque
 
 
 # Keep set of unique, non unique, and ordered hash set queue
@@ -7,11 +6,11 @@ from typing import List
 # Add O(1), showfirst O(1), constructor O(n)
 class FirstUnique:
 
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums: list[int]):
         self.numbersQueue = OrderedDict()
         self.uniqueNums = set()
         self.nonUniqueNums = set()
-        
+
         # Populate queue and sets
         for num in nums:
             self.add(num)
@@ -37,17 +36,17 @@ class FirstUnique:
         # New number, add to uniqueNums and queue
         self.numbersQueue[value] = None
         self.uniqueNums.add(value)
-        
+
 # Keep set of unique, non unique, and deque of queue
 # Space O(n)
 # Add O(1), showfirst O(1) amortized, but worst case O(n), constructor O(n)
 class FirstUniqueAmortized:
 
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums: list[int]):
         self.numbersQueue = deque()
         self.uniqueNums = set()
         self.nonUniqueNums = set()
-        
+
         # Populate queue and sets
         for num in nums:
             self.add(num)
@@ -55,14 +54,14 @@ class FirstUniqueAmortized:
     def showFirstUnique(self) -> int:
         while self.numbersQueue:
             num = self.numbersQueue[0]
-            
+
             # Number is not unique, remove it from the queue and try again
             if num in self.nonUniqueNums:
                 self.numbersQueue.popleft()
                 continue
-            
+
             return num
-        
+
         return -1
 
     def add(self, value: int) -> None:

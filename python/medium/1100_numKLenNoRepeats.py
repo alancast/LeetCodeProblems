@@ -18,7 +18,7 @@ class Solution:
                 left_char = s[left]
                 char_set.remove(left_char)
                 left += 1
-            
+
             # Add char
             char_set.add(char)
 
@@ -29,7 +29,7 @@ class Solution:
             right += 1
 
         return count
-    
+
     # Could be more optimized by moving the window boundaries
     # until the offending dupe is gone. But eh 🤷‍♂️ not doing it
     def numKLenSubstrNoRepeats_counter(self, s: str, k: int) -> int:
