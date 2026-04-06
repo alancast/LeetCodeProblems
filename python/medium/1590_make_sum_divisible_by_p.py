@@ -1,12 +1,8 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     # Go over array and find prefix sum mod p
     # Time O(n)
     # Space O(n)
-    def minSubarray(self, nums: List[int], p: int) -> int:
+    def minSubarray(self, nums: list[int], p: int) -> int:
         num_sum = sum(nums)
         remainder = num_sum % p
 

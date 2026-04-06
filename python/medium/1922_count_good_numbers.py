@@ -15,7 +15,7 @@ class Solution:
         even_options = self.faster_pow(5, num_even_digits)
         odd_options = self.faster_pow(4, num_odd_digits)
         return (even_options * odd_options) % self.MOD
-    
+
     def faster_pow(self, base: int, pow: int) -> int:
         answer = 1
         while pow > 0:
@@ -26,11 +26,11 @@ class Solution:
             pow //= 2
 
         return answer
-    
+
     def validate_input(self, n: int) -> None:
         if n < 1 or n > pow(10, 15):
             raise ValueError("n must be between 1 and 10^15")
-    
+
 test_cases = [
     [5, 1],
     [400, 4],

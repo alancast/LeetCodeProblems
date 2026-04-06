@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Monotonic stack where we see how tall columns of 1 are
     # Then go over those and find heights to left to see how many
     # Submatrices can end (bottom right) there
     # Time O(n*m) m is number of rows, n is cols
     # Space O(n) where n is number of columns
-    def numSubmat(self, mat: List[List[int]]) -> int:
+    def numSubmat(self, mat: list[list[int]]) -> int:
         cols = len(mat[0])
         heights = [0] * cols
 

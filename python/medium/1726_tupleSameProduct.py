@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
-    def tupleSameProduct(self, nums: List[int]) -> int:
+    def tupleSameProduct(self, nums: list[int]) -> int:
         return self.tupleSameProductFrequencyMap(nums)
 
     # compute all products and create map of frequency of them
     # Go over frequency map and compute how many tuples there are
-    # Time O(n^2), Space O(n2) 
-    def tupleSameProductFrequencyMap(self, nums: List[int]) -> int:
-        products_frequency = dict()
+    # Time O(n^2), Space O(n2)
+    def tupleSameProductFrequencyMap(self, nums: list[int]) -> int:
+        products_frequency = {}
 
         for i in range(len(nums)):
             for j in range(i+1, len(nums)):
@@ -36,13 +33,13 @@ class Solution:
     # compute all products and create list of them
     # Sort list, if same product back to back then 8 pairs can make that
     # Time O(n^2logn), Space O(n2)
-    def tupleSameProductFrequencyCount(self, nums: List[int]) -> int:
+    def tupleSameProductFrequencyCount(self, nums: list[int]) -> int:
         products = []
 
         for i in range(len(nums)):
             for j in range(i+1, len(nums)):
                 products.append(nums[i] * nums[j])
-        
+
         products.sort()
 
         total_number_of_tuples = 0
@@ -72,7 +69,7 @@ class Solution:
 
     # Brute force implementation with some optimizations by creating hash map
     # Time O(n^3), Space O(n)
-    def tupleSameProductLessBruteForce(self, nums: List[int]) -> int:
+    def tupleSameProductLessBruteForce(self, nums: list[int]) -> int:
         # Sort the array for pruning purposes
         nums.sort()
         numsSet = set(nums)
@@ -89,13 +86,13 @@ class Solution:
                 # Find pairs that create targetProduct
                 for k in range(len(nums)):
                     # Make sure we aren't getting target with same pair as before
-                    if k == i or k == j:
+                    if k in (i, j):
                         continue
 
                     # If we are already too large numbers will just keep getting larger, so break out of this loop
                     if nums[k] > targetProduct:
                         break
-                    
+
                     # see if the current product is divisible by current num, if not skip
                     if targetProduct % nums[k] != 0:
                         continue
@@ -108,7 +105,7 @@ class Solution:
 
     # Brute force implementation where you sort the list then iterate over all pairs
     # Time O(n^4), space O(1)
-    def tupleSameProductBruteForce(self, nums: List[int]) -> int:
+    def tupleSameProductBruteForce(self, nums: list[int]) -> int:
         # Sort the array for pruning purposes
         nums.sort()
 
@@ -124,25 +121,25 @@ class Solution:
                 # Find pairs that create targetProduct
                 for k in range(len(nums)):
                     # Make sure we aren't getting target with same pair as before
-                    if k == i or k == j:
+                    if k in (i, j):
                         continue
-                    for l in range(len(nums)):
+                    for left in range(len(nums)):
                         # Make sure we aren't getting target with same pair as before
-                        if l == i or l == j or l == k:
+                        if left in (i, j, k):
                             continue
 
-                        testProduct = nums[k] * nums[l]
+                        testProduct = nums[k] * nums[left]
                         # if testProduct is the same as product we are looking for add tuple
                         # then break as the next number will be too large due to sorting
                         if testProduct == targetProduct:
                             numTuples += 1
                             break
                         # if testProduct is already larger than the target break as it won't get smaller
-                        elif testProduct > targetProduct:
+                        if testProduct > targetProduct:
                             break
 
         return numTuples
-    
+
 testCases = [
     [[1,3,4,12], 8],
     [[2,3,4,6], 8],

@@ -1,16 +1,13 @@
-from typing import List
-from math import comb
-
 class Solution:
     MOD = pow(10, 9) + 7
 
-    def numOfSubarrays(self, arr: List[int]) -> int:
+    def numOfSubarrays(self, arr: list[int]) -> int:
         self.validate_input(arr)
         return self.num_subarrays_prefix_sums(arr)
 
     # Time O(n) goes through full array once
     # Space O(1)
-    def num_subarrays_prefix_sums(self, arr: List[int]) -> int:
+    def num_subarrays_prefix_sums(self, arr: list[int]) -> int:
         prefix_sum = count = odd_count = 0
         even_count = 1
 
@@ -26,10 +23,10 @@ class Solution:
             count %= self.MOD  # To handle large results
 
         return count
-    
+
     # Time O(n) goes through full array once
     # Space O(1) only maintains a constant 2x2 array
-    def num_subarrays_dp(self, arr: List[int]) -> int:
+    def num_subarrays_dp(self, arr: list[int]) -> int:
         # dp to track counts for even and odd sum subarrays
         # dp[0][idx] is for sums that are even
         # dp[1][idx] is for sums that are odd
@@ -44,25 +41,25 @@ class Solution:
             idx = i & 1
             # Determines if the current element is odd (1) or even (0)
             parity = arr[i] & 1
-            
+
             # If the current element is odd, it contributes to odd subarrays
             # If the current element is even, it contributes to even subarrays
             dp[parity][idx] = (1 + dp[0][1 - idx]) % self.MOD
             dp[1 - parity][idx] = dp[1][1 - idx] % self.MOD
-            
+
             # Accumulate the count of odd subarrays
             count = (count + dp[1][idx]) % self.MOD
 
         return count
-    
-    def validate_input(self, arr: List[int]) -> None:
+
+    def validate_input(self, arr: list[int]) -> None:
         if len(arr) < 1 or len(arr) > pow(10,5):
             raise ValueError("arr must have between 1 and 10^5 entries in it")
         for num in arr:
-            if num < 1 or num > 100:
+            if num < 1 or num > 100:  # noqa: PLR2004
                 raise ValueError("every item in arr must be between 1 100")
 
-    
+
 test_cases = [
     [20, [2,1,2,2,1,2,1,2]],
     [4, [1,1,1]],

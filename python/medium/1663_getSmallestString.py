@@ -7,7 +7,7 @@ class Solution:
             if maxLeft >= k:
                 chars.append('a')
                 k -= 1
-            elif k - maxLeft < 26:
+            elif k - maxLeft < 26:  # noqa: PLR2004
                 chars.append(chr(96 + k - maxLeft))
                 k -= (k - maxLeft)
             else:
@@ -27,3 +27,5 @@ for n, k, expected in testCases:
     answer = implementation.getSmallestString(n, k)
     if answer != expected:
         print(f"FAILED TEST: Expected {expected} but got {answer}. INPUTS: n: {n} k: {k}")
+
+print("Ran all tests")

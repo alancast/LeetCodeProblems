@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Go over all friendships that can't talk to each other
     # Keep track of friend indexes who have a broken friendship
@@ -10,8 +7,8 @@ class Solution:
     def minimumTeachings(
         self,
         n: int,
-        languages: List[List[int]],
-        friendships: List[List[int]]
+        languages: list[list[int]],
+        friendships: list[list[int]]
     ) -> int:
         # Keeps track of people who are in a broken friendship
         broken_friendships_folks = set()
@@ -43,7 +40,7 @@ class Solution:
         # Optimization edge cases
         if len(broken_friendships_folks) == 0:
             return 0
-        elif len(broken_friendships_folks) == 2:
+        if len(broken_friendships_folks) == 2:  # noqa: PLR2004
             return 1
 
         # Now go over all languages and see how many of the folks know it
@@ -54,10 +51,10 @@ class Solution:
             for person in broken_friendships_folks:
                 if lang not in languages[person-1]:
                     count_need_to_learn += 1
-            
+
             # See if we have a new best answer
             answer = min(answer, count_need_to_learn)
-        
+
         return answer
 
 test_cases = [

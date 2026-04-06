@@ -1,11 +1,10 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Time O(n) as we just go through nums once
     # Space O(k) as we have a dictionary of length k
-    def distinctNumbers(self, nums: List[int], k: int) -> List[int]:
+    def distinctNumbers(self, nums: list[int], k: int) -> list[int]:
         n = len(nums)
         answer = []
         num_counts = defaultdict(int)
@@ -28,7 +27,7 @@ class Solution:
             answer.append(len(num_counts))
 
         return answer
-    
+
 test_cases = [
     [[3,2,2,2,3], [1,2,3,2,2,1,3], 3],
     [[1,2,3,4], [1,1,1,1,2,3,4], 4]

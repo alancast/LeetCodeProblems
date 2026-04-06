@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Iterate over that til out of extra students
     # Time O((c+s)logc) as we constantly push top max heap (log c) each time
     # Space O(c)
-    def maxAverageRatio(self, classes: List[List[int]], extraStudents: int) -> float:
+    def maxAverageRatio(self, classes: list[list[int]], extraStudents: int) -> float:
         # Populate the max_heap of how much adding an extra passing student will help
         add_student_max_heap = []
         for passer, total in classes:

@@ -1,6 +1,5 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -9,21 +8,21 @@ class Solution:
     # Djikstras algorithm
     # Time O(n + rlogr) n for creating structures rlogr for djikstras
     # Space O(n + r)
-    def countPaths(self, n: int, roads: List[List[int]]) -> int:
+    def countPaths(self, n: int, roads: list[list[int]]) -> int:
         # Create dependency graph
-        dependency_graph = defaultdict(list[int])
+        dependency_graph = defaultdict(list[tuple])
         for source, destination, time in roads:
             dependency_graph[source].append((destination, time))
             dependency_graph[destination].append((source, time))
-        
+
         # Create path counts array for how many different ways there are to get to a node
         path_counts = [0] * n
         path_counts[0] = 1
         # Create shortest_time array for shortest time to each node
         shortest_time = [float("inf")] * n
-        
+
         current_time = 0
-        djikstras: List[tuple] = []
+        djikstras: list[tuple] = []
         heappush(djikstras, (0,0))
         while djikstras:
             current_time, source_node = heappop(djikstras)
@@ -40,9 +39,9 @@ class Solution:
                 elif current_time + time == shortest_time[destination]:
                     path_counts[destination] += path_counts[source_node]
                     path_counts[destination] %= self.MOD
-        
+
         return path_counts[-1]
-    
+
 test_cases = [
     [4, 7, [[0,6,7],[0,1,2],[1,2,3],[1,3,3],[6,3,3],[3,5,1],[6,5,1],[2,5,1],[0,4,5],[4,6,2]]],
     [1, 2, [[1,0,10]]]

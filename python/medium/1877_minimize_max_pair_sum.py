@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort and then just pair max with min greedily
     # Time O(nlogn) for sort
     # Space O(n) for sort
-    def minPairSum(self, nums: List[int]) -> int:
+    def minPairSum(self, nums: list[int]) -> int:
         n = len(nums)
         nums.sort()
 

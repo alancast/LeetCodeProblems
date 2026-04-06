@@ -1,11 +1,10 @@
-from collections import Counter, defaultdict
-from typing import List
+from collections import Counter
 
 
 class FindSumPairs:
     # Time O(n)
     # Space O(n)
-    def __init__(self, nums1: List[int], nums2: List[int]):
+    def __init__(self, nums1: list[int], nums2: list[int]):
         self.nums1_count = Counter(nums1)
         self.nums2_count = Counter(nums2)
         self.nums2 = nums2
@@ -13,7 +12,7 @@ class FindSumPairs:
     # Time O(1)
     def add(self, index: int, val: int) -> None:
         self.nums2_count[self.nums2[index]] -= 1
-        self.nums2_count[self.nums2[index] + val] += 1        
+        self.nums2_count[self.nums2[index] + val] += 1
         self.nums2[index] += val
 
     # Time O(n)
@@ -25,7 +24,7 @@ class FindSumPairs:
             if target in self.nums2_count:
                 answer += (num1_count * self.nums2_count[target])
 
-        return answer        
+        return answer
 
 
 # Your FindSumPairs object will be instantiated and called as such:

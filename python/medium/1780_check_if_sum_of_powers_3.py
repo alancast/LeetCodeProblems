@@ -12,11 +12,11 @@ class Solution:
         while num > 0 and n > 0:
             if n >= num:
                 n -= num
-            
+
             num //= 3
-            
+
         return n == 0
-    
+
 test_cases = [
     [True, 12],
     [True, 91],

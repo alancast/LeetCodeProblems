@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Go over colors once, as soon as a color shows up twice in a row
     # Greedily remove whichever is the min of the combo
     # Time O(n)
     # Space O(1)
-    def minCost(self, colors: str, neededTime: List[int]) -> int:
+    def minCost(self, colors: str, neededTime: list[int]) -> int:
         n = len(colors)
 
         prev_kept_idx = 0

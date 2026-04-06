@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # If it's an even number of negative numbers you can make all positive
     # If odd number, just pick smallest number and subtract that
     # So go over whole matrix and track and sum
     # Time O(n^2) just go over each cell once
     # Space O(1)
-    def maxMatrixSum(self, matrix: List[List[int]]) -> int:
+    def maxMatrixSum(self, matrix: list[list[int]]) -> int:
         n = len(matrix)
 
         abs_sum = num_neg = 0
@@ -30,9 +27,9 @@ class Solution:
         # See if even or odd num of negative numbers
         if num_neg % 2 == 0:
             return abs_sum
-        else:
-            # Must subtract it twice because it was initially added
-            return abs_sum - (2 * int(smallest_abs))
+
+        # Must subtract it twice because it was initially added
+        return abs_sum - (2 * int(smallest_abs))
 
 test_cases = [
     [4, [[1,-1],[-1,1]]],

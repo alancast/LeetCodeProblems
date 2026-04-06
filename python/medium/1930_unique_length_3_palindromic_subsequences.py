@@ -6,29 +6,29 @@ class Solution:
     def countPalindromicSubsequence(self, s: str) -> int:
         first = [-1] * 26
         last = [-1] * 26
-        
+
         # Go over string and compute first and last of each index
         for i in range(len(s)):
             curr = ord(s[i]) - ord("a")
             # Only set first if not done
             if first[curr] == -1:
                 first[curr] = i
-            
+
             # Always set last
             last[curr] = i
-        
+
         # Go over all alphabet and see how many palindromes can be made
         answer = 0
         for i in range(26):
             # Make sure this char can be a palindrome
             if first[i] == -1 or last[i] == first[i]:
                 continue
-                
+
             # Create a set of all chars between first and last (set because must be unique)
             between = set()
             for j in range(first[i] + 1, last[i]):
                 between.add(s[j])
-            
+
             answer += len(between)
 
         return answer

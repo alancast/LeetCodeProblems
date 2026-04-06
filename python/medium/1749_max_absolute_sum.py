@@ -1,9 +1,7 @@
-from typing import List
-
 class Solution:
     # Time O(n) goes through nums once
     # Space O(1)
-    def maxAbsoluteSum(self, nums: List[int]) -> int:
+    def maxAbsoluteSum(self, nums: list[int]) -> int:
         positive_sum = negative_sum = answer = 0
         for num in nums:
             positive_sum = max(0, positive_sum + num)
@@ -11,10 +9,10 @@ class Solution:
             answer = max(answer, positive_sum, abs(negative_sum))
 
         return answer
-    
+
     # Time O(n) goes through nums once
     # Space O(1)
-    def maxAbsoluteSum_prefix_sums(self, nums: List[int]) -> int:
+    def maxAbsoluteSum_prefix_sums(self, nums: list[int]) -> int:
         min_prefix_sum = 0
         max_prefix_sum = 0
         prefix_sum = 0
@@ -26,7 +24,7 @@ class Solution:
             max_prefix_sum = max(max_prefix_sum, prefix_sum)
 
         return max_prefix_sum - min_prefix_sum
-    
+
 test_cases = [
     [44, [-7,-1,0,-2,1,3,8,-2,-6,-1,-10,-6,-6,8,-4,-9,-4,1,4,-9]],
     [14, [7,-4,-2,-2,-6]],

@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Compute prefix sum of all rows and columns and just check squares
     # Go from large to small, stop as soon as find first one
     # Time O(mn)
     # Space O(mn)
-    def largestMagicSquare(self, grid: List[List[int]]) -> int:
+    def largestMagicSquare(self, grid: list[list[int]]) -> int:  # noqa: PLR0912
         rows = len(grid)
         cols = len(grid[0])
 
@@ -46,11 +43,11 @@ class Solution:
                         # Just classic end minus start, but 0 being potential makes this ugly if
                         if col > 0:
                             row_sum -= row_sums[next_row][col - 1]
-                        
+
                         if row_sum != target_sum:
                             continue_check = False
                             break
-                    
+
                     # If not all the rows have the same sum, no reason to check rest
                     if not continue_check:
                         continue

@@ -1,12 +1,11 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Hash map and two pointers constantly calculating sum
     # Time O(n) as we go over the whole list once (twice cuz 2 pointers)
     # Space O(n) as worst case full array is in map
-    def maximumUniqueSubarray(self, nums: List[int]) -> int:
+    def maximumUniqueSubarray(self, nums: list[int]) -> int:
         n = len(nums)
         left = total = answer = 0
         num_counts = defaultdict(int)
@@ -29,7 +28,7 @@ class Solution:
             answer = max(answer, total)
 
         return answer
-    
+
 test_cases = [
     [17, [4,2,4,5,6]],
     [8, [5,2,1,2,5,2,1,2,5]]
