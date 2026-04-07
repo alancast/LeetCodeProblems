@@ -1,9 +1,8 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
-    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:
+    def maxTaxiEarnings(self, n: int, rides: list[list[int]]) -> int:
         dp = [0] * (n + 1)
         # Sort by start time
         rides.sort()
@@ -16,10 +15,10 @@ class Solution:
             while rides and i == rides[-1][0]:
                 start, end, tip = rides.pop()
                 dp[i] = max(dp[i], dp[end] + end - start + tip)
-                
+
         return dp[0]
 
-    def maxTaxiEarningsSuboptimal(self, n: int, rides: List[List[int]]) -> int:
+    def maxTaxiEarningsSuboptimal(self, n: int, rides: list[list[int]]) -> int:
         rideStartAt = defaultdict(list)
         for start, end, tip in rides:
             # Each entry is in format [end, earnings]
@@ -45,3 +44,5 @@ for n, rides, expected in testCases:
     if answer != expected:
         print(f"FAILED TEST: Got {answer}, expected {expected}")
         print(f"INPUTS: n: {n}, rides: {rides}")
+
+print("Ran all tests")
