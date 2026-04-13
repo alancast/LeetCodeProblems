@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through array once
     # Space O(1)
-    def numberOfArrays(self, differences: List[int], lower: int, upper: int) -> int:
+    def numberOfArrays(self, differences: list[int], lower: int, upper: int) -> int:
         # Iterate over differences, find min and max
         # Hidden sequence must span max - min
         # Number of sequences is difference - span (+1)
@@ -17,7 +14,7 @@ class Solution:
         span = running_max - running_min
 
         return max(0, upper - lower - span + 1)
-    
+
 test_cases = [
     [2, [1,-3,4], 1, 6],
     [4, [3,-4,5,1,-2], -4, 5],

@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through the whole array once
     # Space O(1)
-    def longestSubarray(self, nums: List[int]) -> int:
+    def longestSubarray(self, nums: list[int]) -> int:
         answer = count = 0
         last_num = max_num = -1
 
@@ -21,11 +18,11 @@ class Solution:
             # Longer streak of same max num
             elif num == max_num:
                 answer = max(answer, count)
-            
+
             last_num = num
 
         return answer
-    
+
 test_cases = [
     [2, [1,2,3,3,2,2]],
     [1, [1,2,3,4]],

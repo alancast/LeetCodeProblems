@@ -1,13 +1,12 @@
 from bisect import bisect_left
 from math import ceil
-from typing import List
 
 
 class Solution:
     # Sort potions, then do binary search for each spell to find potion cutoff
     # Time O(mlogm + nlogm)
     # Space O(m) for sort
-    def successfulPairs(self, spells: List[int], potions: List[int], success: int) -> List[int]:
+    def successfulPairs(self, spells: list[int], potions: list[int], success: int) -> list[int]:
         n = len(spells)
         m = len(potions)
 

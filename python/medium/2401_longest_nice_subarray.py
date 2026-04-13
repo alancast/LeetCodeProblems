@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sliding window and bitwise or
     # Time O(n) as we go through nums at most twice
     # Space O(1)
-    def longestNiceSubarray(self, nums: List[int]) -> int:
+    def longestNiceSubarray(self, nums: list[int]) -> int:
         n = len(nums)
         left = 0
         right = longest = 1
@@ -22,7 +19,7 @@ class Solution:
                     left_num = nums[left]
                     ored_num = ored_num & ~left_num
                     left += 1
-                
+
                 ored_num = ored_num | right_num
 
             right += 1
@@ -31,7 +28,7 @@ class Solution:
 
     # Time O(n^2) as we see how long we can make from every i
     # Space O(1)
-    def longestNiceSubarray_brute_force(self, nums: List[int]) -> int:
+    def longestNiceSubarray_brute_force(self, nums: list[int]) -> int:
         n = len(nums)
         longest = 1
 
@@ -49,7 +46,7 @@ class Solution:
             longest = max(longest,streak)
 
         return longest
-    
+
 test_cases = [
     [3, [1,3,8,48,10]],
     [4, [1,3,8,48,1,4]],

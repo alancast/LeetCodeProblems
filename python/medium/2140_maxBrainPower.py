@@ -1,11 +1,9 @@
-from typing import List
-
 class Solution:
     # Dynamic programming
     # Time O(n) Space O(n)
-    def mostPoints(self, questions: List[List[int]]) -> int:
-        # Work backwards. 
-        # Create a list of the same size and populate it with 
+    def mostPoints(self, questions: list[list[int]]) -> int:
+        # Work backwards.
+        # Create a list of the same size and populate it with
         # the max value obtainable if you answer that question
         # Which can be computed by points + question[i + skipNum] if you take the question
         # or question[i+i] if you skip it. Whichever is greater
@@ -19,11 +17,11 @@ class Solution:
             # we are able to answer this and another
             if (i + num_skip) < (num_questions-1):
                 if_answered = value + points_attainable[i+num_skip+1]
-            
+
             points_attainable[i] = max(points_attainable[i+1], if_answered)
 
         return points_attainable[0]
-    
+
 testCases = [
     [19, [[9,1], [3,1], [5,1], [10,1], [4,1]]],
     [7, [[7,1], [4,1]]],

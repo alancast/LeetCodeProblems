@@ -24,9 +24,9 @@ class Solution:
                     answer += cars_going_right + 1
                     stopped_car_to_left = True
                 # This car will eventually hit the collision
-                elif stopped_car_to_left == True:
+                elif stopped_car_to_left:
                     answer += 1
-                
+
                 # Make sure there are no more cars going right
                 cars_going_right = 0
             # Car staying put will only be hit by cars going right
@@ -34,7 +34,7 @@ class Solution:
                 # All accidents will be stationary
                 if cars_going_right > 0:
                     answer += cars_going_right
-                
+
                 cars_going_right = 0
                 stopped_car_to_left = True
             # Car is going right

@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over list once and keep track of descent lengths
     # Time O(n)
     # Space O(1)
-    def getDescentPeriods(self, prices: List[int]) -> int:
+    def getDescentPeriods(self, prices: list[int]) -> int:
         n = len(prices)
 
         prev_price = prices[0]

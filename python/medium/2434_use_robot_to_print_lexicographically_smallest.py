@@ -8,7 +8,7 @@ class Solution:
     def robotWithString(self, s: str) -> str:
         # O(n) as go through full s for counting
         char_counts = Counter(s)
-        
+
         t = []
         answer = []
         minCharacter = "a"
@@ -26,7 +26,7 @@ class Solution:
             # Put all of t into the answer until there is a letter in S left smaller
             while t and t[-1] <= minCharacter:
                 answer.append(t.pop())
-    
+
         return ''.join(answer)
 
     # Time O(n) as we process every letter once and do a bunch of O(1) operations with it
@@ -41,14 +41,14 @@ class Solution:
         answer = ""
         while True:
             # find what letter we should be looking for
-            while count_index < 26 and letter_counts[count_index] == 0:
+            while count_index < 26 and letter_counts[count_index] == 0:  # noqa: PLR2004
                 count_index += 1
 
             # if count index == 26 we have gone through string so append t backwards
-            if count_index == 26:
+            if count_index == 26:  # noqa: PLR2004
                 t_str = ''.join(reversed(t))
                 return answer + t_str
-            
+
             # compare what's smaller, count_index or the end of t (if there is anything in t)
             t_val = float('inf')
             if len(t) > 0:
@@ -68,7 +68,7 @@ class Solution:
                     t.append(s_char)
 
                 s_index += 1
-    
+
 test_cases = [
     ["azz", "zza"],
     ["abc", "abc"],

@@ -1,6 +1,5 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class FoodRatings:
@@ -11,7 +10,7 @@ class FoodRatings:
     # Map of cuisine to priority queue of (score, food)
     cuisines_best: defaultdict
 
-    def __init__(self, foods: List[str], cuisines: List[str], ratings: List[int]) -> None:
+    def __init__(self, foods: list[str], cuisines: list[str], ratings: list[int]) -> None:
         self.food_ratings = defaultdict(int)
         self.food_to_cuisine = defaultdict(str)
         self.cuisines_best = defaultdict(list)
@@ -49,7 +48,7 @@ class FoodRatings:
             # Make sure it's still the rating and hasn't changed
             if self.food_ratings[food] == -rating:
                 return food
-            
+
             # If rating has changed then pop the queue entry and try next one
             heappop(self.cuisines_best[cuisine])
 

@@ -1,13 +1,13 @@
 from collections import defaultdict
-from typing import List
+
 
 class Solution:
-    def countBadPairs(self, nums: List[int]) -> int:
+    def countBadPairs(self, nums: list[int]) -> int:
         return self.__count_bad_pairs_count_good(nums)
 
     # Total pairs = n(n-1)/2. Subtract good pairs
     # Time O(n) Space O(n)
-    def __count_bad_pairs_count_good(self, nums: List[int]) -> int:
+    def __count_bad_pairs_count_good(self, nums: list[int]) -> int:
         bad_pairs = (len(nums) * (len(nums) - 1)) // 2
         good_pairs = 0
 
@@ -29,7 +29,7 @@ class Solution:
 
     # Brute force n^2 calculations
     # Time O(n^2) Space O(1)
-    def __count_bad_pairs_brute_force(self, nums: List[int]) -> int:
+    def __count_bad_pairs_brute_force(self, nums: list[int]) -> int:
         bad_pairs = 0
         for i in range(len(nums)):
             for j in range(i + 1, len(nums)):

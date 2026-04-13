@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Bidirectional DFS
     # Time O(n)
     # Space O(n)
-    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+    def closestMeetingNode(self, edges: list[int], node1: int, node2: int) -> int:
         visited1 = set()
         visited2 = set()
 
@@ -30,12 +27,12 @@ class Solution:
                 return node1
             if node2 in visited1:
                 return node2
-            
+
             # Update node for next round
             if node1 != -1:
                 node1 = edges[node1]
             if node2 != -1:
-                node2 = edges[node2]       
+                node2 = edges[node2]
 
         # In case there is no common node
         return -1
@@ -43,7 +40,7 @@ class Solution:
     # Do DFS from two nodes and sum distances, then find min of maxes
     # Time O(n)
     # Space O(n)
-    def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
+    def closestMeetingNode_dfs(self, edges: list[int], node1: int, node2: int) -> int:
         n = len(edges)
 
         # Store distances to a node from node 1 and 2
@@ -56,16 +53,15 @@ class Solution:
         min_of_max = float('inf')
         # Iterate over nodes to find the min of max
         for i in range(n):
-            if dist1[i] >= 0 and dist2[i] >= 0:
-                if max(dist1[i], dist2[i]) < min_of_max:
-                    min_of_max = max(dist1[i], dist2[i])
-                    answer = i
+            if dist1[i] >= 0 and dist2[i] >= 0 and max(dist1[i], dist2[i]) < min_of_max:
+                min_of_max = max(dist1[i], dist2[i])
+                answer = i
 
         return answer
-    
+
     # Modifies distances array
     # Time O(n)
-    def _dfs(self, current: int, edges: List[int], distances: list[int]) -> None:
+    def _dfs(self, current: int, edges: list[int], distances: list[int]) -> None:
         distance = 0
 
         # Search until we run out of edges or we hit a cycle
@@ -73,7 +69,7 @@ class Solution:
             distances[current] = distance
             distance += 1
             current = edges[current]
-    
+
 test_cases = [
     [4, [4,3,0,5,3,-1], 4, 0],
     [2, [2,2,3,-1], 0, 1],

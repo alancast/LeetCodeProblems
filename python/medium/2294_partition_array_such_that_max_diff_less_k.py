@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort then just go through and count
     # Time O(nlogn) for sorting
     # Space O(n) for sort algo
-    def partitionArray(self, nums: List[int], k: int) -> int:
+    def partitionArray(self, nums: list[int], k: int) -> int:
         nums.sort()
 
         answer = 1
@@ -16,7 +13,7 @@ class Solution:
                 lower_bound = num
 
         return answer
-    
+
 test_cases = [
     [2, [3,6,1,2,5], 2],
     [2, [1,2,3], 1],

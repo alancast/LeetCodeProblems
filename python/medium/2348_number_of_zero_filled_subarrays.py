@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over array once and count consecutive 0's and do math
     # Time O(n)
     # Space O(1)
-    def zeroFilledSubarray(self, nums: List[int]) -> int:
+    def zeroFilledSubarray(self, nums: list[int]) -> int:
         answer = 0
         count = 0
 

@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # There is a way to do this with math that is O(n)
     # Time O(n)
     # Space O(1)
-    def triangularSum(self, nums: List[int]) -> int:
+    def triangularSum(self, nums: list[int]) -> int:
         n=len(nums)-1
 
         answer = nums[0]
         sum_multiple = 1
-    
+
         # Multiply each number by how many times it will be added to get sum
         for i in range(1, n+1):
             sum_multiple = (sum_multiple * (n-i+1))//i
@@ -22,14 +19,14 @@ class Solution:
     # Modify array in place to save space. Just do the additions
     # Time O(n^2)
     # Space O(1)
-    def triangularSum_brute(self, nums: List[int]) -> int:
+    def triangularSum_brute(self, nums: list[int]) -> int:
         end = len(nums)
 
         while end > 0:
             for i in range(end-1):
                 nums[i] += nums[i+1]
                 nums[i] %= 10
-            
+
             end -= 1
 
         return nums[0]

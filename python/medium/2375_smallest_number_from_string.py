@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def smallestNumber(self, pattern: str) -> str:
         self._validate_input(pattern)
         return self._smallest_number_precomputed_d_length(pattern)
-    
+
     # Time O(n) as we go through the pattern twice
     # Space O(n) as we create result list and d len list each of size n
     def _smallest_number_precomputed_d_length(self, pattern: str) -> str:
@@ -56,7 +53,7 @@ class Solution:
             if index == len(pattern) or pattern[index] == 'I':
                 result[previous_index:] = reversed(result[previous_index:])
                 previous_index = index + 1
-           
+
         return ''.join(result)
 
     # Time O(n) as we go through the pattern once
@@ -73,19 +70,19 @@ class Solution:
             # If 'I' is encountered or we reach the end, pop all stack elements
             if index == len(pattern) or pattern[index] == "I":
                 while num_stack:
-                    result.append(str(num_stack.pop()))     
-           
+                    result.append(str(num_stack.pop()))
+
         return ''.join(result)
-    
+
     # Time O(n) as recursion builds the number by going through the pattern once
     # Space O(n) as the call stack and result array are of size n
     def _smallest_number_recursion(self, pattern: str) -> str:
         result = []
         self._build_sequence(0, 0, pattern, result)
         return ''.join(result[::-1])
-    
+
     # Recursively build the sequence
-    def _build_sequence(self, current_index: int, current_count: int, pattern: str, result: List[str]) -> int:
+    def _build_sequence(self, current_index: int, current_count: int, pattern: str, result: list[str]) -> int:
         if current_index != len(pattern):
             if pattern[current_index] == "I":
                 # If 'I', increment the count and move to the next index
@@ -110,6 +107,9 @@ class Solution:
             if self._is_num_is_valid(i, pattern):
                 return str(i)
 
+        # This will never happen, could throw here instead
+        return ""
+
     def _is_num_is_valid(self, num: int, pattern: str) -> bool:
         num_str = str(num)
         # Make sure there are no duplicate chars
@@ -117,7 +117,7 @@ class Solution:
         for char in num_str:
             if char in seen or char == '0':
                 return False
-            
+
             seen.add(char)
 
         # Make sure every rule is followed
@@ -125,20 +125,19 @@ class Solution:
             if char == 'I':
                 if num_str[i] > num_str[i+1]:
                     return False
-            elif char == 'D':
-                if num_str[i] < num_str[i+1]:
-                    return False
+            elif char == 'D' and num_str[i] < num_str[i+1]:
+                return False
 
         return True
 
     def _validate_input(self, pattern: str) -> None:
-        if len(pattern) < 1 or len(pattern) > 8:
+        if len(pattern) < 1 or len(pattern) > 8:  # noqa: PLR2004
             raise ValueError("pattern must be between 1 and 8 characters")
-        
+
         for char in pattern:
-            if char != 'D' and char != 'I':
+            if char not in {'D', 'I'}:
                 raise ValueError("pattern must consist of only I and D")
-    
+
 test_cases = [
     ["123549876", "IIIDIDDD"],
     ["21", "D"],

@@ -1,5 +1,5 @@
-from collections import defaultdict
 import heapq
+from collections import defaultdict
 
 
 # Implementation with two maps and lazy find
@@ -52,7 +52,7 @@ class NumberContainersNotLazy:
             # Make sure it's a real change
             if self.indexMap[index] == number:
                 return
-            
+
             # Update numberMap for what was there O(nlogn)
             self.removeIndexFromNumberMap(index, self.indexMap[index])
             # add number at index
@@ -78,7 +78,7 @@ class NumberContainersNotLazy:
         # Check if list is now empty
         if len(self.numberMap[number]) == 0:
             self.numberMap.pop(number)
-        
+
     def addIndexToNumberMap(self, index: int, number:int) -> None:
         # Number not in number map
         if number not in self.numberMap:
@@ -86,4 +86,4 @@ class NumberContainersNotLazy:
         # Number already in number map
         else:
             self.numberMap[number].append(index)
-            self.numberMap[number].sort()        
+            self.numberMap[number].sort()

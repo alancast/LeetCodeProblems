@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over diagonals, create temp array, sort temp array then edit in place
     # Time O(n * nlogn)
     # Space O(n)
-    def sortMatrix(self, grid: List[List[int]]) -> List[List[int]]:
+    def sortMatrix(self, grid: list[list[int]]) -> list[list[int]]:
         n = len(grid)
 
         # Do bottom left triangle diagonals
@@ -30,7 +27,7 @@ class Solution:
                 grid[temp_row][col_index] = temp_array[col_index]
                 temp_row += 1
                 col_index += 1
-        
+
         # Do top right triangle diagonals
         for col_index in range(1, n):
             temp_array = []

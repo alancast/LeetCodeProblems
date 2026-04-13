@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go through array twice
     # Space O(1) as all we have is answer array
-    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+    def pivotArray(self, nums: list[int], pivot: int) -> list[int]:
         n = len(nums)
 
         answer = [pivot] * n
@@ -26,10 +23,10 @@ class Solution:
                 high_index += 1
 
         return answer
-    
+
     # Time O(n) as we go through array and then merge
     # Space O(n) as we have arrays that add up to space n
-    def pivot_array_merge_lists(self, nums: List[int], pivot: int) -> List[int]:
+    def pivot_array_merge_lists(self, nums: list[int], pivot: int) -> list[int]:
         lower = []
         same = []
         higher = []
@@ -42,7 +39,7 @@ class Solution:
                 higher.append(num)
 
         return lower + same + higher
-    
+
 test_cases = [
     [[9,5,3,10,10,12,14], [9,12,5,10,14,3,10], 10],
     [[-3,2,4,3], [-3,4,3,2], 2]

@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Each time you hit a reverse add 4 and pop them
     # Time O(n) as we go through each word
     # Space O(n) as the dictionary could be all the words
-    def longestPalindrome(self, words: List[str]) -> int:
+    def longestPalindrome(self, words: list[str]) -> int:
         answer = 0
 
         # Dictionary for what words to search for for palindrome
@@ -42,7 +41,7 @@ class Solution:
             answer += 2
 
         return answer
-    
+
 test_cases = [
     [6, ["lc","cl","gg"]],
     [8, ["ab","ty","yt","lc","cl","ab"]],

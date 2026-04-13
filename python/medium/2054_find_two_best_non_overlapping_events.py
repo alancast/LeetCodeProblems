@@ -1,12 +1,11 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Min heap
     # Time O(nlogn)
     # Space O(n)
-    def maxTwoEvents(self, events: List[List[int]]) -> int:
+    def maxTwoEvents(self, events: list[list[int]]) -> int:
         # Create a list to store the pair (end time, value) for events
         pq = []
 
@@ -37,7 +36,7 @@ class Solution:
     # Then sort based on time, and go over once and compute answer
     # Time O(nlogn) for sort
     # Space O(n) (really 2 n)
-    def maxTwoEvents_single_pass(self, events: List[List[int]]) -> int:
+    def maxTwoEvents_single_pass(self, events: list[list[int]]) -> int:
         times = []
         for event in events:
             # 1 denotes start time.
@@ -66,7 +65,7 @@ class Solution:
     # DP of max at given time and how many events used so far
     # Time O(nlogn)
     # Space O(n)
-    def maxTwoEvents_dp(self, events: List[List[int]]) -> int:
+    def maxTwoEvents_dp(self, events: list[list[int]]) -> int:
         # Sort by start time
         events.sort()
         # DP array of max possible to get there with 0, 1, or 2 events used
@@ -75,14 +74,14 @@ class Solution:
 
     # Recursive function to find the greatest sum for the pairs.
     def find_events(
-            self, 
-            events: List[List[int]], 
-            idx: int, 
-            cnt: int, 
-            dp: List[List[int]]
+            self,
+            events: list[list[int]],
+            idx: int,
+            cnt: int,
+            dp: list[list[int]]
     ) -> int:
         # We have already picked 2 events or are at end
-        if cnt == 2 or idx >= len(events):
+        if cnt == 2 or idx >= len(events):  # noqa: PLR2004
             return 0
 
         # This entry has not been compute, so do that
@@ -99,7 +98,7 @@ class Solution:
                     high = mid
                 else:
                     low = mid + 1
-            
+
             # Compute score if we include this event
             include = events[idx][2]
             # See if we can also add an event after this one
@@ -118,7 +117,7 @@ class Solution:
     # Sort by event weight, then evaluate pairs
     # Time O(nlogn + n^2)
     # Space O(n)
-    def maxTwoEvents_brute_force(self, events: List[List[int]]) -> int:
+    def maxTwoEvents_brute_force(self, events: list[list[int]]) -> int:
         n = len(events)
 
         # Sort by event value

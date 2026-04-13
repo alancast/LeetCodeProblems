@@ -25,7 +25,7 @@ class Solution:
                     current_num -= pow(2, index - last_removed + 1)
 
         return answer
-    
+
 test_cases = [
     [5, "1001010", 5],
     [6, "00101001", 1]

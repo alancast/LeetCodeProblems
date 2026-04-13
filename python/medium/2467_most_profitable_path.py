@@ -1,14 +1,13 @@
 from collections import deque
-from typing import List
 
 
 class Solution:
-    def mostProfitablePath(self, edges: List[List[int]], bob: int, amount: List[int]) -> int:
+    def mostProfitablePath(self, edges: list[list[int]], bob: int, amount: list[int]) -> int:
         n = len(amount)
         max_income = float("-inf")
         # Adjacency matrix
         tree = [[] for _ in range(n)]
-        bob_path = dict()
+        bob_path = {}
         visited = [False] * n
 
         # Form adjacency matrix
@@ -27,10 +26,9 @@ class Solution:
             if node == 0:
                 return True
             for neighbor in tree[node]:
-                if not visited[neighbor]:
-                    if find_bob_path(neighbor, time + 1):
-                        return True
-            
+                if not visited[neighbor] and find_bob_path(neighbor, time + 1):
+                    return True
+
             # If we reach here it means this node was not on Bob's path to 0
             bob_path.pop(node, None)
             return False
@@ -61,8 +59,8 @@ class Solution:
                     queue.append((neighbor, time + 1, income))
             visited[node] = True
 
-        return max_income
-    
+        return int(max_income)
+
 test_cases = [
     [6, [[0,1],[1,2],[1,3],[3,4]], 3, [-2,4,2,-4,6]],
     [-7280, [[0,1]], 1, [-7280,2350]]

@@ -1,13 +1,12 @@
 from functools import cache
-from typing import List
 
 
 class Solution:
-    # Recursive and memoized implementation. 
+    # Recursive and memoized implementation.
     # Pretty similar to brute force but slight optimizations
     # Time O(2^n)
     # Space O(n) for recursive callstack
-    def countMaxOrSubsets(self, nums: List[int]) -> int:
+    def countMaxOrSubsets(self, nums: list[int]) -> int:
         n = len(nums)
 
         # Calculate the maximum possible OR value
@@ -21,11 +20,11 @@ class Solution:
             # Base case: Reached end and not right number
             if i == n and cur_or != max_or_value:
                 return 0
-            
+
             # Base case: Reached max, so all possible subsets after this valid
             if cur_or == max_or_value:
                 return 2 ** (n-i)
-            
+
             cnt = 0
             # Include num
             cnt += recur(cur_or|nums[i], i+1)
@@ -33,15 +32,14 @@ class Solution:
             cnt += recur(cur_or, i +1)
 
             return cnt
-        
-        answer = recur(0, 0)
-        return answer
+
+        return recur(0, 0)
 
     # Memory efficient implementation but slow
     # Finds max or value and then does bitwise manipulation to count subsets that equal it
     # Time O(n * 2^n) as there are 2^n possible subsets and we go through full computation on all
     # Space O(1)
-    def countMaxOrSubsets_space_efficient(self, nums: List[int]) -> int:
+    def countMaxOrSubsets_space_efficient(self, nums: list[int]) -> int:
         # Calculate the maximum possible OR value
         max_or_value = 0
         for num in nums:
@@ -71,7 +69,7 @@ class Solution:
     # A subset problem to prune recursing down that path
     # Time O(n*maxvalue) as there are at most n*maxvalue entries in memo array and O(1)
     # Space O(n*maxvalue)
-    def countMaxOrSubsets_memo(self, nums: List[int]) -> int:
+    def countMaxOrSubsets_memo(self, nums: list[int]) -> int:
         # Find Max value by or-ing full array
         max_or_value = 0
         n = len(nums)
@@ -87,11 +85,11 @@ class Solution:
 
     def _count_subsets_memo(
         self,
-        nums: List[int],
+        nums: list[int],
         index: int,
         current_or: int,
         target_or: int,
-        memo: List[List[int]],
+        memo: list[list[int]],
     ) -> int:
         # Base case: reached the end of the array
         if index == len(nums):
@@ -119,7 +117,7 @@ class Solution:
     # And see if they equal max value or not
     # Time O(2^n)
     # Space O(n) recursive call stack
-    def countMaxOrSubsets_brute(self, nums: List[int]) -> int:
+    def countMaxOrSubsets_brute(self, nums: list[int]) -> int:
         # Find Max value by or-ing full array
         max_or_value = 0
         for num in nums:
@@ -129,7 +127,7 @@ class Solution:
         return self._count_subsets(nums, 0, 0, max_or_value)
 
     def _count_subsets(
-        self, nums: List[int], index: int, current_or: int, target_or: int
+        self, nums: list[int], index: int, current_or: int, target_or: int
     ) -> int:
         # Base case: reached the end of the array
         if index == len(nums):
@@ -148,7 +146,7 @@ class Solution:
         # Return the sum of both cases
         return count_without + count_with
 
-    
+
 test_cases = [
     [2, [3,1]],
     [7, [2,2,2]],

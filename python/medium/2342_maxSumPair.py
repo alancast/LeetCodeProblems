@@ -1,9 +1,9 @@
 from collections import defaultdict
-from typing import List
+
 
 class Solution:
     # Time O(n log(m)) space O(log(m)) where m is power of 10 of largest num, so effectively O(1)
-    def maximumSum(self, nums: List[int]) -> int:
+    def maximumSum(self, nums: list[int]) -> int:
         sum_to_max_num_map = defaultdict()
         maxSum = -1
         # Loop through all the numbers
@@ -16,21 +16,20 @@ class Solution:
             if digitSum in sum_to_max_num_map:
                 tempSum = num + sum_to_max_num_map[digitSum]
                 maxSum = max(tempSum, maxSum)
-                if num > sum_to_max_num_map[digitSum]:
-                    sum_to_max_num_map[digitSum] = num
+                sum_to_max_num_map[digitSum] = max(sum_to_max_num_map[digitSum], num)
             else:
                 sum_to_max_num_map[digitSum] = num
 
         return maxSum
-    
+
     def computeSumOfDigits(self, num: int) -> int:
         sum = 0
         while num > 0:
             sum += (num % 10)
             num //= 10
-        
+
         return sum
-    
+
 testCases = [
     [[1, 2, 3, 4], -1],
     [[18, 43, 36, 13, 7], 54],

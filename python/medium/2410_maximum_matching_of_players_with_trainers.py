@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(plogp + tlogt)
     # Space O(p + t) for sorting
-    def matchPlayersAndTrainers(self, players: List[int], trainers: List[int]) -> int:
+    def matchPlayersAndTrainers(self, players: list[int], trainers: list[int]) -> int:
         players.sort()
         p = len(players)
 
@@ -22,7 +19,7 @@ class Solution:
                 player_index += 1
 
         return matches
-    
+
 test_cases = [
     [2, [4,7,9], [8,2,5,8]],
     [1, [1,1,1], [10]]

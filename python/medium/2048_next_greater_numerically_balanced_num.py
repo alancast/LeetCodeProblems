@@ -115,13 +115,13 @@ balance = [
 ]
 
 class Solution:
-    # If we precompute all the numbers it's just binary search. 
+    # If we precompute all the numbers it's just binary search.
     # Likely worth it to precompute once for fast tradeoff
     # Time O(logC)
     # Space O(C)
     def nextBeautifulNumber(self, n: int) -> int:
         return balance[bisect_right(balance, n)]
-    
+
     # Just start at n and try all numbers above
     # Time O(C - n)
     # Space O(1)
@@ -131,7 +131,7 @@ class Solution:
             count = Counter(str(i))
             if all(count[d] == int(d) for d in count):
                 return i
-        
+
         # If invalid input is given
         return -1
 

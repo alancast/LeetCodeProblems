@@ -1,12 +1,8 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     # Binary search to see min number of candies that we can give
     # Time O(nlogn)
     # Space O(1)
-    def maximumCandies(self, candies: List[int], k: int) -> int:
+    def maximumCandies(self, candies: list[int], k: int) -> int:
         right = sum(candies) // k
         left = 1
 
@@ -19,16 +15,16 @@ class Solution:
             else:
                 right = mid - 1
                 index = right
-        
+
         return index
-    
+
     # Time O(n)
-    def _can_give_n_candies(self, candies: List[int], k: int, n: int) -> bool:
+    def _can_give_n_candies(self, candies: list[int], k: int, n: int) -> bool:
         for num in candies:
             k -= (num // n)
-        
-        return k <= 0 
-    
+
+        return k <= 0
+
 test_cases = [
     [5, [5,8,6], 3],
     [0, [2,5], 11],

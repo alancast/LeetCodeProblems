@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Bank:
-    _balances: List[int]
+    _balances: list[int]
 
-    def __init__(self, balance: List[int]):
+    def __init__(self, balance: list[int]):
         self._balances = balance
 
     def transfer(self, account1: int, account2: int, money: int) -> bool:
@@ -15,17 +12,17 @@ class Bank:
         # account_1 doesn't have enough money for the transfer
         if self._balances[account1 - 1] < money:
             return False
-        
+
         # Move money around and return True
         self._balances[account1 - 1] -= money
         self._balances[account2 - 1] += money
-        return True        
+        return True
 
     def deposit(self, account: int, money: int) -> bool:
         # The account doesn't exist
         if account > len(self._balances):
             return False
-        
+
         self._balances[account - 1] += money
         return True
 
@@ -33,14 +30,14 @@ class Bank:
         # The account doesn't exist
         if account > len(self._balances):
             return False
-        
+
         # The account doesn't have enough money
         if self._balances[account - 1] < money:
             return False
 
         self._balances[account - 1] -= money
         return True
-        
+
 
 
 # Your Bank object will be instantiated and called as such:

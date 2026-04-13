@@ -1,5 +1,4 @@
 from collections import defaultdict, deque
-from typing import List
 
 
 class Solution:
@@ -50,7 +49,7 @@ class Solution:
 
     # Time O(S + R*R*I) as we could need to loop through full recipes list r times if one is added per time
     # Space O(S + R)
-    def findAllRecipes_bfs(self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]) -> List[str]:
+    def findAllRecipes_bfs(self, recipes: list[str], ingredients: list[list[str]], supplies: list[str]) -> list[str]:
         # Create supply set
         supply_set = set()
         for supply in supplies:
@@ -82,7 +81,7 @@ class Solution:
                     added_supply = True
 
         return list(answer_set)
-    
+
 test_cases = [
     [["bread"], ["bread"], [["yeast","flour"]], ["yeast","flour","corn"]],
     [["bread","sandwich"], ["bread","sandwich"], [["yeast","flour"],["bread","meat"]], ["yeast","flour","meat"]],

@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # flatten the grid, sort it, take middle
     # If any mod is different return -1 otherwise add different divisor
     # Time O(glogg) where g is n*m
     # Space O(g)
-    def minOperations(self, grid: List[List[int]], x: int) -> int:
+    def minOperations(self, grid: list[list[int]], x: int) -> int:
         flattened_grid = [num for row in grid for num in row]
         flattened_grid.sort()
 
@@ -19,11 +16,11 @@ class Solution:
             # Make sure it's possible
             if num % x != target_mod:
                 return -1
-            
+
             answer += abs((target_num//x) - (num//x))
 
         return answer
-    
+
 test_cases = [
     [4, [[2,4],[6,8]], 2],
     [5, [[1,5],[2,3]], 1],

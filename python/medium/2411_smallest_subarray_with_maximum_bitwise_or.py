@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go backwards over array. Keep track of when each bit was set to 1
     # Time O(n*logc)
     # Space O(logc)
-    def smallestSubarrays(self, nums: List[int]) -> List[int]:
+    def smallestSubarrays(self, nums: list[int]) -> list[int]:
         n = len(nums)
 
         # Array for leftmost index of when this bit was switched to a 1
@@ -30,16 +27,16 @@ class Solution:
                 # If this bit is 1, set the positions array to this index
                 else:
                     pos[bit] = i
-            
+
             # Update min subset for this index
             answer[i] = end_index - i + 1
 
         return answer
-    
+
     # Brute force way. Will exceed time limit
     # Time O(n^2)
     # Space O(1)
-    def smallestSubarrays_brute_force(self, nums: List[int]) -> List[int]:
+    def smallestSubarrays_brute_force(self, nums: list[int]) -> list[int]:
         n = len(nums)
         answer = []
 
@@ -58,7 +55,7 @@ class Solution:
             answer.append(max)
 
         return answer
-    
+
 test_cases = [
     [[3,3,2,2,1], [1,0,2,1,3]],
     [[2,1], [1,2]]

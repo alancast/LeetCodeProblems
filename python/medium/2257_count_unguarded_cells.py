@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     UNGUARDED = 0
     GUARDED = 1
@@ -11,7 +8,7 @@ class Solution:
     # Time O(MxN)
     # Space O(MxN)
     def countUnguarded(
-        self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]
+        self, m: int, n: int, guards: list[list[int]], walls: list[list[int]]
     ) -> int:
         # Initialize grid as all unguarded
         grid = [[self.UNGUARDED] * n for _ in range(m)]
@@ -80,14 +77,14 @@ class Solution:
     # Then go over all cells again and count unguarded
     # Time O(MxN)
     # Space O(MxN)
-    def countUnguarded_simulation(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
+    def countUnguarded_simulation(self, m: int, n: int, guards: list[list[int]], walls: list[list[int]]) -> int:  # noqa: PLR0912
         # Create grid
         grid = [['F'] * n for _ in range(m)]
 
         # Go through and add walls
         for wall in walls:
             grid[wall[0]][wall[1]] = 'W'
-        
+
         # Go over all guards
         for guard in guards:
             row = guard[0]

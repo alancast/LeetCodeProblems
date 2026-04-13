@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # For each row count number of ones
     # Just multiply by previous number with ones and sum it all
     # Time O(n*m)
     # Space O(1)
-    def numberOfBeams(self, bank: List[str]) -> int:
+    def numberOfBeams(self, bank: list[str]) -> int:
         answer = prev_ones = 0
 
         for row in bank:
