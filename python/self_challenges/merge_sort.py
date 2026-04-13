@@ -1,46 +1,41 @@
-from typing import List
-
-
-def merge_sort(nums: List[int]) -> None:
+def merge_sort(nums: list[int]) -> None:
     _merge_sort(0, len(nums) - 1, nums)
 
-def _merge_sort(l: int, r: int, nums: List[int]) -> None:
-    if l >= r:
+def _merge_sort(left: int, right: int, nums: list[int]) -> None:
+    if left >= right:
         return
-    
+
     # To avoid overflow
-    mid = l + ((r-l) // 2)
+    mid = left + ((right-left) // 2)
 
-    _merge_sort(l, mid, nums)
-    _merge_sort(mid+1, r, nums)
-    _merge(l, mid + 1, r, nums)
+    _merge_sort(left, mid, nums)
+    _merge_sort(mid+1, right, nums)
+    _merge(left, mid + 1, right, nums)
 
-def _merge(l: int, mid: int, r: int, nums: List[int]) -> None:
+def _merge(left: int, mid: int, right: int, nums: list[int]) -> None:
     temp_array = []
 
-    starting_index = l
+    starting_index = left
     right_index = mid
-    while l < mid and right_index <= r:
-        if nums[l] < nums[right_index]:
-            temp_array.append(nums[l])
-            l += 1
+    while left < mid and right_index <= right:
+        if nums[left] < nums[right_index]:
+            temp_array.append(nums[left])
+            left += 1
         else:
             temp_array.append(nums[right_index])
             right_index += 1
 
     # One list will still have items, so just append them all
-    while l < mid:
-        temp_array.append(nums[l])
-        l += 1
-    while right_index <= r:
+    while left < mid:
+        temp_array.append(nums[left])
+        left += 1
+    while right_index <= right:
         temp_array.append(nums[right_index])
         right_index += 1
 
     # Move them into the original array
-    temp_index = 0
-    for i in range(starting_index, r + 1):
-        nums[i] = temp_array[temp_index]
-        temp_index += 1
+    for temp_index, value in enumerate(temp_array):
+        nums[starting_index + temp_index] = value
 
 test_cases = [
     [[1,2,3,4,5], [5,4,3,2,1]],

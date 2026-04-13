@@ -1,5 +1,4 @@
 from collections import deque
-from typing import List
 
 
 # Generate all permutations using a stack (DFS) and a queue (BFS)
@@ -7,7 +6,7 @@ from typing import List
 #   - There are n! permutations, and each permutation is constructed in O(n) time.
 # Space Complexity: O(n! * n) for storing all permutations in the call stack/queue at peak, plus O(n) for each permutation being built.
 #   - The stack or queue can hold up to O(n! * n) elements in the worst case.
-def gen_perms(nums: List[int]) -> None:
+def gen_perms(nums: list[int]) -> None:
     print('Permutations using stack (DFS):')
     stack = [([], nums)]  # (current_perm, remaining)
     while stack:
@@ -16,7 +15,7 @@ def gen_perms(nums: List[int]) -> None:
             print(curr_perm)
         else:
             for i in range(len(remaining)):
-                stack.append((curr_perm + [remaining[i]], remaining[:i] + remaining[i+1:]))
+                stack.append(([*curr_perm, remaining[i]], remaining[:i] + remaining[i+1:]))
 
     print('\nPermutations using queue (BFS):')
     queue = deque([([], nums)])
@@ -26,13 +25,13 @@ def gen_perms(nums: List[int]) -> None:
             print(curr_perm)
         else:
             for i in range(len(remaining)):
-                queue.append((curr_perm + [remaining[i]], remaining[:i] + remaining[i+1:]))
+                queue.append(([*curr_perm, remaining[i]], remaining[:i] + remaining[i+1:]))
 
 # Generating permutation using Heap Algorithm
 # Time Complexity: O(n! * n) where n is the length of nums.
 #   - There are n! permutations, and each permutation is constructed in O(n) time.
 # Space Complexity: O(n) for recursive call stack size
-def heap_permutation(nums: List[int], size: int) -> None:
+def heap_permutation(nums: list[int], size: int) -> None:
 
     # if size becomes 1 then prints the obtained permutation
     if size == 1:

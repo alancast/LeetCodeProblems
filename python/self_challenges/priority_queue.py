@@ -5,7 +5,7 @@
 class MinPriorityQueue:
     def __init__(self) -> None:
         self.heap = []
-    
+
     # O(log n) time for sift up, O(1) space
     def insert(self, num: int) -> None:
         self.heap.append(num)
@@ -13,19 +13,19 @@ class MinPriorityQueue:
         # sift up from end of heap (where the new number is)
         # (swap it with as many parents as need be until it's smaller than all it's children)
         self._sift_up(len(self.heap) - 1)
-    
+
     # O(1) time, O(1) space
     def peek(self) -> int:
         if not self.heap:
             return -1
 
         return self.heap[0]
-    
+
     # O(log n) time for sift down, O(1) space
     def pop(self) -> int:
         if not self.heap:
             return -1
-        
+
         # Get min value we will return
         min_val = self.heap[0]
 
@@ -36,11 +36,11 @@ class MinPriorityQueue:
         if self.heap:
             self.heap[0] = last
             self._sift_down(0)
-        
+
         return min_val
 
     # Implement binary tree where parent has left child 2*i + 1 and right child  2*i + 2
-    # Sift a number up means make sure it's larger than it's parent 
+    # Sift a number up means make sure it's larger than it's parent
     # Make swaps until that's the case
     # O(log n) time, O(1) space
     def _sift_up(self, idx):
@@ -66,7 +66,7 @@ class MinPriorityQueue:
             # Get left and right child indexes
             left = (2 * idx) + 1
             right = (2 * idx) + 2
-            
+
             # Parent should be smallest
             smallest = idx
             # Left is smaller than parent
@@ -93,4 +93,4 @@ pq.insert(9)
 assert(pq.peek() == 0)
 popped = pq.pop()
 assert(popped == 0), f"Popped wrong value. Popped {popped} should have been 0"
-assert(pq.peek() == 3)
+assert(pq.peek() == 3)  # noqa: PLR2004
