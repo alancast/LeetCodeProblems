@@ -1,15 +1,14 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
-    def countInterestingSubarrays(self, nums: List[int], modulo: int, k: int) -> int:
+    def countInterestingSubarrays(self, nums: list[int], modulo: int, k: int) -> int:
         return self._count_interesting_subarrays_prefix_sum(nums, modulo, k)
 
     # Doing some janky math gives us an equation where we can use prefix sum
     # Time O(n) as we just loop over nums once
     # Space O(min(n, modulo)) as we a hash map of size either n or modulo
-    def _count_interesting_subarrays_prefix_sum(self, nums: List[int], modulo: int, k: int) -> int:
+    def _count_interesting_subarrays_prefix_sum(self, nums: list[int], modulo: int, k: int) -> int:
         n = len(nums)
 
         cnt_map = defaultdict(int)
@@ -26,13 +25,13 @@ class Solution:
             count_interesting += cnt_map[(prefix - k + modulo) % modulo]
             # Add this l as an l count
             cnt_map[prefix % modulo] += 1
-    
+
         return count_interesting
 
     # Time limit exceeded
     # Time O(n^2) as we iterate over all starting and ending point combos
     # Space O(n) as we store array of size n for modulo count
-    def _count_interesting_subarrays_n2(self, nums: List[int], modulo: int, k: int) -> int:
+    def _count_interesting_subarrays_n2(self, nums: list[int], modulo: int, k: int) -> int:
         n = len(nums)
 
         # Array for how many nums up through this one satisfy modulo == k

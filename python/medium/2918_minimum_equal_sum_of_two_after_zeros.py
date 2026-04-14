@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Sum up each one and count zeros
     # return min of sum + num 0s or -1 if there are no zeros in lower one
     # Time O(n1 + n2) as we go over nums1 and nums2
     # Space O(1)
-    def minSum(self, nums1: List[int], nums2: List[int]) -> int:
+    def minSum(self, nums1: list[int], nums2: list[int]) -> int:
         sum1 = zeros1 = sum2 = zeros2 = 0
         for num in nums1:
             sum1 += num
@@ -25,7 +22,7 @@ class Solution:
             return -1
 
         return max(sum1, sum2)
-    
+
 test_cases = [
     [12, [3,2,0,1,0], [6,5,0]],
     [-1, [2,0,2,0], [1,4]]

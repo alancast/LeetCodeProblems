@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Sort nums, then pick a threshold and see how many pairs have that or less
     # Do binary search on the thresholds until we have the min
     # Time O(nlogn + nlogM) for sort plus binary search M is max diff
     # Space O(n) because sorting algorithm likely uses O(n) space
-    def minimizeMax(self, nums: List[int], p: int) -> int:
+    def minimizeMax(self, nums: list[int], p: int) -> int:
         n = len(nums)
         nums.sort()
 
@@ -22,10 +19,10 @@ class Solution:
                 left = mid + 1
 
         return left
-    
+
     # Time O(n)
     # Space O(1)
-    def _count_pairs_diff_less_than_threshold(self, threshold: int, nums: List[int]) -> int:
+    def _count_pairs_diff_less_than_threshold(self, threshold: int, nums: list[int]) -> int:
         n = len(nums)
 
         index = count = 0
@@ -39,7 +36,7 @@ class Solution:
 
         return count
 
-    
+
 test_cases = [
     [1, [10,1,2,7,1,3], 2],
     [0, [4,2,1,2], 1]

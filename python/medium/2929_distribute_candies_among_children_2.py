@@ -14,13 +14,13 @@ class Solution:
         answer -= self._cal(n - 3 * (limit + 1) + 2)
 
         return answer
-    
+
     # Calculate combinations
     def _cal(self, x: int) -> int:
         if x < 0:
             return 0
         return x * (x - 1) // 2
-    
+
 test_cases = [
     [3, 5, 2],
     [10, 3, 3]

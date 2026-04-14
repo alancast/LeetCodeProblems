@@ -1,6 +1,5 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class SearchState:
@@ -58,8 +57,8 @@ class Solution:
         # Return -1 if no path exists, otherwise return the minimum distance
         if min_dist == float("inf"):
             return -1
-        
-        return min_dist
+
+        return int(min_dist)
 
     # Use Bellman-Ford algorithm
     # n is number of nodes m is number of edges
@@ -85,14 +84,14 @@ class Solution:
         # Return -1 if no path exists, otherwise return the minimum distance
         if min_dist == float("inf"):
             return -1
-        
-        return min_dist
+
+        return int(min_dist)
 
     # Use djikstras search
     # n is number of nodes m is number of edges
     # Time O(n + mlogm) n because create visited set of size n mlogm for search and heap push
     # Space O(n + m) m for search queue
-    def _minimum_distance_djikstras(self, n: int, edges: List[List[int]], s: int, marked: List[int]) -> int:
+    def _minimum_distance_djikstras(self, n: int, edges: list[list[int]], s: int, marked: list[int]) -> int:
         marked_set = set(marked)
         visited = [False] * n
         # Dict of source to list of destinations with weight
@@ -128,7 +127,7 @@ class Solution:
                 heappush(min_heap, SearchState(target, distance + weight))
 
         return -1
-    
+
 test_cases = [
     [4, 4, [[0,1,1],[1,2,3],[2,3,2],[0,3,4]], 0, [2,3]],
     [3, 5, [[0,1,2],[0,2,4],[1,3,1],[2,3,3],[3,4,2]], 1, [0,4]],

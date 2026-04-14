@@ -1,5 +1,4 @@
 from math import gcd
-from typing import List
 
 
 class Solution:
@@ -8,7 +7,7 @@ class Solution:
     # Otherwise find range where can get to 1 in smallest num
     # Time O(n^2 log M)
     # Space O(1)
-    def minOperations(self, nums: List[int]) -> int:
+    def minOperations(self, nums: list[int]) -> int:
         n = len(nums)
 
         # See how many 1's there are and compute shared gcd

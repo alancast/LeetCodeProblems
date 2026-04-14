@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Djikstra for each char at a time or Floyd-Warshall
     # Floyd Warshall computes shortest path from i to j
@@ -11,9 +8,9 @@ class Solution:
         self,
         source: str,
         target: str,
-        original: List[str],
-        changed: List[str],
-        cost: List[int],
+        original: list[str],
+        changed: list[str],
+        cost: list[int],
     ) -> int:
         # Initialize result to store the total minimum cost
         total_cost = 0
@@ -22,7 +19,7 @@ class Solution:
         min_cost = [[float("inf")] * 26 for _ in range(26)]
 
         # Fill the initial transformation costs from
-        for orig_char, change_char, change_cost in zip(original, changed, cost):
+        for orig_char, change_char, change_cost in zip(original, changed, cost, strict=True):
             # Compute start and end index of chars
             start_char_idx = ord(orig_char) - ord("a")
             end_char_idx = ord(change_char) - ord("a")
@@ -41,7 +38,7 @@ class Solution:
                     continue
 
                 for j in range(26):
-                    if k == j or i == j:
+                    if j in (k, i):
                         continue
 
                     min_cost[i][j] = min(
@@ -49,7 +46,7 @@ class Solution:
                     )
 
         # Calculate cost to transform string
-        for src, tgt in zip(source, target):
+        for src, tgt in zip(source, target, strict=True):
             if src == tgt:
                 continue
 

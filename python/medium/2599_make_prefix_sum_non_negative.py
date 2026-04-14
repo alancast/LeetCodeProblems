@@ -1,12 +1,11 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Keep a queue of most negative numbers, when we go negative move the biggest num to the back
     # Time O(n log(n)) as worst case it's 1 positive number and the other n are all negative
     # Space O(n) as worst case it's 1 positive number and the other n are all negative
-    def makePrefSumNonNegative(self, nums: List[int]) -> int:
+    def makePrefSumNonNegative(self, nums: list[int]) -> int:
         negative_nums_heap = []
         prefix_sum = count = 0
 
@@ -23,7 +22,7 @@ class Solution:
                 prefix_sum -= negative_popped
 
         return count
-    
+
 test_cases = [
     [0, [2,3,-5,4]],
     [0, [10,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],

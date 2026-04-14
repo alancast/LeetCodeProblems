@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n logn) as log n for search and n for type
     # Space O(1)
-    def minCapability(self, nums: List[int], k: int) -> int:
+    def minCapability(self, nums: list[int], k: int) -> int:
         n = len(nums)
         left = min(nums)
         right = max(nums)
@@ -32,7 +29,7 @@ class Solution:
                 left = mid + 1
 
         return answer
-            
+
 test_cases = [
     [5, [2,3,5,9], 2],
     [2, [2,7,9,3,1], 2],

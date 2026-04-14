@@ -47,7 +47,7 @@ class Solution:
             answer.append(char)
             if char in "AEIOUaeiou":
                 vowels.append(char)
-        
+
         vowels.sort(reverse=True)
 
         for i, char in enumerate(answer):

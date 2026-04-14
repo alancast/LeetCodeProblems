@@ -1,33 +1,33 @@
 from collections import Counter
 from heapq import heapify, heappop, heappush
 from math import sqrt
-from typing import List
 
 
 class Solution:
     # Build up num of cars until they are all processed
     # Time O(n + mlogk) where m is num cars, k is max rank
-    # O(n) for counter O(k) for building heap 
+    # O(n) for counter O(k) for building heap
     # O(logk) for each heap operation inside loop which could run m times
     # Space O(k) as we have heap of size k
-    def repairCars(self, rank: List[int], cars: int) -> int:
+    def repairCars(self, rank: list[int], cars: int) -> int:
         # Count the frequency of each rank
         count = Counter(rank)
 
         # Create a Min-heap storing [time, rank, n, count]:
         # Sorted by time
         # - time: time for the next repair
-        # - rank: mechanic's rank
+        # - mec_rank: mechanic's rank
         # - n: cars repaired by this mechanic
         # - count: number of mechanics with this rank
         # Initial time = rank (as rank * 1^2 = rank)
-        min_heap = [[rank, rank, 1, count[rank]] for rank in count]
+        min_heap = [[mec_rank, mec_rank, 1, count[mec_rank]] for mec_rank in count]
         heapify(min_heap)
 
+        time = 0
         # Process until all cars are repaired
         while cars > 0:
             # Pop the mechanic with the smallest current repair time
-            time, rank, n, count = heappop(min_heap)
+            time, mec_rank, n, count = heappop(min_heap)
 
             # Deduct the number of cars repaired by this mechanic group
             cars -= count
@@ -36,8 +36,8 @@ class Solution:
             n += 1
 
             # Push the updated repair time back into the heap
-            # The new repair time is rank * n^2 (since time increases quadratically with n)
-            heappush(min_heap, [rank * n * n, rank, n, count])
+            # The new repair time is mec_rank * n^2 (since time increases quadratically with n)
+            heappush(min_heap, [mec_rank * n * n, mec_rank, n, count])
 
         return time
 
@@ -45,7 +45,7 @@ class Solution:
     # Could be optimized by creating frequency array and breaking out of loop early
     # Time O(nlogn)
     # Space O(1)
-    def repair_cars_binary_search(self, ranks: List[int], cars: int) -> int:
+    def repair_cars_binary_search(self, ranks: list[int], cars: int) -> int:
         best_mechanic = min(ranks)
         left = 0
         right = best_mechanic * cars * cars
@@ -58,7 +58,7 @@ class Solution:
             # See if it's possible to solve in this amount of minutes
             cars_fixed = 0
             for num in ranks:
-                cars_fixed += int(sqrt((mid // num)))
+                cars_fixed += int(sqrt(mid // num))
 
             if cars_fixed >= cars:
                 answer = mid
@@ -67,7 +67,7 @@ class Solution:
                 left = mid + 1
 
         return answer
-    
+
 test_cases = [
     [16, [4,2,3,1], 10],
     [16, [5,1,8], 6]

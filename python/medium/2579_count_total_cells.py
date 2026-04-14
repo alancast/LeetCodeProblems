@@ -3,13 +3,13 @@ class Solution:
     # Space O(1) as we don't need any new space
     def coloredCells(self, n: int) -> int:
         return 1 + ((2 * n) * (n - 1))
-    
+
     # Time O(n) as we need to compute up to n
     # Space O(1) as we just need to know what last number was
     def coloredCells_iterative(self, n: int) -> int:
         if n == 1:
             return 1
-        
+
         i = 2
         num_cells = 5
 
@@ -19,7 +19,7 @@ class Solution:
             i += 1
 
         return num_cells
-        
+
 
 test_cases = [
     [1, 1],

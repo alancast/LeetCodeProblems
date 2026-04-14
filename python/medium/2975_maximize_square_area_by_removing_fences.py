@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     MOD = 10**9 + 7
 
@@ -10,7 +7,7 @@ class Solution:
     # Time O(v^2 + h^2)
     # Space O(v^2 + h^2) for set
     def maximizeSquareArea(
-        self, m: int, n: int, hFences: List[int], vFences: List[int]
+        self, m: int, n: int, hFences: list[int], vFences: list[int]
     ) -> int:
         # Get all edge lengths
         h_edges = self._get_edges(hFences, m)
@@ -28,8 +25,8 @@ class Solution:
     # Return set of all edge lengths possible
     # Time O(f^2)
     # Space O(f^2)
-    def _get_edges(self, fences: List[int], border: int) -> set:
-        points = sorted([1] + fences + [border])
+    def _get_edges(self, fences: list[int], border: int) -> set:
+        points = sorted([1, *fences, border])
 
         edge_lengths = set()
         for i in range(len(points)):

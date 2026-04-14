@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Prefix sum array
     # Time O(n^2)
     # Space O(n^2)
-    def rangeAddQueries(self, n: int, queries: List[List[int]]) -> List[List[int]]:
+    def rangeAddQueries(self, n: int, queries: list[list[int]]) -> list[list[int]]:
         # Create prefix sum array (n+1 for bound checking)
         prefix_sum_matrix = [[0] * (n + 1) for _ in range(n + 1)]
 

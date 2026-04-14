@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # Go over all nums and see what they are mod value
     # Smallest remaining mod value is smallest number that can't be gotten
     # Time O(n)
     # Space O(value)
-    def findSmallestInteger(self, nums: List[int], value: int) -> int:
+    def findSmallestInteger(self, nums: list[int], value: int) -> int:
         mods = [0] * value
         for num in nums:
             mods[num%value] += 1
-        
+
         # Find mod that will get used up first
         stopping_index = mods.index(min(mods))
         return (mods[stopping_index] * value) + stopping_index

@@ -1,20 +1,17 @@
-from typing import List
-
-
 class Solution:
-    def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
+    def countFairPairs(self, nums: list[int], lower: int, upper: int) -> int:
         self._validate_input(nums, lower, upper)
         return self._count_fair_pairs_two_pointers(nums, lower, upper)
-    
+
     # Time O(nlogn) nlogn to sort array then just n go over it with pointers
     # Space O(n) sorting nums
-    def _count_fair_pairs_two_pointers(self, nums: List[int], lower: int, upper: int) -> int:
+    def _count_fair_pairs_two_pointers(self, nums: list[int], lower: int, upper: int) -> int:
         nums.sort()
         # Total pairs is total pairs sum <= upper - sum < lower
         return self._lower_bound(nums, upper + 1) - self._lower_bound(nums, lower)
 
     # Calculate the number of pairs with sum less than `value`.
-    def _lower_bound(self, nums: List[int], value: int) -> int:
+    def _lower_bound(self, nums: list[int], value: int) -> int:
         left = 0
         right = len(nums) - 1
         result = 0
@@ -27,12 +24,12 @@ class Solution:
             else:
                 # Otherwise, shift the right pointer backwards, until we get a valid window.
                 right -= 1
-    
+
         return result
 
     # Time O(nlogn) nlogn to sort array then just n to loop through it
     # Space O(n) sorting nums
-    def _count_fair_pairs_nlogn(self, nums: List[int], lower: int, upper: int) -> int:
+    def _count_fair_pairs_nlogn(self, nums: list[int], lower: int, upper: int) -> int:
         nums.sort()
         left = total_pairs = 0
         right = len(nums) - 1
@@ -66,11 +63,11 @@ class Solution:
             left += 1
 
         return total_pairs
-    
+
     # Time limit exceeded
     # Time O(n^2) as nested loop through pairs
     # Space O(1)
-    def _count_fair_pairs_n2(self, nums: List[int], lower: int, upper: int) -> int:
+    def _count_fair_pairs_n2(self, nums: list[int], lower: int, upper: int) -> int:
         fair_pairs = 0
         n = len(nums)
 
@@ -83,10 +80,10 @@ class Solution:
 
         return fair_pairs
 
-    def _validate_input(self, nums: List[int], lower: int, upper: int) -> None:
+    def _validate_input(self, nums: list[int], lower: int, upper: int) -> None:
         if len(nums) < 1 or len(nums) > pow(10,5):
             raise ValueError("nums must have length between 1 and 10^5")
-        
+
 test_cases = [
     [6, [0,1,7,4,4,5], 3, 6],
     [2, [1,20,21,22], 22, 26],

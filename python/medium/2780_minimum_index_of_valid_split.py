@@ -1,11 +1,10 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
     # Time O(n) go through nums three times
     # Space O(1) don't need hash map by taking advantage of Boyer-Moore Majority voting
-    def minimumIndex(self, nums: List[int]) -> int:
+    def minimumIndex(self, nums: list[int]) -> int:
         # Find the majority element
         majority = nums[0]
         count = 0
@@ -40,7 +39,7 @@ class Solution:
 
     # Time O(n) go through nums at most twice
     # Space O(n) to find max num we store map which can be size n
-    def minimumIndex_hash_map(self, nums: List[int]) -> int:
+    def minimumIndex_hash_map(self, nums: list[int]) -> int:
         max_num = max_count = 0
         num_counts = defaultdict(int)
 
@@ -59,13 +58,13 @@ class Solution:
             if num == max_num:
                 used += 1
                 left -= 1
-                
+
             # Check if valid index
             if used > ((i+1)//2) and left > ((n-(i+1))//2):
                 return i
 
         return -1
-    
+
 test_cases = [
     [2, [1,2,2,2]],
     [4, [2,1,3,1,1,1,7,1,2,1]],

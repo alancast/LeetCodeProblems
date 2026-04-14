@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Find most consecutive bars that can be removed either h or v
     # Whichever that is is answer
     # Time O(hlogh + vlogv)
     # Space O(logh + log v) for sorts
     def maximizeSquareHoleArea(
-        self, n: int, m: int, hBars: List[int], vBars: List[int]
+        self, n: int, m: int, hBars: list[int], vBars: list[int]
     ) -> int:
         # Sort the bars
         hBars.sort()

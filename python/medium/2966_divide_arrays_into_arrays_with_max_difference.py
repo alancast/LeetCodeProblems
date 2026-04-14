@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Sort array then just parse out into smaller subarrays
     # If any difference is greater than k not possible
     # Time O(nlogn)
     # Space O(n) for sorting algorithm
-    def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
+    def divideArray(self, nums: list[int], k: int) -> list[list[int]]:
         n = len(nums)
         # This is the time killer in here
         nums.sort()

@@ -1,5 +1,4 @@
 from collections import Counter, defaultdict
-from typing import List
 
 
 class Solution:
@@ -8,7 +7,7 @@ class Solution:
     # Then keep counting as left continues
     # Time O(n) as we go over nums multiple times but have O(1) operations each time
     # Space O(n) as we store hash map
-    def countCompleteSubarrays(self, nums: List[int]) -> int:
+    def countCompleteSubarrays(self, nums: list[int]) -> int:
         # Find num distinct
         num_counts = Counter(nums)
         num_distinct = len(num_counts)

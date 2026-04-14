@@ -1,11 +1,9 @@
-from typing import List
-
 class Solution:
     # Time O(nk) where k is time to find if partion-able
     # Space O(1)
     def punishmentNumber(self, n: int) -> int:
         return self.punishmentNumberIntMemoization(n)
-    
+
     # Time O(nk) where k is time to find if partion-able which is 2^logn
     # Space O(logn)
     def punishmentNumberIntMemoization(self, n: int) -> int:
@@ -20,16 +18,16 @@ class Solution:
                 punishment_num += square
 
         return punishment_num
-    
+
     def __can_partition_int(self, remaining_num: int, target: int) -> bool:
         # Found a working partition
         if remaining_num == target:
             return True
-        
+
         # Already too large, no sense in recursing further
         if target < 0 or remaining_num < target:
             return False
-        
+
         # Recursively check all partitions for a valid partition
         # Because we know n <= 1000 we can hardcode these values because anything % 10k is already over target
         return (
@@ -53,16 +51,16 @@ class Solution:
                 punishment_num += square
 
         return punishment_num
-    
+
     def __can_partition(self, string_num: str, target: int) -> bool:
         # Got to end of partition, see if we hit target num
         if len(string_num) == 0:
             return target == 0
-        
+
         # Already too large, no sense in recursing further
         if target < 0:
             return False
-        
+
         # Recursively check all partitions for a valid partition
         for index in range(len(string_num)):
             left = string_num[: index + 1]
@@ -73,7 +71,7 @@ class Solution:
                 return True
 
         return False
-    
+
     # Time O(nk) where k is time to find if partion-able which is 2^logn
     # Space O(nlogn + logn)
     def punishmentNumberMemoization(self, n: int) -> int:
@@ -94,7 +92,7 @@ class Solution:
                 punishment_num += square
 
         return punishment_num
-    
+
     def __find_partitions_basic(
         self, start_index, current_sum, string_num, target, memo
     ):
@@ -133,7 +131,7 @@ class Solution:
         # Memoize the result for future reference and return its result
         memo[start_index][current_sum] = 0
         return False
-    
+
 testCases = [
     [10, 182],
     [1, 1],

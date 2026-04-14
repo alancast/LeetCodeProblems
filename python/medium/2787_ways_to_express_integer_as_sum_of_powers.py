@@ -10,7 +10,7 @@ class Solution:
         dp[0] = 1
 
         # If j<i^x, then dp[j] remains unchanged
-        # If j≥i^x, then dp[j]=dp[j]+dp[j−i^x]
+        # If j≥i^x, then dp[j]=dp[j]+dp[j-i^x]
 
         # Loop over j from n to 0
         for i in range(1, n + 1):
@@ -24,7 +24,7 @@ class Solution:
                 dp[j] = (dp[j] + dp[j - val]) % MOD
 
         return dp[n]
-    
+
     # DP solution
     # Time O(n^2)
     # Space O(n^2)
@@ -35,8 +35,8 @@ class Solution:
         dp = [[0] * (n + 1) for _ in range(n + 1)]
         dp[0][0] = 1
 
-        # If j<i^x, then dp[i][j]=dp[i−1][j].
-        # If j≥i^x, then dp[i][j]=dp[i−1][j]+dp[i−1][j−i^x]
+        # If j<i^x, then dp[i][j]=dp[i-1][j].
+        # If j≥i^x, then dp[i][j]=dp[i-1][j]+dp[i-1][j-i^x]
 
         # Loop over i from 0 to n
         for i in range(1, n + 1):

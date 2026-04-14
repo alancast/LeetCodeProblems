@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "Djikstra",
         "Djikstras",
         "fenwick",
         "inorder",
@@ -13,6 +14,7 @@
         "Pylint",
         "pytest",
         "submatrices",
-        "submatrix"
+        "submatrix",
+        "Warshall"
     ]
 }

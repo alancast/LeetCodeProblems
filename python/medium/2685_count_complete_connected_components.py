@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -10,11 +9,11 @@ class Solution:
     # At the end every component set with n(n-1)//2 edges in it is good
     # Time O(n + m^2) where m is length of edges as every edge could trigger into a component merge
     # Space O(n) where n is number of nodes (really 3n but simplifies to n)
-    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
+    def countCompleteComponents(self, n: int, edges: list[list[int]]) -> int:
         # Map for what component each node is in
         node_component_map = defaultdict(int)
         # Mapping of component to what nodes are in it
-        component_node_map = defaultdict(List[int])
+        component_node_map = defaultdict(list[int])
         # Mapping of components to num edges in it
         component_edges = defaultdict(int)
 
@@ -41,7 +40,7 @@ class Solution:
             for node in component_node_map[component_b]:
                 node_component_map[node] = component_a
                 component_node_map[component_a].append(node)
-            
+
             # Update edge count to have all the component b edges as well as the new one
             component_edges[component_a] += component_edges[component_b] + 1
 
@@ -58,7 +57,7 @@ class Solution:
                 complete_components += 1
 
         return complete_components
-    
+
 test_cases = [
     [3, 3, []],
     [2, 3, [[0,1]]],
