@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we just go over nums once
     # Space O(1)
-    def minOperations(self, nums: List[int]) -> int:
+    def minOperations(self, nums: list[int]) -> int:
         n = len(nums)
 
         flips = 0
@@ -22,7 +19,7 @@ class Solution:
             return -1
 
         return flips
-    
+
 test_cases = [
     [3, [0,1,1,1,0,0]],
     [-1, [0,1,1,1]]

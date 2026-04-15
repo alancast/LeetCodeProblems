@@ -1,15 +1,14 @@
 import heapq
-from typing import List
 
 
 class Solution:
-    def minOperations(self, nums: List[int], k: int) -> int:
+    def minOperations(self, nums: list[int], k: int) -> int:
         return self.minOperationsPQ(nums, k)
-    
+
     # Create min PQ of nums, check if top is above k, if not pop top 2 and push new num
     # Time O(nlog(n))
     # Space O(n)
-    def minOperationsPQ(self, nums: List[int], k: int) -> int:
+    def minOperationsPQ(self, nums: list[int], k: int) -> int:
         heapq.heapify(nums)
         numOperations = 0
         while nums[0] < k:
@@ -20,7 +19,7 @@ class Solution:
             numOperations += 1
 
         return numOperations
-    
+
 testCases = [
     [[2, 11, 10, 1, 3], 10, 2],
     [[2, 11], 10, 1],

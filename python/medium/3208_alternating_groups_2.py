@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Same exact logic as below but removes modulo as that's an expensive thing
     # Time O(n + k) as we loop over colors n once then an extra k
     # Space O(1)
-    def numberOfAlternatingGroups_two_pass(self, colors: List[int], k: int) -> int:
+    def numberOfAlternatingGroups_two_pass(self, colors: list[int], k: int) -> int:
         n = len(colors)
 
         num_groups = 0
@@ -19,7 +16,7 @@ class Solution:
 
             alternating_colors += 1
             last_color = colors[i]
-            
+
             if alternating_colors >= k:
                 num_groups += 1
 
@@ -31,15 +28,15 @@ class Solution:
 
             alternating_colors += 1
             last_color = colors[i]
-            
+
             if alternating_colors >= k:
                 num_groups += 1
 
         return num_groups
-    
+
     # Time O(n + k) as we just loop over colors once
     # Space O(1)
-    def numberOfAlternatingGroups(self, colors: List[int], k: int) -> int:
+    def numberOfAlternatingGroups(self, colors: list[int], k: int) -> int:
         n = len(colors)
 
         num_groups = left = streak = 0
@@ -58,11 +55,11 @@ class Solution:
             if streak == k - 1:
                 num_groups += 1
                 streak -= 1
-            
+
             left += 1
 
         return num_groups
-    
+
 test_cases = [
     [3, [0,1,0,1,0], 3],
     [0, [0,0,0,0,0], 3],

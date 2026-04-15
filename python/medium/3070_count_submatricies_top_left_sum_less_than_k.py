@@ -20,7 +20,7 @@ class Solution:
                 right = col
                 break
 
-        # Find all submatricies after first row
+        # Find all submatrices after first row
         for row in range(1, rows):
             col = 0
             while col < right:

@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(nlogn) as we sort the meetings and then just go through it
     # Space O(S) where s is however much space the sorting algo takes up
-    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+    def countDays(self, days: int, meetings: list[list[int]]) -> int:
         answer = 0
         # it's 1 indexed in days
         last_meeting_day = 1
@@ -21,7 +18,7 @@ class Solution:
             answer += days - last_meeting_day + 1
 
         return answer
-    
+
 test_cases = [
     [0, 10, [[1,10]]],
     [1, 2, [[1,1]]],

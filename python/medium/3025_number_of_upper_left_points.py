@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     # Sort points so it goes left and downward
     # Time O(nlogn + n^2)
     # Space O(n) for sorting
-    def numberOfPairs(self, points: List[List[int]]) -> int:
+    def numberOfPairs(self, points: list[list[int]]) -> int:
         # Sort points so it is now going from left to right and top to bottom
         points.sort(key=lambda x: (x[0], -x[1]))
 
         answer = 0
-        # Go over all point A's (upper left) 
+        # Go over all point A's (upper left)
         # We don't care about x because it's already sorted left to right
         for i, (_, top) in enumerate(points):
             bottom = float("-inf")
@@ -35,7 +32,7 @@ class Solution:
     # Really dumb just brute forcing it solution
     # Time O(n^3)
     # Space O(1)
-    def numberOfPairs_brute_force(self, points: List[List[int]]) -> int:
+    def numberOfPairs_brute_force(self, points: list[list[int]]) -> int:
         n = len(points)
 
         answer = 0
@@ -54,14 +51,14 @@ class Solution:
                 # If there are only 2 points and we get here it means
                 # We have an upper left, and only 1 can exist (cuz 2 points)
                 # So just return 1 and get out of here
-                if n == 2:
+                if n == 2:  # noqa: PLR2004
                     return 1
 
                 # Make sure all other points aren't in this rectangle
                 illegal = False
                 for k in range(n):
                     # If this point is one of the others skip
-                    if k == i or k == j:
+                    if k in (i, j):
                         continue
 
                     # See if this point is inside the rectangle of A -> B

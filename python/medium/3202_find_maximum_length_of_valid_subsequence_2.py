@@ -1,10 +1,7 @@
-from typing import List
-
-
 class Solution:
     # Time O(k^2 + nk) k^2 for creating dp, then nk for finding max
     # Space O(k^2) for dp array
-    def maximumLength(self, nums: List[int], k: int) -> int:
+    def maximumLength(self, nums: list[int], k: int) -> int:
         # For a sequence we need x y and y x to have the same mod k
         # dp to store modulo cur, prev
         dp = [[0] * k for _ in range(k)]
@@ -22,7 +19,7 @@ class Solution:
                 answer = max(answer, dp[prev][curr])
 
         return answer
-    
+
 test_cases = [
     [5, [1,2,3,4,5], 2],
     [4, [1,4,2,3,1,4], 3]

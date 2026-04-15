@@ -30,9 +30,9 @@ class Solution:
 
             # See if this a char produced a lower deletion number than previous ones
             answer = min(answer, deleted)
-    
+
         return answer
-    
+
 test_cases = [
     [3, "aabcaba", 0],
     [5, "abbbbbbbbbccccc", 0],

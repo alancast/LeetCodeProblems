@@ -1,7 +1,4 @@
-from typing import List, Optional
-
-
-# Definition for singly-linheaded list.
+# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -13,19 +10,22 @@ class Solution:
     # Go over list and skip anything in nums
     # Time O(n)
     # Space O(n)
-    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
+    def modifiedList(self, nums: list[int], head: ListNode | None) -> ListNode | None:
         # Create num_set
         num_set = set()
         for num in nums:
             num_set.add(num)
-        
+
         # Go over all items in list and skip ones in num_set
         # Set head first
         while head and head.val in num_set:
             head = head.next
-        
+
         # Iterate after head
         temp_head = head
+        if not temp_head:
+            return None
+
         while temp_head.next:
             if temp_head.next.val in num_set:
                 temp_head.next = temp_head.next.next

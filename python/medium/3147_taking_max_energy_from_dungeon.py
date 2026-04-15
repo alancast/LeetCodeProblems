@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go backwards from last k entries in energy
     # Time O(n)
     # Space O(1)
-    def maximumEnergy(self, energy: List[int], k: int) -> int:
+    def maximumEnergy(self, energy: list[int], k: int) -> int:
         n = len(energy)
         answer = float('-inf')
 
@@ -21,7 +18,7 @@ class Solution:
                 answer = max(answer, total)
                 j -= k
 
-        return answer
+        return int(answer)
 
 test_cases = [
     [3, [5,2,-10,-5,1], 3],

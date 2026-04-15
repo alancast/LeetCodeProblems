@@ -5,7 +5,7 @@ class Solution:
     # Time O(n) as we go over the string once
     # Space O(1)
     def doesAliceWin(self, s: str) -> bool:
-        for char in s:
+        for char in s:  # noqa: SIM110
             # Alphabet guaranteed lowercase
             if char in "aeiou":
                 return True

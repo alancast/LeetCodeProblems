@@ -23,7 +23,7 @@ class Solution:
                         str_arr[char_indexes[i].pop()] = "*"
                         # Make sure to break out of loop to not remove more
                         break
-        
+
         # Be sure to ignore all * in the answer
         return "".join(c for c in str_arr if c != "*")
 
@@ -51,7 +51,7 @@ class Solution:
                 answer_str += s[i]
 
         return answer_str
-    
+
 test_cases = [
     ["aab", "aaba*"],
     ["ab", "aaba**"],

@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Brute force n^2 implementation
     # For every point, evaluate all other points and see max overlap
     # Same as below but much simpler inner loop
     # Time O(n^2)
     # Space O(1)
-    def largestSquareArea(self, bottomLeft: List[List[int]], topRight: List[List[int]]) -> int:
+    def largestSquareArea(self, bottomLeft: list[list[int]], topRight: list[list[int]]) -> int:
         n = len(bottomLeft)
         max_side = 0
 
@@ -28,7 +25,7 @@ class Solution:
     # For every point, evaluate all other points and see max overlap
     # Time O(n^2)
     # Space O(1)
-    def largestSquareArea_long(self, bottomLeft: List[List[int]], topRight: List[List[int]]) -> int:
+    def largestSquareArea_long(self, bottomLeft: list[list[int]], topRight: list[list[int]]) -> int:
         n = len(bottomLeft)
         max_area = 0
 
@@ -74,7 +71,7 @@ class Solution:
                 # One left left of two right
                 elif one_x_low < two_x_high:
                     horizontal_overlap = two_x_high - one_x_low
-                
+
                 square_side = min(vertical_overlap, horizontal_overlap)
                 max_area = max(max_area, square_side * square_side)
 

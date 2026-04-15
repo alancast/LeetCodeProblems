@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Find left, right, top, and bottom. Do math to find area
     # Time O(m*n)
     # Space O(1)
-    def minimumArea(self, grid: List[List[int]]) -> int:
+    def minimumArea(self, grid: list[list[int]]) -> int:  # noqa: PLR0912
         rows = len(grid)
         cols = len(grid[0])
 
@@ -21,30 +18,28 @@ class Solution:
                     top = bottom = row_index
                     # Break because we know we won't find a better top
                     break
-            
+
             if top != -1:
                 break
-        
+
         # Find bottom-most (set others when we see one)
         for row_index in range(rows - 1, top, -1):
             bottom_found = False
             for col_index in range(cols):
                 if grid[row_index][col_index] == 1:
                     # See if left or right should be updated as well
-                    if col_index < left:
-                        left = col_index
-                    if col_index > right:
-                        right = col_index
+                    left = min(left, col_index)
+                    right = max(right, col_index)
 
                     # Set bottom
                     bottom = row_index
                     bottom_found = True
                     # Break because we know we won't find a better bottom
                     break
-            
+
             if bottom_found:
                 break
-        
+
         # Find left-most
         for col_index in range(left):
             left_found = False
@@ -55,10 +50,10 @@ class Solution:
                     left_found = True
                     # Break because we know we won't find a better left
                     break
-            
+
             if left_found:
                 break
-        
+
         # Find right-most
         for col_index in range(cols - 1, right, -1):
             right_found = False
@@ -69,7 +64,7 @@ class Solution:
                     right_found = True
                     # Break because we know we won't find a better right
                     break
-            
+
             if right_found:
                 break
 

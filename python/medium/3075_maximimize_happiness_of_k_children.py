@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort happiness and take the top k
     # Time O(nlogn)
     # Space O(n) for sort
-    def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
+    def maximumHappinessSum(self, happiness: list[int], k: int) -> int:
         happiness.sort(reverse=True)
 
         answer = 0

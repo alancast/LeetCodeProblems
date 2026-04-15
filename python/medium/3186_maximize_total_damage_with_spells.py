@@ -1,5 +1,4 @@
 from collections import Counter
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Use DP array
     # Time O(nlogn + n) for sort then going over array
     # Space O(n)
-    def maximumTotalDamage(self, power: List[int]) -> int:
+    def maximumTotalDamage(self, power: list[int]) -> int:
         # Count each number
         power_count = Counter(power)
 
@@ -15,7 +14,7 @@ class Solution:
         strength = {k: k*power_count[k] for k in power_count}
 
         # Create a list of spell powers (prepended with 3 0's for bound checking)
-        spells = [0, 0, 0] + sorted(list(strength.keys()))
+        spells = [0, 0, 0, *sorted(strength.keys())]
 
         # Create DP array of max strength you can attain up til that spell power
         n = len(spells)
@@ -24,15 +23,15 @@ class Solution:
         # Go over all spells and see wht is max we can take
         for i in range(3, n):
             # Can we take this and last one?
-            if spells[i] - spells[i-1] > 2:
+            if spells[i] - spells[i-1] > 2:  # noqa: PLR2004
                 dp[i] = dp[i-1] + strength[spells[i]]
             # No? Can we take this and the one two prior?
-            elif spells[i] - spells[i-2] > 2:
+            elif spells[i] - spells[i-2] > 2:  # noqa: PLR2004
                 dp[i] = max(dp[i-1], dp[i-2] + strength[spells[i]])
             # No? Guaranteed we can take the one 3 prior
             else:
                 dp[i] = max(dp[i-1], dp[i-3] + strength[spells[i]])
-        
+
         return dp[-1]
 
 test_cases = [

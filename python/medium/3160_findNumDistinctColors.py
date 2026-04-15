@@ -1,9 +1,9 @@
-from collections import defaultdict, Counter
-from typing import List
+from collections import Counter, defaultdict
+
 
 class Solution:
     # Time O(n) Space O(n)
-    def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
+    def queryResults(self, limit: int, queries: list[list[int]]) -> list[int]:
         color_counts = []
         ball_to_color_map = defaultdict(int)
         color_counter = Counter()
@@ -28,7 +28,7 @@ class Solution:
             color_counts.append(len(color_counter))
 
         return color_counts
-    
+
 testCases = [
     [4, [[1,4],[2,5],[1,3],[3,4]], [1,2,2,3]],
     [4, [[1,4],[1,5]], [1,1]]

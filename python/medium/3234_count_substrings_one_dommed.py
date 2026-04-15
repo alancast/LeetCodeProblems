@@ -6,7 +6,7 @@ class Solution:
     def numberOfSubstrings(self, s: str) -> int:
         n = len(s)
 
-        # Array of all 0's before this index 
+        # Array of all 0's before this index
         # one longer than string for right bounding
         previous_zero_idx = [-1] * (n + 1)
         for i in range(n):
@@ -30,7 +30,7 @@ class Solution:
                 if count_zeros * count_zeros <= count_ones:
                     # Formula for how many substrings this adds
                     answer += min(j - previous_zero_idx[j], count_ones - (count_zeros * count_zeros) + 1)
-                
+
                 # Move j backwards and add another zero
                 j = previous_zero_idx[j]
                 count_zeros += 1

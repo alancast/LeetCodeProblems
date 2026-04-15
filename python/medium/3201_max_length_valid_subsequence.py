@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Time O(n) as we go over the array once
     # Space O(1)
-    def maximumLength(self, nums: List[int]) -> int:
-        odds = evens = 0 
+    def maximumLength(self, nums: list[int]) -> int:
+        odds = evens = 0
         alternating = 1 # because first one isn't counted
         previous_even = nums[0] % 2 == 0
 
@@ -22,7 +19,7 @@ class Solution:
                     alternating += 1
 
         return max(odds, evens, alternating)
-    
+
 test_cases = [
     [4, [1,2,3,4]],
     [6, [1,2,1,1,2,1,2]],
