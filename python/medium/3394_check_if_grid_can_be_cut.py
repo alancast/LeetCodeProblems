@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    # Time O(nlogn) as we call sort which is nlogn 
+    # Time O(nlogn) as we call sort which is nlogn
     # Space O(S) where whatever the sort solution takes up
     def checkValidCuts(self, n: int, rectangles: list[list[int]]) -> bool:
         # Try both horizontal (0) and vertical (1) cuts
@@ -25,7 +22,7 @@ class Solution:
             # If rectangle starts after the furthest end we found a gap
             if furthest_end <= rect[dim]:
                 gap_count += 1
-                if gap_count == 2:
+                if gap_count == 2:  # noqa: PLR2004
                     return True
 
             # Update the furthest ending coordinate

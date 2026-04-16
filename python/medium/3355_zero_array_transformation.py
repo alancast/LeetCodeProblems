@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go through all queries and create prefix sum, then go through all nums
     # Time O(n + q) as we go through all nums and all queries once
     # Space O(n) n for prefix sum array
-    def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:
+    def isZeroArray(self, nums: list[int], queries: list[list[int]]) -> bool:
         n = len(nums)
         # n+1 because we put the addition after end
         prefix_sum = [0] * (n + 1)
@@ -23,11 +20,11 @@ class Solution:
                 return False
 
         return True
-    
+
     # Sort queries by start, then go through all nums and prefix sum
     # Time O(n + qlogq) as we go through all nums but also sort all q
     # Space O(n + sorting algo) n for prefix sum array
-    def isZeroArray_sorting_queries(self, nums: List[int], queries: List[List[int]]) -> bool:
+    def isZeroArray_sorting_queries(self, nums: list[int], queries: list[list[int]]) -> bool:
         n = len(nums)
         # n+1 because we put the addition after end
         prefix_sum = [0] * (n + 1)
@@ -52,7 +49,7 @@ class Solution:
                 # If start is after this number it means it can't get lower so we fail
                 if start > i:
                     return False
-                
+
                 # We no longer care about this query
                 if end < i:
                     continue
@@ -67,7 +64,7 @@ class Solution:
                 return False
 
         return True
-    
+
 test_cases = [
     [True, [1,0,1], [[0,2]]],
     [False, [4,3,2,1], [[1,3],[0,2]]]

@@ -1,5 +1,4 @@
 from sys import maxsize
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Keep an array of min sum for a mod k range
     # Time O(n)
     # Space O(k)
-    def maxSubarraySum(self, nums: List[int], k: int) -> int:
+    def maxSubarraySum(self, nums: list[int], k: int) -> int:
         n = len(nums)
 
         prefix_sum = 0

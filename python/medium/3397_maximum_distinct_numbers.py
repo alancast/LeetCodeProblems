@@ -1,12 +1,11 @@
 import math
-from typing import List
 
 
 class Solution:
     # Sort the array and greedily take any unique items
     # Time O(nlogn + n)
     # Space O(n) for sorting algo
-    def maxDistinctElements(self, nums: List[int], k: int) -> int:
+    def maxDistinctElements(self, nums: list[int], k: int) -> int:
         nums.sort()
 
         answer = 0

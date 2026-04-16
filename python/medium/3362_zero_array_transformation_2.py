@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
@@ -7,7 +6,7 @@ class Solution:
     # Pick ones with furthest ending point first
     # Time O(qlogq + n qlogq) sort queries and then go through nums and find queries to use
     # Space O(sorting algo space + n + q) n for prefix sum, q for query priority queue
-    def maxRemoval(self, nums: List[int], queries: List[List[int]]) -> int:
+    def maxRemoval(self, nums: list[int], queries: list[list[int]]) -> int:
         n = len(nums)
         q = len(queries)
 
@@ -59,7 +58,7 @@ class Solution:
                     return -1
 
         return q - queries_used_count
-    
+
 test_cases = [
     [1, [2,0,2], [[0,2],[0,2],[1,1]]],
     [2, [1,1,1,1], [[1,3],[0,2],[1,3],[1,2]]],

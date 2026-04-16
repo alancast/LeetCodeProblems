@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # DFS of two trees to see how many nodes are reachable for a given k
     # Time O(nk + mk) as we compute for n (and m) nodes. And each computation is k steps
     # Space O(n+m) as counts1 is size n and counts2 is size m
-    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]], k: int) -> List[int]:
+    def maxTargetNodes(self, edges1: list[list[int]], edges2: list[list[int]], k: int) -> list[int]:
         # 1 less edge than nodes
         n = len(edges1) + 1
 
@@ -19,14 +16,14 @@ class Solution:
             answer.append(counts1[i] + maxCounts2)
 
         return answer
-    
+
     # DFS to see how many nodes are reachable in k hops from a give node
     # Time O(k)
     # Space O(k)
-    def _dfs(self, node: int, parent: int, children: List[List[int]], k: int) -> int:
+    def _dfs(self, node: int, parent: int, children: list[list[int]], k: int) -> int:
         if k < 0:
             return 0
-        
+
         # Can always reach itself
         count = 1
 
@@ -44,7 +41,7 @@ class Solution:
     # Computes the amount of nodes reachable from every node in k hops
     # Time O(nk) as we compute for n nodes. And each computation is k steps
     # Space O(n)
-    def _compute_counts_reachable_in_k_per_node(self, edges: List[List[int]], k: int) -> List[int]:
+    def _compute_counts_reachable_in_k_per_node(self, edges: list[list[int]], k: int) -> list[int]:
         # 1 less edge than nodes
         n = len(edges) + 1
 
@@ -53,16 +50,16 @@ class Solution:
         for u, v in edges:
             children[u].append(v)
             children[v].append(u)
-        
+
         # Create counts array
         counts = [0] * n
 
         # DFS on every node in tree
         for i in range(n):
             counts[i] = self._dfs(i, -1, children, k)
-    
+
         return counts
-    
+
 test_cases = [
     [[9,7,9,8,8], [[0,1],[0,2],[2,3],[2,4]], [[0,1],[0,2],[0,3],[2,7],[1,4],[4,5],[4,6]], 2],
     [[6,3,3,3,3], [[0,1],[0,2],[0,3],[0,4]], [[0,1],[1,2],[2,3]], 1]

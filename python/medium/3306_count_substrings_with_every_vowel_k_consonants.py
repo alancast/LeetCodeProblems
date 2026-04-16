@@ -4,12 +4,12 @@ from collections import defaultdict
 class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
         return self._count_of_substrings_fast_and_mem_efficient(word, k)
-    
+
     # Time O(n) as we only call helper twice
     # Space O(1) as we only call helper twice
     def _count_of_substrings_fast_and_mem_efficient(self, word: str, k: int) -> int:
         return self._at_least_k(word, k) - self._at_least_k(word, k + 1)
-    
+
     # Time O(n) as shrinking window goes over word twice
     # Space O(1) as we only keep vowel set
     def _at_least_k(self, word: str, k: int) -> int:
@@ -26,7 +26,7 @@ class Solution:
                 consonant_count += 1
 
             # Add all the shrinking we can do for valid windows
-            while (start < len(word) and len(vowel_count) == 5 and consonant_count >= k):
+            while (start < len(word) and len(vowel_count) == 5 and consonant_count >= k):  # noqa: PLR2004
                 # Add all substrings from here to end
                 num_substrings += n - end
 
@@ -43,10 +43,10 @@ class Solution:
             end += 1
 
         return num_substrings
-    
+
     # Time O(n) as shrinking window goes over word twice
     # Space O(n) as we keep next consonant array of size word
-    def _count_of_substrings_fast_but_memory(self, word: str, k: int) -> int:
+    def _count_of_substrings_fast_but_memory(self, word: str, k: int) -> int:  # noqa: PLR0912
         num_substrings = consonant_count = start = end = 0
         vowel_count = defaultdict(int)
         # Array to compute index of next consonant for all indices
@@ -79,7 +79,7 @@ class Solution:
                 start += 1
 
             # Add all the shrinking we can do for valid windows
-            while (start < len(word) and len(vowel_count) == 5 and consonant_count == k):
+            while (start < len(word) and len(vowel_count) == 5 and consonant_count == k):  # noqa: PLR2004
                 # Add all substrings that just append vowels (before next consonant)
                 num_substrings += next_consonant[end] - end
 
@@ -96,13 +96,13 @@ class Solution:
             end += 1
 
         return num_substrings
-    
+
     # Time O(n) as we just loop through the string once
     # Space O(k) as we keep a list of consonant indexes
-    def _count_of_substrings_slow(self, word: str, k: int) -> int:
+    def _count_of_substrings_slow(self, word: str, k: int) -> int:  # noqa: PLR0912
         n = len(word)
         left = num_substrings = 0
-        # Map of vowel to when it most recently occured
+        # Map of vowel to when it most recently occurred
         most_recent_vowel_occurrence = defaultdict(int)
         # List of consonant indexes
         consonant_indexes = []
@@ -112,21 +112,21 @@ class Solution:
             if self._is_vowel(char):
                 most_recent_vowel_occurrence[char] = i
             else:
-                consonant_indexes.append(i) 
+                consonant_indexes.append(i)
 
             # Need more consonants
             if len(consonant_indexes) < k:
                 continue
 
             # We have a substring, see how far forward left can go and still be valid
-            if len(consonant_indexes) == k and len(most_recent_vowel_occurrence) == 5:
+            if len(consonant_indexes) == k and len(most_recent_vowel_occurrence) == 5:  # noqa: PLR2004
                 # We can go as far forward as either losing a consonant or last occurrence of a vowel
-                min_break = min(most_recent_vowel_occurrence['a'], most_recent_vowel_occurrence['e'], 
-                                most_recent_vowel_occurrence['i'], most_recent_vowel_occurrence['o'], 
+                min_break = min(most_recent_vowel_occurrence['a'], most_recent_vowel_occurrence['e'],
+                                most_recent_vowel_occurrence['i'], most_recent_vowel_occurrence['o'],
                                 most_recent_vowel_occurrence['u'])
                 if k > 0:
                     min_break = min(min_break, consonant_indexes[0])
-                
+
                 # Add num substrings count
                 num_substrings += min_break - left + 1
 
@@ -136,8 +136,8 @@ class Solution:
                 consonant_indexes.pop(0)
 
                 # Either add new substrings or purge vowels that are gone
-                min_break = min(most_recent_vowel_occurrence['a'], most_recent_vowel_occurrence['e'], 
-                                most_recent_vowel_occurrence['i'], most_recent_vowel_occurrence['o'], 
+                min_break = min(most_recent_vowel_occurrence['a'], most_recent_vowel_occurrence['e'],
+                                most_recent_vowel_occurrence['i'], most_recent_vowel_occurrence['o'],
                                 most_recent_vowel_occurrence['u'])
                 if k > 0:
                     min_break = min(min_break, consonant_indexes[0])
@@ -157,10 +157,10 @@ class Solution:
                         del most_recent_vowel_occurrence['u']
 
         return num_substrings
-    
+
     def _is_vowel(self, char: str) -> bool:
         return char in ["a", "e", "i", "o", "u"]
-    
+
 test_cases = [
     [2, "gqoajureim", 4],
     [0, "aeioqq", 1],

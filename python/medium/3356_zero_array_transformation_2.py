@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Iterate through each entry in nums and just go through queries as need be
     # Time O(n + k) as we go through nums once and queries once
     # Space O(n) as we store the difference array
-    def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
+    def minZeroArray(self, nums: list[int], queries: list[list[int]]) -> int:
         n = len(nums)
         k = len(queries)
         difference_array = [0] * (n+1)
@@ -18,7 +15,7 @@ class Solution:
                 # We've processed all the queries and it's still above 0
                 if query_index == k:
                     return -1
-                
+
                 # Process next query
                 start, end, val = queries[query_index]
                 query_index += 1
@@ -42,7 +39,7 @@ class Solution:
     # Binary search to see what k is possible to get a zero array
     # Time O((n + q)*logn) as we call can form logn times
     # Space O(n)
-    def minZeroArray_binarySearch(self, nums: List[int], queries: List[List[int]]) -> int:
+    def minZeroArray_binarySearch(self, nums: list[int], queries: list[list[int]]) -> int:
         left = 0
         right = len(queries)
 
@@ -64,7 +61,7 @@ class Solution:
     # Can you form a zero array by processing the first k queries
     # Time O(k + n)
     # Space O(n)
-    def _can_form_zero_array(self, nums: List[int], queries: List[List[int]], k: int) -> bool:
+    def _can_form_zero_array(self, nums: list[int], queries: list[list[int]], k: int) -> bool:
         n = len(nums)
         difference_array = [0] * (n + 1)
 
@@ -86,7 +83,7 @@ class Solution:
 
         # All could get to 0
         return True
-    
+
 test_cases = [
     [2, [2,0,2], [[0,2,1],[0,2,1],[1,1,3]]],
     [-1, [4,3,2,1], [[1,3,2],[0,2,1]]]

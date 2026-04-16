@@ -1,5 +1,4 @@
 from heapq import heappop, heappush
-from typing import List
 
 
 class SearchState:
@@ -14,19 +13,19 @@ class SearchState:
 
     def __lt__(self, other) -> bool:
         return self.distance < other.distance
-    
+
 
 class Solution:
-    # Just a dykstras algorithm problem
+    # Just a djikstras algorithm problem
     # Create a priority queue of time with x and y
     # Once we reach end we know it's min so return it's time
     # Once we visit a square update it's grid to -1 so it isn't added anymore
     # Time O(nm log(nm)) as we could process n*m entires, each adding a log heap push
     # Space O(1) as I did in space in the moveTime
-    def minTimeToReach(self, moveTime: List[List[int]]) -> int:
+    def minTimeToReach(self, moveTime: list[list[int]]) -> int:
         final_y = len(moveTime) - 1
         final_x = len(moveTime[0]) - 1
-        min_heap: List[SearchState] = []
+        min_heap: list[SearchState] = []
 
         heappush(min_heap, SearchState(0, 0, 0))
 
@@ -35,7 +34,7 @@ class Solution:
             # Check if reached end (if so return distance)
             if state.x == final_x and state.y == final_y:
                 return state.distance
-            
+
             # Check if already visited
             if moveTime[state.y][state.x] == -1:
                 continue
@@ -60,7 +59,10 @@ class Solution:
             if state.x + 1 <= final_x and moveTime[state.y][state.x + 1] != -1:
                 next_distance = max(state.distance + 1, moveTime[state.y][state.x + 1] + 1)
                 heappush(min_heap, SearchState(next_distance, state.x + 1, state.y))
-    
+
+        # This would never happen, just for linter, could throw here
+        return -1
+
 test_cases = [
     [6, [[0,4],[4,4]]],
     [3, [[0,0,0],[0,0,0]]],

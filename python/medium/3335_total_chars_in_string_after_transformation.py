@@ -11,7 +11,7 @@ class Solution:
             char_count[ord(ch) - ord('a')] += 1
 
         # Go through every transformation and create new char counts
-        for round in range(t):
+        for _ in range(t):
             nxt = [0] * 26
             # Create A and B from Z (and A)
             nxt[0] = char_count[25]
@@ -24,7 +24,7 @@ class Solution:
             char_count = nxt
 
         return sum(char_count) % self.MOD
-    
+
 test_cases = [
     [7, "abcyy", 2],
     [5, "azbk", 1],
