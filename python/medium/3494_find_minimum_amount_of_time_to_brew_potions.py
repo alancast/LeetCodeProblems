@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Process each potion in order
     # Keep track of when each wizard is free (when they finished previous potion)
     # And use that to figure out when to start each potion
     # Time O(ms)
     # Space O(s) as we keep array of earliest free time for each skill
-    def minTime(self, skill: List[int], mana: List[int]) -> int:
+    def minTime(self, skill: list[int], mana: list[int]) -> int:
         s = len(skill)
         free_times = [0] * s
 

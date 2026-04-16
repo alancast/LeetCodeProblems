@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Sliding window of meeting times and duration span
     # Find window length of k+1 meetings minus duration, return max of that
@@ -10,8 +7,8 @@ class Solution:
         self,
         eventTime: int,
         k: int,
-        startTime: List[int],
-        endTime: List[int]
+        startTime: list[int],
+        endTime: list[int]
     ) -> int:
         # Assuming startTime and endTime are sorted, if not just sort them
         n = len(startTime)
@@ -39,7 +36,7 @@ class Solution:
                 duration_busy -= endTime[i - k + 1] - startTime[i - k + 1]
 
         return answer
-    
+
 test_cases = [
     [2, 5, 1, [1,3], [2,5]],
     [18, 34, 2, [0,17], [14,19]],

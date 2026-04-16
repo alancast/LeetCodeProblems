@@ -16,14 +16,14 @@ class Solution:
             # When the two pointers are equal make the word longer
             while j + k < n and s[i + k] == s[j + k]:
                 k += 1
-            
+
             # J is start of superior word, so make it the starting point
             if j + k < n and s[i + k] < s[j + k]:
                 i, j = j, max(j + 1, i + k + 1)
             # J is inferior word, so move it forward and try again
             else:
                 j = j + k + 1
-        
+
         # Return the lexicographically largest string (but might be too long)
         return s[i:]
 
@@ -36,10 +36,9 @@ class Solution:
 
         if numFriends == 1:
             return word
-        
+
         highest_order = self._get_lexicographically_largest_string(word)
-        m = len(highest_order)
-    
+
         # the highest order string could be too long, so we need to substring it
         return highest_order[:max_len]
 
@@ -87,11 +86,11 @@ class Solution:
                         if char_j <= char:
                             i = j
                         break
-                    elif char_j < answer[diff]:
+                    if char_j < answer[diff]:
                         break
 
         return answer
-    
+
 test_cases = [
     ["nn", "aann", 2],
     ["zzlkwqydufmliuggnalxlbfqkoyzwg", "zpjyeuglibgfmrqilifaroybzzaomydzgjcdhtmpznomdvdiuxecfkhhuqwwhtebexryzcuqvoldjksmsolbtcxjuklvtjfyftyditlesuztlovtgeiegywjowddkoveuxxzizobweqplfctylphfpwyquqvmbtzutuciozbmfzzlkwqydufmliuggnalxlbfqkoyzwg", 89],

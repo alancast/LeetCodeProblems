@@ -1,18 +1,17 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class TaskManager:
     # Priority queue of (TaskPri, TaskId, UserId) sorted by first 2
-    task_pq: List
+    task_pq: list[tuple[int,int,int]]
     # Map task to priority
     task_to_priority: defaultdict
     # Map task to user (for edit to work properly)
     task_to_user: defaultdict
 
     # Time O(nlogn)
-    def __init__(self, tasks: List[List[int]]):
+    def __init__(self, tasks: list[list[int]]):
         self.task_pq = []
         self.task_to_priority = defaultdict(int)
         self.task_to_user = defaultdict(int)
@@ -22,7 +21,7 @@ class TaskManager:
             self.task_to_priority[task_id] = priority
             self.task_to_user[task_id] = user_id
             heappush(self.task_pq, (-priority, -task_id, user_id))
-        
+
 
     # Time O(logn)
     def add(self, userId: int, taskId: int, priority: int) -> None:
@@ -38,7 +37,7 @@ class TaskManager:
     # Time O(1)
     def rmv(self, taskId: int) -> None:
         del self.task_to_priority[taskId]
-        del self.task_to_user[taskId]   
+        del self.task_to_user[taskId]
 
     # Time O(n worst case)
     def execTop(self) -> int:

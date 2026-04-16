@@ -1,5 +1,4 @@
 from math import sqrt
-from typing import List
 
 
 class SegTree:
@@ -62,7 +61,7 @@ class Solution:
     # Create segment tree and use it to place fruits
     # Time O(nlogn) as segment tree update and binary search is logn
     # Space O(n) store full segment tree which is O(n)
-    def numOfUnplacedFruits(self, fruits: List[int], baskets: List[int]) -> int:
+    def numOfUnplacedFruits(self, fruits: list[int], baskets: list[int]) -> int:
         n = len(fruits)
 
         tree = SegTree(baskets)
@@ -75,13 +74,13 @@ class Solution:
                 answer += 1
 
         return answer
-    
+
     # Go over every fruit and for each one go over baskets groupings
     # Group buckets into sqrt(n) sizes and skip whole bucket if nothing is big enough
     # After using a basket set it's capacity to zero
     # Time O(n * sqrt(n)) as for every fruit we go through nested basket index
     # Space O(sqrt(n))
-    def numOfUnplacedFruits_buckets(self, fruits: List[int], baskets: List[int]) -> int:
+    def numOfUnplacedFruits_buckets(self, fruits: list[int], baskets: list[int]) -> int:
         n = len(fruits)
         bucket_size = int(sqrt(n))
 
@@ -126,12 +125,12 @@ class Solution:
                 answer += 1
 
         return answer
-    
+
     # Go over every fruit and for each one go over baskets list in order
     # After using a basket set it's capacity to zero
     # Time O(n^2) as for every fruit we go through nested basket index
     # Space O(1)
-    def numOfUnplacedFruits_brute_force(self, fruits: List[int], baskets: List[int]) -> int:
+    def numOfUnplacedFruits_brute_force(self, fruits: list[int], baskets: list[int]) -> int:
         n = len(fruits)
 
         answer = 0

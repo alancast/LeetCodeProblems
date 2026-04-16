@@ -23,22 +23,16 @@ class Spreadsheet:
     def getValue(self, formula: str) -> int:
         # Get rid of equal sign
         formula = formula[1:]
-        for i in range(len(formula)):
+        for _ in range(len(formula)):
             cells = formula.split('+')
             # Get left (make sure it's a cell)
             left = 0
-            if cells[0][0].isupper():
-                left = self.cell_map[cells[0]]
-            else:
-                left = int(cells[0])
+            left = self.cell_map[cells[0]] if cells[0][0].isupper() else int(cells[0])
 
             # Get left (make sure it's a cell)
             right = 0
-            if cells[1][0].isupper():
-                right = self.cell_map[cells[1]]
-            else:
-                right = int(cells[1])
-            
+            right = self.cell_map[cells[1]] if cells[1][0].isupper() else int(cells[1])
+
             return left + right
 
         return 0

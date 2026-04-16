@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     # Go over all meetings. Keep track of largest open space to left (and right)
     # of this meeting and see if meeting can fully slot into open space or just slide
     # next to adjacent meetings. Update max each time
     # Time O(n) as we go through array once and do O(1) ops
     # Space O(1)
-    def maxFreeTime(self, eventTime: int, startTime: List[int], endTime: List[int]) -> int:
+    def maxFreeTime(self, eventTime: int, startTime: list[int], endTime: list[int]) -> int:
         # Assuming startTime and endTime are sorted, if not just sort them
         n = len(startTime)
         answer = free_space = free_space_2 = 0
@@ -38,7 +35,7 @@ class Solution:
             left_2 = 0
             if i < n - 1:
                 left_2 = endTime[n-i-2]
-            
+
             right_2 = eventTime
             if i > 0:
                 right_2 = startTime[n-i]
@@ -52,7 +49,7 @@ class Solution:
             free_space_2 = max(free_space_2, right_2 - endTime[n-i-1])
 
         return answer
-    
+
 test_cases = [
     [2, 5, [1,3], [2,5]],
     [7, 10, [0,7,9], [1,8,10]],

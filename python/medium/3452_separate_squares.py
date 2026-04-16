@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Go over all bottom widths and compute area until it's half
     # Time O(nlogn) for sorting horizontal_lines
     # Space O(n)
-    def separateSquares(self, squares: List[List[int]]) -> float:
+    def separateSquares(self, squares: list[list[int]]) -> float:
         total_area = 0
         horizontal_lines = []
 
@@ -19,11 +16,11 @@ class Solution:
         horizontal_lines.sort(key=lambda x: x[0])
         # Sum of all bottom edges under the current scanning line
         covered_width = 0.0
-        curr_area = 0.0 
+        curr_area = 0.0
         prev_height = 0.0
 
         # Go over all the horizontal lines until total area is proper
-        for y, l, delta in horizontal_lines:
+        for y, length, delta in horizontal_lines:
             # Height gap from this to previous line
             diff = y - prev_height
             # Newly added area
@@ -35,9 +32,9 @@ class Solution:
                 return round(answer, 5)
 
             # Still more area to add so updated width below line and add area
-            # If it's the top line the delta will be -1 
+            # If it's the top line the delta will be -1
             # So it removes as we've added all area for that square
-            covered_width += delta * l
+            covered_width += delta * length
             curr_area += new_area
             prev_height = y
 
@@ -48,19 +45,19 @@ class Solution:
     # Pick a number between 0 and max y and see if it's right
     # Time O(nlogn)
     # Space O(1)
-    def separateSquares_binary_search(self, squares: List[List[int]]) -> float:
+    def separateSquares_binary_search(self, squares: list[list[int]]) -> float:
         # Find the max y and total area
         max_y = total_area = 0
-        for _, y, l in squares:
-            total_area += l**2
-            max_y = max(max_y, y + l)
+        for _, y, length in squares:
+            total_area += length**2
+            max_y = max(max_y, y + length)
 
         # See if more than half of the total area is below limit_y
         def more_than_half(limit_y: float) -> bool:
             area = 0
-            for _, y, l in squares:
+            for _, y, length in squares:
                 if y < limit_y:
-                    area += l * min(limit_y - y, l)
+                    area += length * min(limit_y - y, length)
 
             return area >= total_area / 2
 

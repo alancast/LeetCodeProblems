@@ -24,7 +24,7 @@ class Solution:
             answer = max(answer, min(abs(latitude) + abs(longitude) + (k * 2), i + 1))
 
         return answer
-    
+
 test_cases = [
     [3, "NWSE", 1],
     [4, "ENNSW", 1],

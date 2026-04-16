@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     # Sort events by timestamp
     # Create an array for mentions
@@ -10,7 +7,7 @@ class Solution:
     # Decrement mention increment when here is counted and offline
     # Time O(nlogn) for sorting events
     # Space O(num_users)
-    def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int]:
+    def countMentions(self, numberOfUsers: int, events: list[list[str]]) -> list[int]:
         # Sort by timestamp, and for equal timestamps sort by message inverse (OFFLINE before MESSAGE)
         events.sort(key=lambda ev: (int(ev[1]), 0 if ev[0] == "OFFLINE" else 1))
 
@@ -30,7 +27,7 @@ class Solution:
                 here_and_all_count += 1
                 continue
             # Decrement for all folks offline increment
-            elif mentions == "HERE":
+            if mentions == "HERE":
                 here_and_all_count += 1
                 time = int(timestamp)
                 to_remove = set()
@@ -42,7 +39,7 @@ class Solution:
                     # This time has passed so user is back online
                     else:
                         to_remove.add(key)
-                
+
                 # Remove all back online users
                 for id in to_remove:
                     offline_map.pop(id)
