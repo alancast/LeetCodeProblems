@@ -1,13 +1,12 @@
 from collections import defaultdict
-from heapq import heappush, heappop
-from typing import List
+from heapq import heappop, heappush
 
 
 class DisjointSetUnionMinimal:
-    parents: List[int]
+    parents: list[int]
 
     def __init__(self, n: int):
-        self.parents = [i for i in range(n)]
+        self.parents = list(range(n))
 
     def find(self, node1: int) -> int:
         if node1 != self.parents[node1]:
@@ -28,12 +27,12 @@ class DisjointSetUnionMinimal:
 
 
 class DisjointSetUnion:
-    parent: List[int]
-    is_online: List[bool]
-    lowest_online: List[List[int]]
+    parent: list[int]
+    is_online: list[bool]
+    lowest_online: list[list[int]]
 
     def __init__(self, n: int):
-        self.parent = [i for i in range(n)]
+        self.parent = list(range(n))
 
         # Initially all are online and lowest is self
         self.is_online = [True for _ in range(n)]
@@ -44,18 +43,18 @@ class DisjointSetUnion:
             node = self.parent[node]
 
         return node
-    
+
     def union(self, node1: int, node2: int) -> None:
         p1 = self.find(node1)
         p2 = self.find(node2)
-        
+
         # Always merge p2 with p1 return weight of walk
         self.parent[p2] = p1
         # Go through all of P2's onlines and add them into p1
         while self.lowest_online[p2]:
             heappush(self.lowest_online[p1], self.lowest_online[p2][-1])
             self.lowest_online[p2].pop(-1)
-    
+
     def get_online(self, node1: int) -> int:
         # If this node is online return itself
         if self.is_online[node1]:
@@ -66,10 +65,10 @@ class DisjointSetUnion:
         # Nothing online in this set
         if not self.lowest_online[p1]:
             return -1
-        
+
         # Return lowest online ID
         return self.lowest_online[p1][0]
-    
+
     def take_offline(self, node1: int) -> None:
         # If it's already offline do nothing
         if not self.is_online[node1]:
@@ -86,69 +85,68 @@ class DisjointSetUnion:
 
 class Solution:
     # The same logic as the one below, just faster as process heap less
-    def processQueries(self, c: int, connections: List[List[int]], queries: List[List[int]]) -> List[int]:
+    def processQueries(self, c: int, connections: list[list[int]], queries: list[list[int]]) -> list[int]:
         # Create sets
         dsjm = DisjointSetUnionMinimal(c+1)
         for u, v in connections:
             dsjm.union(u, v)
-        
+
         # Populate a list of minimum power ids in sets
         min_in_component = defaultdict(list)
         for i in range(c+1):
             heappush(min_in_component[dsjm.find(i)], i)
-     
+
         online_status = [True] * (c+1)
         answer = []
 
         # Go over all query types and process them
         for query_type, station in queries:
             # If taking something offline do that
-            if query_type == 2:
+            if query_type == 2:  # noqa: PLR2004
                 online_status[station] = False
             # If looking for min online thing in component
+            # If this is online just return it
+            elif online_status[station]:
+                answer.append(station)
+            # If it's not, search for min, but remember we didn't purge
+            # So will need to fact check that it's still online
             else:
-                # If this is online just return it
-                if online_status[station]:
-                    answer.append(station)
-                # If it's not, search for min, but remember we didn't purge
-                # So will need to fact check that it's still online
-                else:
-                    # Get the heap of min online components for this set
-                    min_in_component_heap = min_in_component[dsjm.find(station)]
-                    not_found = True
-                    # Go through heap and check until finding min still online
-                    # If not still online, pop and find next
-                    while min_in_component_heap:
-                        station = min_in_component_heap[0]
-                        # If the min is still online we have our answer
-                        if online_status[station]:
-                            answer.append(station)
-                            not_found = False
-                            break
-                        # The min wasn't still online so pop it and try next
-                        heappop(min_in_component_heap)
-                    # We didn't find anything still online in this component
-                    if not_found:
-                        answer.append(-1)
-        
+                # Get the heap of min online components for this set
+                min_in_component_heap = min_in_component[dsjm.find(station)]
+                not_found = True
+                # Go through heap and check until finding min still online
+                # If not still online, pop and find next
+                while min_in_component_heap:
+                    station = min_in_component_heap[0]  # noqa: PLW2901
+                    # If the min is still online we have our answer
+                    if online_status[station]:
+                        answer.append(station)
+                        not_found = False
+                        break
+                    # The min wasn't still online so pop it and try next
+                    heappop(min_in_component_heap)
+                # We didn't find anything still online in this component
+                if not_found:
+                    answer.append(-1)
+
         return answer
 
     # A disjoint set union of the grids where when they join the lowest ID is parent
     # Then process queries by doing find
     # Time O(nlogn + qlogn) for joining connections sets and queries
     # Space O(n)
-    def processQueries_slow(self, c: int, connections: List[List[int]], queries: List[List[int]]) -> List[int]:
+    def processQueries_slow(self, c: int, connections: list[list[int]], queries: list[list[int]]) -> list[int]:
         # Create union find (add 1 because 1 indexed)
         dsj = DisjointSetUnion(c+1)
 
         # Go over all connections and join unions
         for node1, node2 in connections:
             dsj.union(node1, node2)
-        
+
         # Go over all queries and get answers
         answer = []
         for query_type, station in queries:
-            if query_type == 2:
+            if query_type == 2:  # noqa: PLR2004
                 dsj.take_offline(station)
             else:
                 answer.append(dsj.get_online(station))

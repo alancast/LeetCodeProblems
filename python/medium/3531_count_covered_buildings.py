@@ -1,12 +1,9 @@
-from typing import List
-
-
 class Solution:
     # Find max and min buildings in each row and col
     # Then go over all the buildings and see if they are covered
     # Time O(b)
     # Space O(n)
-    def countCoveredBuildings(self, n: int, buildings: List[List[int]]) -> int:
+    def countCoveredBuildings(self, n: int, buildings: list[list[int]]) -> int:
         # Initialize data structures to keep min and max row and cols
         max_row = [0] * (n + 1)
         min_row = [n + 1] * (n + 1)

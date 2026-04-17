@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Sort array and then go over all nums and see how far right we can go
     # Time O(nlogn + n)
     # Space O(n) for sorting
-    def minRemoval(self, nums: List[int], k: int) -> int:
+    def minRemoval(self, nums: list[int], k: int) -> int:
         n = len(nums)
         nums.sort()
 

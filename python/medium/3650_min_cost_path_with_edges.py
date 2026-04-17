@@ -1,13 +1,12 @@
 from collections import defaultdict
 from heapq import heappop, heappush
-from typing import List
 
 
 class Solution:
     # Djikstras with some added stuff
     # Time O(nlogn)
     # Space O(n)
-    def minCost(self, n: int, edges: List[List[int]]) -> int:
+    def minCost(self, n: int, edges: list[list[int]]) -> int:
         # Create adjacency graph
         graph = defaultdict(list)
         for source, dest, weight in edges:

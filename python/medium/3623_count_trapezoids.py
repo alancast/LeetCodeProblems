@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 
 class Solution:
@@ -9,12 +8,12 @@ class Solution:
     # Then find total combinations
     # Time O(n)
     # Space O(n)
-    def countTrapezoids(self, points: List[List[int]]) -> int:
+    def countTrapezoids(self, points: list[list[int]]) -> int:
         # How may points at each y value
         y_count = defaultdict(int)
         for _, y in points:
             y_count[y] += 1
-        
+
         # Go over all y values and add for how many possible edges that value can have
         answer = total_edge_sum = 0
         for count in y_count.values():

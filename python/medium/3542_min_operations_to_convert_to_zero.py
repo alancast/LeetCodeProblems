@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Use a monotonic always increasing stack
     # Time O(n) as we go over all nums once
     # Space O(n)
-    def minOperations(self, nums: List[int]) -> int:
+    def minOperations(self, nums: list[int]) -> int:
         s = []
         answer = 0
 
@@ -14,7 +11,7 @@ class Solution:
             # Make sure this num is greater than what's at the end of the stack
             while s and s[-1] > num:
                 s.pop()
-            
+
             # If this num is already 0 nothing to do
             if num == 0:
                 continue

@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     MOD = 10**9 + 7
 
@@ -9,7 +6,7 @@ class Solution:
     # Or it is the lowest and then the answer is just n-1 factorial
     # Time O(n)
     # Space O(1)
-    def countPermutations(self, complexity: List[int]) -> int:
+    def countPermutations(self, complexity: list[int]) -> int:
         n = len(complexity)
 
         # Make sure all computer can be unlocked

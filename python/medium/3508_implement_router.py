@@ -1,6 +1,5 @@
 from bisect import bisect_left, bisect_right
 from collections import defaultdict, deque
-from typing import List
 
 
 class Router:
@@ -11,8 +10,8 @@ class Router:
     packet_queue: deque
     # Map of destination to sorted list of timestamps
     packet_counts: defaultdict
-    
-    
+
+
     def __init__(self, memoryLimit: int):
         self.memory_limit = memoryLimit
         self.packet_set = set()
@@ -39,7 +38,7 @@ class Router:
         return True
 
     # Time O(1)
-    def forwardPacket(self) -> List[int]:
+    def forwardPacket(self) -> list[int]:
         # If no packets return nothing
         if not self.packet_set:
             return []

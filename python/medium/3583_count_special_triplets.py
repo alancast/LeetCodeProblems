@@ -1,5 +1,4 @@
 from collections import Counter, defaultdict
-from typing import List
 
 
 class Solution:
@@ -10,7 +9,7 @@ class Solution:
     # While incrementing count to left. Use counts to find pairs
     # Time O(n)
     # Space O(n)
-    def specialTriplets(self, nums: List[int]) -> int:
+    def specialTriplets(self, nums: list[int]) -> int:
         right_side_counts = Counter(nums)
 
         answer = 0

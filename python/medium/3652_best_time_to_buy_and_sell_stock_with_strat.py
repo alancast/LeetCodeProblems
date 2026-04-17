@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     # Prefix sums to figure out where to make modifications
     # Time O(n)
     # Space O(n)
-    def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
+    def maxProfit(self, prices: list[int], strategy: list[int], k: int) -> int:
         n = len(prices)
 
         # Go over array and compute how much we've profited with strategy
