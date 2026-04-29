@@ -9,6 +9,7 @@ class Solution:
         if n == 1:
             return 0
 
+        # Compute sum of columns
         # col_sum[c][r] = sum of top r cells in column c
         col_sum = [[0] * (n + 1) for _ in range(n)]
         for c in range(n):
@@ -23,6 +24,7 @@ class Solution:
         # prev_suffix_max[h][k] = max over p in k..n of dp[h][p]
         prev_suffix_max = [[0] * (n + 1) for _ in range(n + 1)]
 
+        # Iterate over columns from left to right, building the DP for each new column
         for i in range(1, n):
             new_dp = [[0] * (n + 1) for _ in range(n + 1)]
             for curr_h in range(n + 1):
