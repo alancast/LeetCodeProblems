@@ -6,11 +6,14 @@ class ListNode:
 
 
 class Solution:
+    # Connect tail to head and then sever link before k
+    # Time O(n)
+    # Space O(1)
     def rotateRight(self, head: ListNode | None, k: int) -> ListNode | None:
         if not head or not head.next:
             return head
 
-        # find size of list and make a cycle pointing last one to head
+        # Find size of list and make a cycle pointing tail to head
         count = 1
         oldTail = head
         while oldTail.next:
