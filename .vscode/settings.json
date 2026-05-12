@@ -12,6 +12,7 @@
         "preorder",
         "pydocstyle",
         "Pylint",
+        "pyproject",
         "pytest",
         "submatrices",
         "submatrix",
