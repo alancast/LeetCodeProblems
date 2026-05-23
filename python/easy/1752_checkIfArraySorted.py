@@ -1,13 +1,15 @@
 class Solution:
     # Make sure numbers only lower once, and end of array is less than start if lowered
-    # Time O(n), space O(1)
+    # Time O(n)
+    # Space O(1)
     def check(self, nums: list[int]) -> bool:
         previousNum = firstNum = nums[0]
         lowered = False
         for i in range(1,len(nums)):
             currentNum = nums[i]
             if currentNum < previousNum:
-                # The array has already lowered once, so this is a second time which means not sorted
+                # If the array has already lowered once
+                # This is a second time which means not sorted
                 if lowered:
                     return False
 
@@ -15,6 +17,7 @@ class Solution:
 
             previousNum = currentNum
 
+        # Make sure wrap around doesn't lower either
         return not lowered or previousNum <= firstNum
 
 testCases = [
