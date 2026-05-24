@@ -1,17 +1,26 @@
 class Solution:
+    # Binary search with a minor twist of multiple answers so take lowest
+    # Time O(logn)
+    # Space O(1)
     def fixedPoint(self, arr: list[int]) -> int:
         left = 0
         right = len(arr) - 1
+
+        # In case no answer exists
         answer = -1
-        # binary search
+        # Do the binary search
         while left <= right:
-            mid = (left + right) // 2
+            # To avoid overflow
+            mid = left + ((right - left) // 2)
             num = arr[mid]
+
+            # Since array is sorted we know everything right of this won't be valid
             if num > mid:
                 right = mid - 1
+            # Similarly we know everything left of this won't be valid either
             elif num < mid:
                 left = mid + 1
-            # A potential answer, now search any answers lower
+            # A potential answer (as num == mid), but lower ones could exist
             else:
                 right = mid - 1
                 answer = mid
