@@ -1,6 +1,6 @@
 class Solution:
     # Just go over list and sum nums and store min
-    # Time O(n)
+    # Time O(nlogD) where D is max num (logD is num digits then)
     # Space O(1)
     def minElement(self, nums: list[int]) -> int:
         # Start with just really high number (above problem bounds)
