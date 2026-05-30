@@ -1,5 +1,6 @@
+# pyright: reportArgumentType=false, reportIndexIssue=false, reportOperatorIssue=false
 from collections import deque  # noqa: I001
-from sortedcontainers import Sortedlist # type: ignore
+from sortedcontainers import SortedList
 
 
 class Solution:
@@ -76,7 +77,7 @@ class Solution:
         def can_complete_k_tasks(k: int) -> bool:
             p = pills
             # Ordered set of workers (with the k highest value)
-            ws = Sortedlist(workers[m - k :])
+            ws = SortedList(workers[m - k :])
             # Enumerate each task from largest to smallest
             for i in range(k - 1, -1, -1):
                 # If the largest element in the ordered set is greater than or equal to tasks[i]
