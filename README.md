@@ -20,28 +20,35 @@ python/
 └── self_challenges/# Self-directed problems and data structure implementations
 ```
 
-## Stats *(as of May 2026 — updated manually, will be out of date)*
+## Stats *(as of June 2026 — updated manually, will be out of date)*
 
 | Category        | Count   |
 |-----------------|---------|
-| Easy            | 154     |
-| Medium          | 336     |
+| Easy            | 155     |
+| Medium          | 338     |
 | Hard            | 110     |
 | Meta problems   | 18      |
 | Self challenges | 4       |
-| **Total**       | **622** |
+| **Total**       | **625** |
 
-Files are named by LeetCode problem number and slug (e.g. `3742_max_path_score_in_a_grid.py`), or descriptively for non-LeetCode problems (e.g. `boss_fight_level_3.py`).
+Files are typically named by LeetCode problem number and slug (for example `3742_max_path_score_in_a_grid.py`). Non-LeetCode problems use descriptive filenames.
 
 ## Tooling
 
 - **Language:** Python 3.11+
-- **Linter/formatter:** [Ruff](https://github.com/astral-sh/ruff) — config in `pyproject.toml`
+- **Linter/formatter:** [Ruff](https://github.com/astral-sh/ruff)
+- **Ruff config:** `pyproject.toml`
 
 ```bash
-# Lint
+# Lint all Python files
 ruff check python/
 
-# Format
+# Format all Python files
 ruff format python/
 ```
+
+## Notes
+
+- Most LeetCode problems are from daily and weekly challenge cycles.
+- Non-LeetCode problems are either learning exercises or interview prompt recommendations.
+- The repository is intended as a living collection for practice and review.
