@@ -1,5 +1,8 @@
 class Solution:
-    # Time O(n) as we go through array twice
+    # Go over array twice, first time put all the lowers in right spot
+    # Second time put all the highers in right spot
+    # Slower than the merge lists one below, but more space efficient
+    # Time O(n)
     # Space O(1) as all we have is answer array
     def pivotArray(self, nums: list[int], pivot: int) -> list[int]:
         n = len(nums)
@@ -7,6 +10,7 @@ class Solution:
         answer = [pivot] * n
 
         # Go through and put all the low numbers in place
+        # Increment the high index so that second time through puts them there
         low_index = high_index = 0
         for num in nums:
             if num < pivot:
@@ -16,7 +20,7 @@ class Solution:
             elif num == pivot:
                 high_index += 1
 
-        # go through and put high numbers in place too
+        # Go through and put high numbers in place too
         for num in nums:
             if num > pivot:
                 answer[high_index] = num
