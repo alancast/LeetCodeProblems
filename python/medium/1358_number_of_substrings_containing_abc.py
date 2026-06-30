@@ -1,4 +1,5 @@
 class Solution:
+    # Track most recent occurrence of each letter and add num substrings from there
     # Time O(n) as we just go over s once
     # Space O(1) as we keep a map which can only consist of 3 chars
     def numberOfSubstrings(self, s: str) -> int:
@@ -6,6 +7,7 @@ class Solution:
         newest_a = newest_b = newest_c = -1
 
         count = 0
+        # Go over each ending position and see how many substrings end there
         for i in range(n):
             char = s[i]
             if char == 'a':
@@ -15,7 +17,7 @@ class Solution:
             else:
                 newest_c = i
 
-            # Add all substrings that end here, have all the chars (so how far forward left can go)
+            # We have all the chars (so how far forward left can go)
             # If don't have all chars the min will be -1 so will add 0
             count += min(newest_a, newest_b, newest_c) + 1
 
