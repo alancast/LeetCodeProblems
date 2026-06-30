@@ -22,6 +22,7 @@ class Solution:
             answer += prefix_sum
 
         return answer
+
 test_cases = [
     [5, [1,2,2,3], 2],
     [10, [1,1,1,1], 1],
