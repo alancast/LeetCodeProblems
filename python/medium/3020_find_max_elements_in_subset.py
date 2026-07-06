@@ -10,17 +10,25 @@ class Solution:
 
         ones_count = counter.get(1, 0)
 
-        # ans is at least the number of occurrences of 1, rounded down to an odd number
+        # Answer is at least the number of occurrences of 1, rounded down to an odd number
+        # Because mountain of 1 can be the answer (must be odd cuz 1 peak)
         answer = ones_count if ones_count % 2 else ones_count - 1
 
+        # Remove 1's from the counter as they aren't needed
         counter.pop(1, None)
+
+        # Go over all nums and see how big of mountain you can make
         for num in counter:
-            res = 0
+            result = 0
             x = num
+            # Make sure there are 2 instances of x in the counter (one for up one for down)
+            # Then see how high you can make the number
             while x in counter and counter[x] > 1:
-                res += 2
+                result += 2
                 x *= x
-            answer = max(answer, res + (1 if x in counter else -1))
+
+            # Answer is result + 1 if can have higher peak, -1 of needs lower peak
+            answer = max(answer, result + (1 if x in counter else -1))
 
         return answer
 
