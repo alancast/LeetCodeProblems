@@ -20,16 +20,16 @@ python/
 └── self_challenges/# Self-directed problems and data structure implementations
 ```
 
-## Stats *(as of July 2026 — updated manually, will be out of date)*
+## Stats *(as of August 2026 — updated manually, will be out of date)*
 
 | Category        | Count   |
 |-----------------|---------|
-| Easy            | 169     |
-| Medium          | 367     |
+| Easy            | 170     |
+| Medium          | 369     |
 | Hard            | 115     |
 | Meta problems   | 18      |
 | Self challenges | 4       |
-| **Total**       | **673** |
+| **Total**       | **676** |
 
 Files are typically named by LeetCode problem number and slug (for example `3742_max_path_score_in_a_grid.py`). Non-LeetCode problems use descriptive filenames.
 
