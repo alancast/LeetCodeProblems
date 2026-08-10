@@ -35,7 +35,7 @@ Files are typically named by LeetCode problem number and slug (for example `3742
 
 ## Tooling
 
-- **Language:** Python 3.11+
+- **Language:** Python 3.14+
 - **Linter/formatter:** [Ruff](https://github.com/astral-sh/ruff)
 - **Ruff config:** `pyproject.toml`
 
