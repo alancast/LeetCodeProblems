@@ -64,7 +64,6 @@ class Solution:
 
         return answer
 
-
 test_cases = [
     ["kiran", ["k","ki","kir","kira", "kiran"]],
     ["apple", ["a","banana","app","appl","ap","apply","apple"]],
