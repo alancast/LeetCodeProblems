@@ -3,10 +3,10 @@ class Solution:
     # Time O(1)
     # Space O(1)
     def countCommas(self, n: int) -> int:
-        if n < 1000:
+        if n < 1000:  # noqa: PLR2004
             return 0
         # Every number in this range has one comma so just subtract first 999
-        if n < 1000000:
+        if n < 1000000:  # noqa: PLR2004
             return n - 999
 
         # Bounds make this the last return amount
