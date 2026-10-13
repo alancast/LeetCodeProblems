@@ -1,5 +1,7 @@
 class Solution:
     # Sort array and greedily pick largest half and smallest half
+    # Time O(n + nlogn)
+    # Space O(n) for sort
     def maxAlternatingSum(self, nums: list[int]) -> int:
         n = len(nums)
 
