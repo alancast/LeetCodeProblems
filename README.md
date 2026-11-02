@@ -20,7 +20,7 @@ python/
 └── self_challenges/# Self-directed problems and data structure implementations
 ```
 
-## Stats *(as of October 2026 — updated manually, will be out of date)*
+## Stats *(as of November 2026 — updated manually, will be out of date)*
 
 | Category        | Count   |
 |-----------------|---------|
