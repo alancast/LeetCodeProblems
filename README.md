@@ -25,11 +25,11 @@ python/
 | Category        | Count   |
 |-----------------|---------|
 | Easy            | 193     |
-| Medium          | 416     |
+| Medium          | 417     |
 | Hard            | 121     |
 | Meta problems   | 18      |
 | Self challenges | 4       |
-| **Total**       | **752** |
+| **Total**       | **753** |
 
 Files are typically named by LeetCode problem number and slug (for example `3742_max_path_score_in_a_grid.py`). Non-LeetCode problems use descriptive filenames.
 
