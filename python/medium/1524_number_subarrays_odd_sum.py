@@ -5,6 +5,7 @@ class Solution:
         self.validate_input(arr)
         return self.num_subarrays_prefix_sums(arr)
 
+    # Prefix sum with even odd counts
     # Time O(n) goes through full array once
     # Space O(1)
     def num_subarrays_prefix_sums(self, arr: list[int]) -> int:
@@ -20,7 +21,7 @@ class Solution:
                 odd_count += 1
                 count += even_count
 
-            count %= self.MOD  # To handle large results
+            count %= self.MOD
 
         return count
 
@@ -58,7 +59,6 @@ class Solution:
         for num in arr:
             if num < 1 or num > 100:  # noqa: PLR2004
                 raise ValueError("every item in arr must be between 1 100")
-
 
 test_cases = [
     [20, [2,1,2,2,1,2,1,2]],
