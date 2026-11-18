@@ -1,0 +1,37 @@
+class Solution:
+    # Time O(n)
+    # Space O(1)
+    def minChanges(self, s: str) -> int:
+        min_changes_required = 0
+
+        # Check pairs of characters (i, i+1) with step size 2
+        for i in range(0, len(s), 2):
+            # If characters in current pair don't match,
+            # we need one change to make them equal
+            if s[i] != s[i + 1]:
+                min_changes_required += 1
+
+        return min_changes_required
+
+"""
+pythonic one liner:
+
+class Solution:
+    def minChanges(self, s: str) -> int:
+        # Count changes needed for each unmatched pair
+        return sum(s[i] != s[i + 1] for i in range(0, len(s), 2))
+"""
+
+test_cases = [
+    [2, "1001"],
+    [1, "10"],
+    [0, "0000"],
+]
+solution = Solution()
+for expected, s in test_cases:
+    actual = solution.minChanges(s)
+    if expected != actual:
+        print(f"FAILED TEST! Expected {expected} but got {actual}")
+        print(f"\tINPUTS: s: {s}")
+
+print("Ran all tests")
